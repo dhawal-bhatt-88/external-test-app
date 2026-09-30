@@ -1,0 +1,165 @@
+{
+  "formId": "drafts-server-intake",
+  "formVersionId": "drafts-server-intake-v1",
+  "title": "Health intake (server drafts)",
+  "schemaVersion": 2,
+  "navigation": {
+    "showProgress": true,
+    "reviewPage": true
+  },
+  "blocks": [
+    {
+      "id": "pg_about",
+      "type": "page",
+      "title": "About you",
+      "blocks": [
+        {
+          "id": "name",
+          "type": "short",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "id": "has_meds",
+          "type": "choice",
+          "label": "Do you take any regular medication?",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "pg_meds",
+      "type": "page",
+      "title": "Medication",
+      "enableWhen": [
+        {
+          "question": "has_meds",
+          "operator": "=",
+          "answer": "Yes"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "med_name",
+          "type": "short",
+          "label": "Medication name",
+          "required": true
+        },
+        {
+          "id": "dose_mg",
+          "type": "number",
+          "label": "Dose (mg)",
+          "min": 0,
+          "max": 5000
+        }
+      ]
+    },
+    {
+      "id": "pg_lifestyle",
+      "type": "page",
+      "title": "Lifestyle",
+      "blocks": [
+        {
+          "id": "smoker",
+          "type": "choice",
+          "label": "Do you smoke?",
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "g_habits",
+          "type": "group",
+          "label": "Health habits",
+          "blocks": [
+            {
+              "id": "g_smoking",
+              "type": "group",
+              "label": "Smoking",
+              "enableWhen": [
+                {
+                  "question": "smoker",
+                  "operator": "=",
+                  "answer": "Yes"
+                }
+              ],
+              "blocks": [
+                {
+                  "id": "cigs_per_day",
+                  "type": "number",
+                  "label": "Cigarettes per day",
+                  "min": 0,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "id": "activity",
+              "type": "dropdown",
+              "label": "How active are you?",
+              "options": [
+                "Not very",
+                "Somewhat",
+                "Very"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "followup",
+          "type": "choice",
+          "label": "Would you like a follow-up call?",
+          "options": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pg_followup",
+      "type": "page",
+      "title": "Follow-up",
+      "blocks": [
+        {
+          "id": "phone",
+          "type": "phone",
+          "label": "Phone number",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "followup",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        },
+        {
+          "id": "best_time",
+          "type": "dropdown",
+          "label": "Best time to call",
+          "options": [
+            "Morning",
+            "Afternoon",
+            "Evening"
+          ],
+          "enableWhen": [
+            {
+              "question": "followup",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "drafts": {
+    "mode": "server"
+  }
+}

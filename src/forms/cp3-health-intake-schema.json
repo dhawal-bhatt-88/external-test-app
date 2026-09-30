@@ -1,0 +1,141 @@
+{
+  "title": "Health intake",
+  "formId": "f7d36909-058e-4b0c-8179-8a11f515566f",
+  "formVersionId": "1edd254e-36ef-46ec-b791-30b6e84bb4af",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_11u8r1ov",
+      "type": "short",
+      "label": "Full name",
+      "required": true
+    },
+    {
+      "id": "b_xkwoldi1",
+      "type": "choice",
+      "label": "Do you take any regular medication?",
+      "required": true,
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "b_sufu09d5",
+      "type": "choice",
+      "label": "Do you smoke?",
+      "required": false,
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "b_ko9dv81w",
+      "type": "choice",
+      "label": "Do you drink alcohol?",
+      "required": false,
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "b_2zjx2k1n",
+      "type": "group",
+      "label": "Medication",
+      "enableWhen": [
+        {
+          "question": "b_xkwoldi1",
+          "operator": "=",
+          "answer": "Yes"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "b_utse8xpv",
+          "type": "short",
+          "label": "Medication name",
+          "required": true
+        },
+        {
+          "id": "b_3adfkifh",
+          "type": "group",
+          "label": "Dosage",
+          "blocks": [
+            {
+              "id": "b_g0hlppo6",
+              "type": "number",
+              "label": "Dose (mg)",
+              "required": false
+            },
+            {
+              "id": "b_m8e222kn",
+              "type": "group",
+              "label": "Schedule",
+              "blocks": [
+                {
+                  "id": "b_wfob2ua3",
+                  "type": "dropdown",
+                  "label": "How often?",
+                  "required": true,
+                  "options": [
+                    "Once daily",
+                    "Twice daily",
+                    "As needed"
+                  ]
+                },
+                {
+                  "id": "b_hfyd3aq7",
+                  "type": "choice",
+                  "label": "Taken with food?",
+                  "required": false,
+                  "options": [
+                    "Yes",
+                    "No"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b_qxmjj51w",
+      "type": "group",
+      "label": "Lifestyle support",
+      "enableWhen": [
+        {
+          "question": "b_sufu09d5",
+          "operator": "=",
+          "answer": "Yes"
+        },
+        {
+          "question": "b_ko9dv81w",
+          "operator": "=",
+          "answer": "Yes"
+        }
+      ],
+      "enableBehavior": "any",
+      "blocks": [
+        {
+          "id": "b_2prh896r",
+          "type": "checkbox",
+          "label": "Would you like support with any of these?",
+          "required": false,
+          "options": [
+            "Stopping smoking",
+            "Reducing alcohol"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b_wnquyhgj",
+      "type": "email",
+      "label": "Email address",
+      "required": false
+    }
+  ]
+}

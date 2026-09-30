@@ -1,0 +1,14 @@
+{
+  "title": "One page (server drafts)",
+  "formId": "c6026775-b358-4b80-a7f5-e03c19451304",
+  "formVersionId": "68e2713f-dac1-4a49-b5b1-8364e3ba789f",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "name",
+      "type": "short",
+      "label": "Full name",
+      "required": false
+    }
+  ]
+}

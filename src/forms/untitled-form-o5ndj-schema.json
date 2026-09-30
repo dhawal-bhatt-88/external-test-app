@@ -1,0 +1,1301 @@
+{
+  "schemaVersion": 2,
+  "formId": "bh-intake-demo",
+  "formVersionId": "bh-intake-demo-v1",
+  "title": "Behavioral health intake (demo)",
+  "navigation": {
+    "showProgress": true,
+    "progressStyle": "bar",
+    "reviewPage": true
+  },
+  "drafts": {
+    "mode": "device"
+  },
+  "blocks": [
+    {
+      "id": "p_about",
+      "type": "page",
+      "title": "About you",
+      "blocks": [
+        {
+          "id": "t_welcome",
+          "type": "title",
+          "content": "Behavioral health intake"
+        },
+        {
+          "id": "l_intro",
+          "type": "label",
+          "content": "Please answer as accurately as you can. Questions marked * are required."
+        },
+        {
+          "id": "h_patient_ref",
+          "type": "hidden",
+          "label": "Patient reference"
+        },
+        {
+          "id": "first_name",
+          "type": "short",
+          "label": "First name",
+          "required": true
+        },
+        {
+          "id": "last_name",
+          "type": "short",
+          "label": "Last name",
+          "required": true
+        },
+        {
+          "id": "preferred_name",
+          "type": "short",
+          "label": "Preferred name",
+          "placeholder": "What should we call you?"
+        },
+        {
+          "id": "dob",
+          "type": "date",
+          "label": "Date of birth",
+          "required": true
+        },
+        {
+          "id": "gender",
+          "type": "dropdown",
+          "label": "Gender",
+          "options": [
+            "Woman",
+            "Man",
+            "Non-binary",
+            "Prefer to self-describe",
+            "Prefer not to say"
+          ]
+        },
+        {
+          "id": "gender_self",
+          "type": "short",
+          "label": "Please describe your gender",
+          "enableWhen": [
+            {
+              "question": "gender",
+              "operator": "=",
+              "answer": "Prefer to self-describe"
+            }
+          ]
+        },
+        {
+          "id": "country",
+          "type": "country",
+          "label": "Country of residence"
+        },
+        {
+          "id": "marital",
+          "type": "dropdown",
+          "label": "Relationship status",
+          "options": [
+            "Single",
+            "Married",
+            "Partnered",
+            "Separated",
+            "Divorced",
+            "Widowed"
+          ]
+        },
+        {
+          "id": "employment",
+          "type": "choice",
+          "label": "Employment status",
+          "options": [
+            "Employed full-time",
+            "Employed part-time",
+            "Unemployed",
+            "Student",
+            "Retired",
+            "Unable to work"
+          ]
+        },
+        {
+          "id": "occupation",
+          "type": "short",
+          "label": "Occupation",
+          "enableWhen": [
+            {
+              "question": "employment",
+              "operator": "=",
+              "answer": "Employed full-time"
+            },
+            {
+              "question": "employment",
+              "operator": "=",
+              "answer": "Employed part-time"
+            }
+          ],
+          "enableBehavior": "any"
+        },
+        {
+          "id": "household_size",
+          "type": "number",
+          "label": "How many people live in your household (including you)?",
+          "min": 1,
+          "max": 20
+        },
+        {
+          "id": "language",
+          "type": "dropdown",
+          "label": "Preferred language",
+          "options": [
+            "English",
+            "Spanish",
+            "Other"
+          ]
+        },
+        {
+          "id": "interpreter",
+          "type": "choice",
+          "label": "Would you like an interpreter?",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "enableWhen": [
+            {
+              "question": "language",
+              "operator": "!=",
+              "answer": "English"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_contact",
+      "type": "page",
+      "title": "Contact details",
+      "blocks": [
+        {
+          "id": "hd_contact",
+          "type": "heading",
+          "label": "How can we reach you?",
+          "level": 3
+        },
+        {
+          "id": "email",
+          "type": "email",
+          "label": "Email address",
+          "required": true
+        },
+        {
+          "id": "phone",
+          "type": "phone",
+          "label": "Phone number",
+          "required": true
+        },
+        {
+          "id": "alt_phone",
+          "type": "phone",
+          "label": "Alternative phone number"
+        },
+        {
+          "id": "best_time",
+          "type": "time",
+          "label": "Best time to call"
+        },
+        {
+          "id": "contact_methods",
+          "type": "checkbox",
+          "label": "How may we contact you?",
+          "options": [
+            "Phone call",
+            "Text message",
+            "Email",
+            "Mail"
+          ]
+        },
+        {
+          "id": "ok_voicemail",
+          "type": "choice",
+          "label": "May we leave a voicemail?",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "enableWhen": [
+            {
+              "question": "contact_methods",
+              "operator": "contains",
+              "answer": "Phone call"
+            }
+          ]
+        },
+        {
+          "id": "d_contact",
+          "type": "divider"
+        },
+        {
+          "id": "emergency_has",
+          "type": "choice",
+          "label": "Do you have an emergency contact?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "g_emergency",
+          "type": "group",
+          "label": "Emergency contact",
+          "enableWhen": [
+            {
+              "question": "emergency_has",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ],
+          "blocks": [
+            {
+              "id": "ec_name",
+              "type": "short",
+              "label": "Name",
+              "required": true
+            },
+            {
+              "id": "ec_relationship",
+              "type": "dropdown",
+              "label": "Relationship to you",
+              "options": [
+                "Parent",
+                "Partner",
+                "Sibling",
+                "Child",
+                "Friend",
+                "Other"
+              ]
+            },
+            {
+              "id": "ec_phone",
+              "type": "phone",
+              "label": "Phone number",
+              "required": true
+            },
+            {
+              "id": "ec_email",
+              "type": "email",
+              "label": "Email address"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_concerns",
+      "type": "page",
+      "title": "What brings you here",
+      "blocks": [
+        {
+          "id": "referral_source",
+          "type": "dropdown",
+          "label": "Who referred you?",
+          "options": [
+            "Self",
+            "Primary care provider",
+            "Hospital",
+            "School",
+            "Employer",
+            "Court",
+            "Other"
+          ]
+        },
+        {
+          "id": "referral_link",
+          "type": "link",
+          "label": "Link to your referral letter (if you have one)",
+          "placeholder": "https://"
+        },
+        {
+          "id": "concerns",
+          "type": "checkbox",
+          "label": "What would you like help with?",
+          "required": true,
+          "options": [
+            "Low mood",
+            "Anxiety",
+            "Sleep problems",
+            "Stress",
+            "Relationship difficulties",
+            "Anger",
+            "Other"
+          ]
+        },
+        {
+          "id": "concern_other",
+          "type": "short",
+          "label": "Please describe",
+          "enableWhen": [
+            {
+              "question": "concerns",
+              "operator": "contains",
+              "answer": "Other"
+            }
+          ]
+        },
+        {
+          "id": "concern_duration",
+          "type": "choice",
+          "label": "How long have you had these concerns?",
+          "options": [
+            "Less than a month",
+            "1-6 months",
+            "6-12 months",
+            "More than a year"
+          ]
+        },
+        {
+          "id": "concern_impact",
+          "type": "scale",
+          "label": "How much do these concerns affect your daily life? (1 = not at all, 10 = severely)",
+          "min": 1,
+          "max": 10
+        },
+        {
+          "id": "g_sleep",
+          "type": "group",
+          "label": "Sleep",
+          "enableWhen": [
+            {
+              "question": "concerns",
+              "operator": "contains",
+              "answer": "Sleep problems"
+            }
+          ],
+          "blocks": [
+            {
+              "id": "sleep_hours",
+              "type": "number",
+              "label": "On average, how many hours do you sleep a night?",
+              "min": 0,
+              "max": 24
+            },
+            {
+              "id": "sleep_issues",
+              "type": "multiselect",
+              "label": "Which sleep problems do you have?",
+              "options": [
+                "Falling asleep",
+                "Staying asleep",
+                "Waking early",
+                "Nightmares",
+                "Sleeping too much"
+              ]
+            },
+            {
+              "id": "sleep_quality",
+              "type": "rating",
+              "label": "How would you rate your sleep quality?"
+            }
+          ]
+        },
+        {
+          "id": "prior_help",
+          "type": "choice",
+          "label": "Have you had support for your mental health before?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "g_prior",
+          "type": "group",
+          "label": "Previous support",
+          "enableWhen": [
+            {
+              "question": "prior_help",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ],
+          "blocks": [
+            {
+              "id": "prior_type",
+              "type": "checkbox",
+              "label": "What kind of support?",
+              "options": [
+                "Counseling",
+                "Psychotherapy",
+                "Psychiatry",
+                "Support group",
+                "Inpatient care"
+              ]
+            },
+            {
+              "id": "prior_when",
+              "type": "date",
+              "label": "When did it end (approximately)?"
+            },
+            {
+              "id": "prior_helpful",
+              "type": "rating",
+              "label": "How helpful was it?"
+            }
+          ]
+        },
+        {
+          "id": "uses_substances",
+          "type": "choice",
+          "label": "Do you use alcohol, tobacco or other substances?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No",
+            "Prefer not to say"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_mood",
+      "type": "page",
+      "title": "Mood and anxiety",
+      "blocks": [
+        {
+          "id": "l_mood",
+          "type": "label",
+          "content": "Over the last 2 weeks, how often have you been bothered by the following?"
+        },
+        {
+          "id": "mood_matrix",
+          "type": "matrix",
+          "label": "Symptoms over the last 2 weeks",
+          "required": true,
+          "completeRequired": true,
+          "options": [
+            "Little interest or pleasure in doing things",
+            "Feeling down or hopeless",
+            "Trouble concentrating",
+            "Feeling tired or having little energy",
+            "Feeling nervous or on edge",
+            "Not being able to stop worrying"
+          ],
+          "columns": [
+            "Not at all",
+            "Several days",
+            "More than half the days",
+            "Nearly every day"
+          ]
+        },
+        {
+          "id": "mood_scale",
+          "type": "scale",
+          "label": "Overall, how would you rate your mood today? (0 = very low, 10 = very good)",
+          "required": true,
+          "min": 0,
+          "max": 10
+        },
+        {
+          "id": "g_lowmood",
+          "type": "group",
+          "label": "Low mood",
+          "enableWhen": [
+            {
+              "question": "mood_scale",
+              "operator": "<=",
+              "answer": 3
+            }
+          ],
+          "blocks": [
+            {
+              "id": "lowmood_days",
+              "type": "number",
+              "label": "On how many of the last 14 days did you feel low most of the day?",
+              "min": 0,
+              "max": 14
+            },
+            {
+              "id": "lowmood_triggers",
+              "type": "checkbox",
+              "label": "What seems to bring it on?",
+              "options": [
+                "Work",
+                "Relationships",
+                "Money",
+                "Health",
+                "Loss or bereavement",
+                "Nothing specific"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "anxiety_rating",
+          "type": "rating",
+          "label": "How anxious have you felt this week? (1 = not at all, 5 = extremely)",
+          "required": true
+        },
+        {
+          "id": "g_anxiety",
+          "type": "group",
+          "label": "Anxiety",
+          "enableWhen": [
+            {
+              "question": "anxiety_rating",
+              "operator": ">=",
+              "answer": 4
+            }
+          ],
+          "blocks": [
+            {
+              "id": "panic_attacks",
+              "type": "choice",
+              "label": "Have you had panic attacks?",
+              "options": [
+                "Yes",
+                "No"
+              ]
+            },
+            {
+              "id": "panic_frequency",
+              "type": "dropdown",
+              "label": "How often?",
+              "options": [
+                "Daily",
+                "Weekly",
+                "Monthly",
+                "Rarely"
+              ],
+              "enableWhen": [
+                {
+                  "question": "panic_attacks",
+                  "operator": "=",
+                  "answer": "Yes"
+                }
+              ]
+            },
+            {
+              "id": "anxiety_situations",
+              "type": "multiselect",
+              "label": "Which situations make it worse?",
+              "options": [
+                "Crowds",
+                "Work",
+                "Social situations",
+                "Travel",
+                "Health worries",
+                "Other"
+              ]
+            },
+            {
+              "id": "coping",
+              "type": "ranking",
+              "label": "Rank what helps you cope, most helpful first",
+              "completeRequired": true,
+              "options": [
+                "Talking to someone",
+                "Exercise",
+                "Rest or sleep",
+                "Hobbies",
+                "Medication"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_substance",
+      "type": "page",
+      "title": "Substance use",
+      "enableWhen": [
+        {
+          "question": "uses_substances",
+          "operator": "!=",
+          "answer": "No"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "substances",
+          "type": "checkbox",
+          "label": "Which do you use?",
+          "required": true,
+          "options": [
+            "Alcohol",
+            "Tobacco",
+            "Cannabis",
+            "Opioids",
+            "Stimulants",
+            "Other"
+          ]
+        },
+        {
+          "id": "g_alcohol",
+          "type": "group",
+          "label": "Alcohol",
+          "enableWhen": [
+            {
+              "question": "substances",
+              "operator": "contains",
+              "answer": "Alcohol"
+            }
+          ],
+          "blocks": [
+            {
+              "id": "drinks_per_week",
+              "type": "number",
+              "label": "About how many drinks do you have in a typical week?",
+              "required": true,
+              "min": 0,
+              "max": 200
+            },
+            {
+              "id": "drink_days",
+              "type": "number",
+              "label": "On how many days a week do you drink?",
+              "min": 0,
+              "max": 7
+            },
+            {
+              "id": "g_heavy",
+              "type": "group",
+              "label": "Heavier drinking",
+              "enableWhen": [
+                {
+                  "question": "drinks_per_week",
+                  "operator": ">",
+                  "answer": 14
+                }
+              ],
+              "blocks": [
+                {
+                  "id": "cut_down",
+                  "type": "choice",
+                  "label": "Have you felt you should cut down?",
+                  "options": [
+                    "Yes",
+                    "No"
+                  ]
+                },
+                {
+                  "id": "morning_drink",
+                  "type": "choice",
+                  "label": "Have you had a drink first thing in the morning to steady your nerves?",
+                  "options": [
+                    "Yes",
+                    "No"
+                  ]
+                },
+                {
+                  "id": "had_withdrawal",
+                  "type": "choice",
+                  "label": "Have you ever had withdrawal symptoms?",
+                  "required": true,
+                  "options": [
+                    "Yes",
+                    "No"
+                  ]
+                },
+                {
+                  "id": "g_withdrawal",
+                  "type": "group",
+                  "label": "Withdrawal history",
+                  "enableWhen": [
+                    {
+                      "question": "had_withdrawal",
+                      "operator": "=",
+                      "answer": "Yes"
+                    }
+                  ],
+                  "blocks": [
+                    {
+                      "id": "withdrawal_last",
+                      "type": "date",
+                      "label": "When was the last time?"
+                    },
+                    {
+                      "id": "withdrawal_symptoms",
+                      "type": "checkbox",
+                      "label": "Which symptoms did you have?",
+                      "options": [
+                        "Shaking",
+                        "Sweating",
+                        "Anxiety",
+                        "Seizures",
+                        "Hallucinations"
+                      ]
+                    },
+                    {
+                      "id": "withdrawal_treated",
+                      "type": "choice",
+                      "label": "Did you receive medical treatment?",
+                      "options": [
+                        "Yes",
+                        "No"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "g_tobacco",
+          "type": "group",
+          "label": "Tobacco",
+          "enableWhen": [
+            {
+              "question": "substances",
+              "operator": "contains",
+              "answer": "Tobacco"
+            }
+          ],
+          "blocks": [
+            {
+              "id": "cigs_per_day",
+              "type": "number",
+              "label": "Cigarettes (or equivalent) per day",
+              "min": 0,
+              "max": 100
+            },
+            {
+              "id": "quit_interest",
+              "type": "scale",
+              "label": "How interested are you in quitting? (1 = not at all, 5 = very)",
+              "min": 1,
+              "max": 5
+            }
+          ]
+        },
+        {
+          "id": "g_other_subs",
+          "type": "group",
+          "label": "Other substances",
+          "enableWhen": [
+            {
+              "question": "substances",
+              "operator": "contains",
+              "answer": "Cannabis"
+            },
+            {
+              "question": "substances",
+              "operator": "contains",
+              "answer": "Opioids"
+            },
+            {
+              "question": "substances",
+              "operator": "contains",
+              "answer": "Stimulants"
+            }
+          ],
+          "enableBehavior": "any",
+          "blocks": [
+            {
+              "id": "other_subs_freq",
+              "type": "dropdown",
+              "label": "How often do you use them?",
+              "options": [
+                "Daily",
+                "Several times a week",
+                "Weekly",
+                "Monthly",
+                "Less often"
+              ]
+            },
+            {
+              "id": "other_subs_route",
+              "type": "multiselect",
+              "label": "How do you take them?",
+              "options": [
+                "Smoked",
+                "Swallowed",
+                "Snorted",
+                "Injected",
+                "Other"
+              ]
+            },
+            {
+              "id": "other_subs_last",
+              "type": "date",
+              "label": "When did you last use?"
+            }
+          ]
+        },
+        {
+          "id": "substance_goal",
+          "type": "choice",
+          "label": "What would you like to do about your substance use?",
+          "options": [
+            "Stop completely",
+            "Cut down",
+            "Not sure",
+            "No change for now"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_medical",
+      "type": "page",
+      "title": "Medical history",
+      "blocks": [
+        {
+          "id": "gp_name",
+          "type": "short",
+          "label": "Primary care provider's name"
+        },
+        {
+          "id": "gp_phone",
+          "type": "phone",
+          "label": "Primary care provider's phone"
+        },
+        {
+          "id": "conditions",
+          "type": "checkbox",
+          "label": "Do you have any of these conditions?",
+          "options": [
+            "Diabetes",
+            "High blood pressure",
+            "Heart condition",
+            "Asthma",
+            "Chronic pain",
+            "Epilepsy",
+            "None of these"
+          ]
+        },
+        {
+          "id": "other_conditions",
+          "type": "short",
+          "label": "Any other conditions?"
+        },
+        {
+          "id": "other_conditions_since",
+          "type": "date",
+          "label": "Since when?",
+          "enableWhen": [
+            {
+              "question": "other_conditions",
+              "operator": "exists"
+            }
+          ]
+        },
+        {
+          "id": "allergies",
+          "type": "choice",
+          "label": "Do you have any allergies?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "allergy_details",
+          "type": "short",
+          "label": "Please list your allergies",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "allergies",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        },
+        {
+          "id": "takes_meds",
+          "type": "choice",
+          "label": "Do you take any regular medication?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "g_meds",
+          "type": "group",
+          "label": "Current medication",
+          "enableWhen": [
+            {
+              "question": "takes_meds",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ],
+          "blocks": [
+            {
+              "id": "med_name",
+              "type": "short",
+              "label": "Medication name",
+              "required": true
+            },
+            {
+              "id": "med_reason",
+              "type": "short",
+              "label": "What is it for?"
+            },
+            {
+              "id": "g_dosage",
+              "type": "group",
+              "label": "Dosage",
+              "blocks": [
+                {
+                  "id": "med_dose_mg",
+                  "type": "number",
+                  "label": "Dose (mg)",
+                  "required": true,
+                  "min": 0,
+                  "max": 5000
+                },
+                {
+                  "id": "med_form",
+                  "type": "dropdown",
+                  "label": "Form",
+                  "options": [
+                    "Tablet",
+                    "Capsule",
+                    "Liquid",
+                    "Injection",
+                    "Patch",
+                    "Other"
+                  ]
+                },
+                {
+                  "id": "g_schedule",
+                  "type": "group",
+                  "label": "Schedule",
+                  "blocks": [
+                    {
+                      "id": "med_frequency",
+                      "type": "choice",
+                      "label": "How often?",
+                      "required": true,
+                      "options": [
+                        "Once a day",
+                        "Twice a day",
+                        "Three times a day",
+                        "As needed"
+                      ]
+                    },
+                    {
+                      "id": "med_time",
+                      "type": "time",
+                      "label": "Usual time of day"
+                    },
+                    {
+                      "id": "med_with_food",
+                      "type": "choice",
+                      "label": "Taken with food?",
+                      "options": [
+                        "Yes",
+                        "No"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "med_side_effects",
+              "type": "rating",
+              "label": "How much trouble do side effects cause? (1 = none, 5 = a lot)"
+            }
+          ]
+        },
+        {
+          "id": "pregnant",
+          "type": "choice",
+          "label": "Are you pregnant or breastfeeding?",
+          "options": [
+            "Yes",
+            "No",
+            "Not applicable",
+            "Prefer not to say"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_safety",
+      "type": "page",
+      "title": "Wellbeing and support",
+      "enableWhen": [
+        {
+          "question": "mood_scale",
+          "operator": "<",
+          "answer": 4
+        },
+        {
+          "question": "anxiety_rating",
+          "operator": ">=",
+          "answer": 4
+        }
+      ],
+      "enableBehavior": "any",
+      "blocks": [
+        {
+          "id": "l_safety",
+          "type": "label",
+          "content": "These questions help us make sure you get the right support quickly."
+        },
+        {
+          "id": "safe_at_home",
+          "type": "choice",
+          "label": "Do you feel safe at home?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No",
+            "Not sure"
+          ]
+        },
+        {
+          "id": "support_people",
+          "type": "number",
+          "label": "How many people could you turn to for support?",
+          "min": 0,
+          "max": 50
+        },
+        {
+          "id": "support_types",
+          "type": "checkbox",
+          "label": "Who are they?",
+          "options": [
+            "Family",
+            "Friends",
+            "Partner",
+            "Faith community",
+            "Professional",
+            "No one right now"
+          ]
+        },
+        {
+          "id": "need_urgent",
+          "type": "choice",
+          "label": "Would you like someone to contact you sooner than usual?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "urgent_time",
+          "type": "time",
+          "label": "What time today or tomorrow suits you?",
+          "enableWhen": [
+            {
+              "question": "need_urgent",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_prefs",
+      "type": "page",
+      "title": "Preferences and consent",
+      "blocks": [
+        {
+          "id": "session_format",
+          "type": "multiselect",
+          "label": "How would you like to attend sessions?",
+          "required": true,
+          "options": [
+            "In person",
+            "Video",
+            "Phone"
+          ]
+        },
+        {
+          "id": "preferred_days",
+          "type": "checkbox",
+          "label": "Which days suit you?",
+          "options": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ]
+        },
+        {
+          "id": "preferred_time",
+          "type": "dropdown",
+          "label": "Preferred time of day",
+          "options": [
+            "Morning",
+            "Afternoon",
+            "Evening"
+          ]
+        },
+        {
+          "id": "clinician_pref",
+          "type": "choice",
+          "label": "Do you have a preference for your clinician?",
+          "options": [
+            "No preference",
+            "Woman",
+            "Man"
+          ]
+        },
+        {
+          "id": "priorities",
+          "type": "ranking",
+          "label": "Rank your priorities (rank as many as you like)",
+          "options": [
+            "Feeling better quickly",
+            "Understanding what's happening",
+            "Practical coping skills",
+            "Reducing medication",
+            "Improving relationships"
+          ]
+        },
+        {
+          "id": "intake_ease",
+          "type": "rating",
+          "label": "How easy was this form to complete?"
+        },
+        {
+          "id": "followup",
+          "type": "choice",
+          "label": "Would you like a follow-up call before your first appointment?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "consent_share",
+          "type": "choice",
+          "label": "May we share relevant information with your primary care provider?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "consent_confirm",
+          "type": "checkbox",
+          "label": "Confirmation",
+          "required": true,
+          "options": [
+            "I confirm the information I have given is accurate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_followup",
+      "type": "page",
+      "title": "Follow-up call",
+      "blocks": [
+        {
+          "id": "fu_phone",
+          "type": "phone",
+          "label": "Best number for the call",
+          "required": true,
+          "enableWhen": [
+            {
+              "question": "followup",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        },
+        {
+          "id": "fu_date",
+          "type": "date",
+          "label": "Preferred date",
+          "enableWhen": [
+            {
+              "question": "followup",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        },
+        {
+          "id": "fu_time",
+          "type": "time",
+          "label": "Preferred time",
+          "enableWhen": [
+            {
+              "question": "followup",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        },
+        {
+          "id": "fu_topics",
+          "type": "checkbox",
+          "label": "What would you like to talk about?",
+          "options": [
+            "Appointment times",
+            "Costs",
+            "What to expect",
+            "Medication",
+            "Something else"
+          ],
+          "enableWhen": [
+            {
+              "question": "followup",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        },
+        {
+          "id": "fu_notes",
+          "type": "short",
+          "label": "Tell us more",
+          "enableWhen": [
+            {
+              "question": "fu_topics",
+              "operator": "contains",
+              "answer": "Something else"
+            }
+          ]
+        },
+        {
+          "id": "fu_language",
+          "type": "dropdown",
+          "label": "Language for the call",
+          "options": [
+            "English",
+            "Spanish",
+            "Other"
+          ],
+          "enableWhen": [
+            {
+              "question": "followup",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        },
+        {
+          "id": "fu_interpreter",
+          "type": "choice",
+          "label": "Would you like an interpreter on the call?",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "enableWhen": [
+            {
+              "question": "fu_language",
+              "operator": "!=",
+              "answer": "English"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

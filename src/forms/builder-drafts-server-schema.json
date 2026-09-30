@@ -1,0 +1,42 @@
+{
+  "title": "Intake (server drafts)",
+  "formId": "50501f7a-8bed-438c-aa11-01af7da26cdd",
+  "formVersionId": "5c951f3e-d1b4-4a24-8e21-dffe72adafd4",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "p1",
+      "type": "page",
+      "title": "About you",
+      "blocks": [
+        {
+          "id": "name",
+          "type": "short",
+          "label": "Full name",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "type": "page",
+      "title": "Details",
+      "blocks": [
+        {
+          "id": "notes",
+          "type": "short",
+          "label": "Anything else?",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "showProgress": true,
+    "progressStyle": "caption",
+    "reviewPage": false
+  },
+  "drafts": {
+    "mode": "server"
+  }
+}

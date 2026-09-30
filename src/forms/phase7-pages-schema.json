@@ -1,0 +1,147 @@
+{
+  "title": "Patient intake",
+  "formId": "e41f7edf-909b-4465-aba5-4c9cc8d417dc",
+  "formVersionId": "20e0b194-18f0-4e6a-8684-12668cd4915f",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_le0ybxjr",
+      "type": "page",
+      "title": "About you",
+      "blocks": [
+        {
+          "id": "b_7tn5qcqn",
+          "type": "short",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "id": "b_afpvw49o",
+          "type": "choice",
+          "label": "Do you take any regular medication?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b_zeqbqt9h",
+      "type": "page",
+      "title": "Medication",
+      "enableWhen": [
+        {
+          "question": "b_afpvw49o",
+          "operator": "=",
+          "answer": "Yes"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "b_i5bt8vek",
+          "type": "short",
+          "label": "Medication name",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "b_385ev2k8",
+      "type": "page",
+      "title": "Lifestyle",
+      "blocks": [
+        {
+          "id": "b_hj0698q5",
+          "type": "choice",
+          "label": "Do you smoke?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "b_h81ae2q7",
+          "type": "group",
+          "label": "Habits",
+          "blocks": [
+            {
+              "id": "b_yzggoxb2",
+              "type": "dropdown",
+              "label": "How often do you exercise?",
+              "required": false,
+              "options": [
+                "Rarely",
+                "Weekly",
+                "Daily"
+              ]
+            },
+            {
+              "id": "b_xrp5yjdy",
+              "type": "group",
+              "label": "Smoking",
+              "enableWhen": [
+                {
+                  "question": "b_hj0698q5",
+                  "operator": "=",
+                  "answer": "Yes"
+                }
+              ],
+              "blocks": [
+                {
+                  "id": "b_enhf539o",
+                  "type": "number",
+                  "label": "Cigarettes per day",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b_bn47wt9t",
+      "type": "page",
+      "title": "Support",
+      "blocks": [
+        {
+          "id": "b_x6so6k5v",
+          "type": "choice",
+          "label": "Would you like help to stop smoking?",
+          "required": false,
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "enableWhen": [
+            {
+              "question": "b_hj0698q5",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        },
+        {
+          "id": "b_zdrcly4e",
+          "type": "email",
+          "label": "Where should we send information?",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "b_hj0698q5",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "showProgress": true,
+    "reviewPage": true
+  }
+}

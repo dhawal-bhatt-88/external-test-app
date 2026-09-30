@@ -1,0 +1,45 @@
+{
+  "formId": "drafts-device-consent",
+  "formVersionId": "drafts-device-consent-v1",
+  "title": "Contact preferences (device drafts)",
+  "schemaVersion": 2,
+  "navigation": {
+    "showProgress": true,
+    "reviewPage": false
+  },
+  "drafts": {
+    "mode": "device"
+  },
+  "blocks": [
+    {
+      "id": "cp_how",
+      "type": "page",
+      "title": "How to reach you",
+      "blocks": [
+        {
+          "id": "contact_method",
+          "type": "choice",
+          "label": "Preferred contact method",
+          "options": [
+            "Phone",
+            "Email",
+            "Letter"
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "cp_notes",
+      "type": "page",
+      "title": "Anything else",
+      "blocks": [
+        {
+          "id": "contact_notes",
+          "type": "short",
+          "label": "Notes for the care team"
+        }
+      ]
+    }
+  ]
+}

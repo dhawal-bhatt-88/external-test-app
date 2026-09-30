@@ -1,0 +1,73 @@
+{
+  "title": "Progress style",
+  "formId": "9fefd933-2724-4d2e-bb05-788a62e70f14",
+  "formVersionId": "bd89340d-e587-4c8b-a0bd-fe49128a628d",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "p1",
+      "type": "page",
+      "title": "About you",
+      "blocks": [
+        {
+          "id": "name",
+          "type": "short",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "id": "meds",
+          "type": "choice",
+          "label": "Do you take any regular medication?",
+          "required": true,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "type": "page",
+      "title": "Medication",
+      "enableWhen": [
+        {
+          "question": "meds",
+          "operator": "=",
+          "answer": "Yes"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "drug",
+          "type": "short",
+          "label": "Medication name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "type": "page",
+      "title": "Lifestyle",
+      "blocks": [
+        {
+          "id": "smoke",
+          "type": "choice",
+          "label": "Do you smoke?",
+          "required": false,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "showProgress": true,
+    "progressStyle": "bar",
+    "reviewPage": false
+  }
+}

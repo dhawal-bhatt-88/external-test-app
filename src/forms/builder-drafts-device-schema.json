@@ -1,0 +1,42 @@
+{
+  "title": "Intake (device drafts)",
+  "formId": "c56e02c2-b7e6-4dd3-99b4-88da0ee26556",
+  "formVersionId": "a1f2be9f-1b3d-4daa-a301-1b5494c64057",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "p1",
+      "type": "page",
+      "title": "About you",
+      "blocks": [
+        {
+          "id": "name",
+          "type": "short",
+          "label": "Full name",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "type": "page",
+      "title": "Details",
+      "blocks": [
+        {
+          "id": "notes",
+          "type": "short",
+          "label": "Anything else?",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "showProgress": true,
+    "progressStyle": "caption",
+    "reviewPage": false
+  },
+  "drafts": {
+    "mode": "device"
+  }
+}

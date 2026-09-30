@@ -1,0 +1,106 @@
+{
+  "[\"alice:p-100\",\"drafts-server-consent\"]": {
+    "scope": "alice:p-100",
+    "formId": "drafts-server-consent",
+    "storedAt": "2026-09-29T19:45:20.320Z",
+    "draft": {
+      "formId": "drafts-server-consent",
+      "formVersionId": "drafts-server-consent-v1",
+      "schemaVersion": 2,
+      "answers": {
+        "contact_method": {
+          "state": "answered",
+          "value": "Phone"
+        }
+      },
+      "idempotencyKey": "925fd390-59e6-4d6f-9688-91612a0a345c",
+      "currentPageId": "cp_notes",
+      "visitedPageIds": [
+        "cp_how",
+        "cp_notes"
+      ],
+      "onReview": false,
+      "savedAt": "2026-09-29T19:45:20.313Z"
+    }
+  },
+  "[\"alice:p-200\",\"drafts-server-intake\"]": {
+    "scope": "alice:p-200",
+    "formId": "drafts-server-intake",
+    "storedAt": "2026-09-29T19:45:36.847Z",
+    "draft": {
+      "formId": "drafts-server-intake",
+      "formVersionId": "drafts-server-intake-v1",
+      "schemaVersion": 2,
+      "answers": {
+        "name": {
+          "state": "answered",
+          "value": "Mary Jones"
+        },
+        "has_meds": {
+          "state": "answered",
+          "value": "No"
+        }
+      },
+      "idempotencyKey": "9c5a04fb-4f1d-4fd3-89a2-c0566cf7c98b",
+      "currentPageId": "pg_about",
+      "visitedPageIds": [
+        "pg_about",
+        "pg_lifestyle"
+      ],
+      "onReview": false,
+      "savedAt": "2026-09-29T19:45:36.837Z"
+    }
+  },
+  "[\"alice:p-200\",\"drafts-server-consent\"]": {
+    "scope": "alice:p-200",
+    "formId": "drafts-server-consent",
+    "storedAt": "2026-09-29T19:45:54.407Z",
+    "draft": {
+      "formId": "drafts-server-consent",
+      "formVersionId": "drafts-server-consent-v1",
+      "schemaVersion": 2,
+      "answers": {
+        "contact_method": {
+          "state": "answered",
+          "value": "Letter"
+        }
+      },
+      "idempotencyKey": "a5f1f811-4f55-48d4-8776-83e4fa33d96d",
+      "currentPageId": "cp_how",
+      "visitedPageIds": [
+        "cp_how",
+        "cp_notes"
+      ],
+      "onReview": false,
+      "savedAt": "2026-09-29T19:45:54.400Z"
+    }
+  },
+  "[\"alice:p-100\",\"drafts-server-intake\"]": {
+    "scope": "alice:p-100",
+    "formId": "drafts-server-intake",
+    "storedAt": "2026-09-29T20:04:48.480Z",
+    "draft": {
+      "formId": "drafts-server-intake",
+      "formVersionId": "drafts-server-intake-v1",
+      "schemaVersion": 2,
+      "answers": {
+        "name": {
+          "state": "answered",
+          "value": "Ada Lovelace"
+        },
+        "has_meds": {
+          "state": "answered",
+          "value": "No"
+        }
+      },
+      "idempotencyKey": "a80e12ee-a078-45c2-9017-f96e3bd950df",
+      "currentPageId": "pg_lifestyle",
+      "visitedPageIds": [
+        "pg_about",
+        "pg_lifestyle"
+      ],
+      "onReview": false,
+      "savedAt": "2026-09-29T20:04:48.477Z"
+    }
+  }
+}
