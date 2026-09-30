@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { FormRenderer, clearDrafts } from '@yourco/forms/react';
 import type { Draft, DraftProblem, DraftRef, FormSchema } from '@yourco/forms/core';
@@ -10,6 +10,7 @@ import type { Draft, DraftProblem, DraftRef, FormSchema } from '@yourco/forms/co
 //import builderDevice from './forms/builder-drafts-device-schema.json';
 //import builderServer from './forms/builder-drafts-server-schema.json';
 import myForm from './forms/untitled-form-o5ndj-schema.json';
+import { apiUrl, isDemo } from './api';
 
 // ---------------------------------------------------------------- the "host"
 // A stand-in for a real host app: who is signed in, which patient is open,
@@ -59,31 +60,33 @@ function navigate(changes: Record<string, string | null>) {
 const keys = new Map<string, Promise<CryptoKey>>();
 /** The user's AES-GCM 256 key from the host's server, imported non-extractable. */
 function keyFor(keyUser: string): Promise<CryptoKey> {
-  let key = keys.get(keyUser);
-  if (!key) {
-    key = (async () => {
-      const response = await fetch(`/api/draft-key?user=${encodeURIComponent(keyUser)}`);
-      if (!response.ok) throw new Error(`draft-key: HTTP ${response.status}`);
-      const { key: base64 } = (await response.json()) as { key: string };
-      const raw = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
-      return crypto.subtle.importKey('raw', raw, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
-    })();
-    // A failed fetch isn't cached, so the next call tries again.
-    key.catch(() => keys.delete(keyUser));
-    keys.set(keyUser, key);
-  }
+  const cached = keys.get(keyUser);
+  if (cached) return cached;
+  const key = (async () => {
+    const response = await fetch(`${apiUrl('draft-key')}?user=${encodeURIComponent(keyUser)}`);
+    if (!response.ok) throw new Error(`draft-key: HTTP ${response.status}`);
+    const { key: base64 } = (await response.json()) as { key: string };
+    const raw = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+    return crypto.subtle.importKey('raw', raw, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
+  })();
+  keys.set(keyUser, key);
+  // A failed fetch isn't cached, so the next call tries again. Only this
+  // promise's entry is removed, never a newer one for the same user.
+  key.catch(() => {
+    if (keys.get(keyUser) === key) keys.delete(keyUser);
+  });
   return key;
 }
 
 // ---------------------------------------------------------------- server mode: the host's backend
 
 async function loadDraft({ scope, formId }: DraftRef): Promise<Draft | null> {
-  const response = await fetch(`/api/drafts?scope=${encodeURIComponent(scope)}&formId=${encodeURIComponent(formId)}`);
+  const response = await fetch(`${apiUrl('drafts')}?scope=${encodeURIComponent(scope)}&formId=${encodeURIComponent(formId)}`);
   if (!response.ok) throw new Error(`loadDraft: HTTP ${response.status}`);
   return ((await response.json()) as { draft: Draft | null }).draft;
 }
 async function saveDraft(draft: Draft): Promise<void> {
-  const response = await fetch('/api/drafts', {
+  const response = await fetch(apiUrl('drafts'), {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ scope, draft }),
@@ -91,10 +94,65 @@ async function saveDraft(draft: Draft): Promise<void> {
   if (!response.ok) throw new Error(`saveDraft: HTTP ${response.status}`);
 }
 async function deleteDraft({ scope, formId }: DraftRef): Promise<void> {
-  const response = await fetch(`/api/drafts?scope=${encodeURIComponent(scope)}&formId=${encodeURIComponent(formId)}`, {
+  const response = await fetch(`${apiUrl('drafts')}?scope=${encodeURIComponent(scope)}&formId=${encodeURIComponent(formId)}`, {
     method: 'DELETE',
   });
   if (!response.ok) throw new Error(`deleteDraft: HTTP ${response.status}`);
+}
+
+// ---------------------------------------------------------------- demo mode: stored submissions
+
+type StoredSubmission = { submissionId: string; receivedAt: string; formId: string; answers: Record<string, unknown> };
+
+/** What the demo API has stored in this browser; reloaded after each submit. */
+function SubmissionsPanel({ version }: { version: number }) {
+  const [submissions, setSubmissions] = useState<StoredSubmission[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let current = true;
+    fetch(apiUrl('submissions'))
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json() as Promise<StoredSubmission[]>;
+      })
+      .then((list) => {
+        if (current) setSubmissions(list);
+      })
+      .catch((err: Error) => {
+        if (current) setError(err.message);
+      });
+    return () => {
+      current = false;
+    };
+  }, [version]);
+
+  return (
+    <section id="demo-submissions" className="demo-submissions" aria-labelledby="demo-submissions-title">
+      <h2 id="demo-submissions-title">Submissions</h2>
+      {error ? (
+        <p>Could not load submissions: {error}</p>
+      ) : submissions === null ? (
+        <p>Loading…</p>
+      ) : submissions.length === 0 ? (
+        <p>None yet in this browser.</p>
+      ) : (
+        <ol reversed>
+          {[...submissions].reverse().map((s) => (
+            <li key={s.submissionId}>
+              <details>
+                <summary>
+                  {new Date(s.receivedAt).toLocaleString()} · {s.formId} · {Object.keys(s.answers).length} answer(s) ·{' '}
+                  <code>{s.submissionId}</code>
+                </summary>
+                <pre>{JSON.stringify(s, null, 2)}</pre>
+              </details>
+            </li>
+          ))}
+        </ol>
+      )}
+    </section>
+  );
 }
 
 // ---------------------------------------------------------------- app
@@ -102,6 +160,7 @@ async function deleteDraft({ scope, formId }: DraftRef): Promise<void> {
 function App() {
   const [problems, setProblems] = useState<DraftProblem[]>([]);
   const [signedOut, setSignedOut] = useState(false);
+  const [submissionsVersion, setSubmissionsVersion] = useState(0);
 
   async function logOut() {
     // Every draft this user saved on this device, whichever patient or form.
@@ -112,6 +171,11 @@ function App() {
 
   return (
     <>
+      {isDemo && (
+        <p id="demo-banner" className="demo-banner" role="note">
+          <strong>Demo mode</strong> — data stays in this browser; not secure, don't enter real information.
+        </p>
+      )}
       <header className="host-bar" aria-label="Test host">
         <label>
           User{' '}
@@ -143,7 +207,7 @@ function App() {
       ) : (
         <FormRenderer
           schema={FORMS[formKey].schema as unknown as FormSchema}
-          endpoint="/api/submit"
+          endpoint={apiUrl('submit')}
           drafts={{
             scope,
             owner: user,
@@ -157,7 +221,10 @@ function App() {
             console.warn('Draft problem', problem);
             setProblems((list) => [...list, problem]);
           }}
-          onSuccess={(res) => console.log('Submitted', res.status)}
+          onSuccess={(res) => {
+            console.log('Submitted', res.status);
+            setSubmissionsVersion((v) => v + 1);
+          }}
           onError={(err) => console.error('Submit failed', err)}
         />
       )}
@@ -172,6 +239,8 @@ function App() {
           ))}
         </ol>
       )}
+
+      {isDemo && <SubmissionsPanel version={submissionsVersion} />}
     </>
   )
 }

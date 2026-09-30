@@ -207,3 +207,44 @@
 #host-signed-out {
   text-align: left;
 }
+
+/* ---- demo mode (GitHub Pages build) ---- */
+.demo-banner {
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 14px;
+  text-align: left;
+  color: #5c3b00;
+  background: #fff4d6;
+  border-bottom: 1px solid #e8c56a;
+}
+@media (prefers-color-scheme: dark) {
+  .demo-banner {
+    color: #ffe3a3;
+    background: #3a2c0c;
+    border-bottom-color: #6b5320;
+  }
+}
+.demo-submissions {
+  margin: 32px 16px 24px;
+  font-size: 14px;
+  text-align: left;
+
+  h2 {
+    font-size: 18px;
+    margin: 0 0 8px;
+  }
+  ol {
+    margin: 0;
+    padding-left: 24px;
+  }
+  summary {
+    cursor: pointer;
+    overflow-wrap: anywhere;
+  }
+  pre {
+    max-height: 240px;
+    overflow: auto;
+    font-size: 12px;
+  }
+}

@@ -24,7 +24,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Pages is static: the API is mocked in the browser (src/demo).
       - run: npm run build
+        env:
+          VITE_DEMO: 'true'
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
