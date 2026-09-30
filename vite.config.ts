@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/external-test-app/",
   plugins: [react()],
   server: {
     // Local test API (server/index.mjs). Same-origin from the browser's
