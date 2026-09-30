@@ -2,13 +2,13 @@ import { useState } from 'react'
 import './App.css'
 import { FormRenderer, clearDrafts } from '@yourco/forms/react';
 import type { Draft, DraftProblem, DraftRef, FormSchema } from '@yourco/forms/core';
-import deviceIntake from './forms/drafts-device-intake-schema.json';
-import deviceConsent from './forms/drafts-device-consent-schema.json';
-import serverIntake from './forms/drafts-server-intake-schema.json';
-import serverConsent from './forms/drafts-server-consent-schema.json';
-import builderExport from './forms/untitled-form-o5ndj-schema.json';
-import builderDevice from './forms/builder-drafts-device-schema.json';
-import builderServer from './forms/builder-drafts-server-schema.json';
+//import deviceIntake from './forms/drafts-device-intake-schema.json';
+//import deviceConsent from './forms/drafts-device-consent-schema.json';
+//import serverIntake from './forms/drafts-server-intake-schema.json';
+//import serverConsent from './forms/drafts-server-consent-schema.json';
+//import builderExport from './forms/untitled-form-o5ndj-schema.json';
+//import builderDevice from './forms/builder-drafts-device-schema.json';
+//import builderServer from './forms/builder-drafts-server-schema.json';
 import myForm from './forms/untitled-form-o5ndj-schema.json';
 
 // ---------------------------------------------------------------- the "host"
