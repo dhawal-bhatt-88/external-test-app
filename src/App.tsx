@@ -17,13 +17,13 @@ import myForm from './forms/untitled-form-o5ndj-schema.json';
 // reloads the page — as switching accounts or patients would.
 
 const FORMS = {
-  'device-intake': { label: 'Health intake — device drafts', schema: deviceIntake },
-  'device-consent': { label: 'Contact preferences — device drafts', schema: deviceConsent },
-  'server-intake': { label: 'Health intake — server drafts', schema: serverIntake },
-  'server-consent': { label: 'Contact preferences — server drafts', schema: serverConsent },
-  builder: { label: 'Builder export (session)', schema: builderExport },
-  'builder-device': { label: 'Builder export — device drafts', schema: builderDevice },
-  'builder-server': { label: 'Builder export — server drafts', schema: builderServer },
+  //'device-intake': { label: 'Health intake — device drafts', schema: deviceIntake },
+  //'device-consent': { label: 'Contact preferences — device drafts', schema: deviceConsent },
+  //'server-intake': { label: 'Health intake — server drafts', schema: serverIntake },
+  //'server-consent': { label: 'Contact preferences — server drafts', schema: serverConsent },
+  //builder: { label: 'Builder export (session)', schema: builderExport },
+  //'builder-device': { label: 'Builder export — device drafts', schema: builderDevice },
+  //'builder-server': { label: 'Builder export — server drafts', schema: builderServer },
   'my-form': { label: 'User made form', schema: myForm },
 } as const;
 type FormKey = keyof typeof FORMS;
@@ -38,7 +38,7 @@ const params = new URLSearchParams(location.search);
 const user = params.get('user') ?? USERS[0];
 const patient = PATIENTS.find((p) => p.id === params.get('patient')) ?? PATIENTS[0];
 const requestedForm = params.get('form');
-const formKey: FormKey = requestedForm !== null && requestedForm in FORMS ? (requestedForm as FormKey) : 'device-intake';
+const formKey: FormKey = requestedForm !== null && requestedForm in FORMS ? (requestedForm as FormKey) : 'my-form';
 // Test only: fetch another user's key while keeping this user's scope, to show
 // that a draft encrypted under one key can't be opened with another.
 const keyAs = params.get('keyAs');
