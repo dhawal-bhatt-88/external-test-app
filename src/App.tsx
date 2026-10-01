@@ -10,6 +10,7 @@ import type { Draft, DraftProblem, DraftRef, FormSchema } from '@yourco/forms/co
 //import builderDevice from './forms/builder-drafts-device-schema.json';
 //import builderServer from './forms/builder-drafts-server-schema.json';
 import myForm from './forms/untitled-form-o5ndj-schema.json';
+import longAnswers from './forms/long-answers-schema.json';
 import { apiUrl, isDemo } from './api';
 
 // ---------------------------------------------------------------- the "host"
@@ -26,6 +27,7 @@ const FORMS = {
   //'builder-device': { label: 'Builder export — device drafts', schema: builderDevice },
   //'builder-server': { label: 'Builder export — server drafts', schema: builderServer },
   'my-form': { label: 'User made form', schema: myForm },
+  'long-answers': { label: 'Long answers (0.13.0)', schema: longAnswers },
 } as const;
 type FormKey = keyof typeof FORMS;
 

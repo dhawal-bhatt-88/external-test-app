@@ -1,0 +1,59 @@
+{
+  "title": "Role application",
+  "formId": "long-answers-0.13.0",
+  "formVersionId": "v1",
+  "schemaVersion": 2,
+  "navigation": { "showProgress": true, "reviewPage": true },
+  "blocks": [
+    {
+      "id": "b_page_role",
+      "type": "page",
+      "title": "About the role",
+      "blocks": [
+        {
+          "id": "b_cxhsg7lp",
+          "type": "long",
+          "label": "Why do you want this role?",
+          "description": "",
+          "required": true
+        },
+        {
+          "id": "b_notes01",
+          "type": "long",
+          "label": "Anything else we should know?",
+          "description": "Optional. Access needs, notice period, anything that helps.\nA line or two is plenty.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "b_page_exp",
+      "type": "page",
+      "title": "Experience",
+      "blocks": [
+        {
+          "id": "b_led01",
+          "type": "choice",
+          "label": "Have you led a team before?",
+          "required": true,
+          "options": ["Yes", "No"]
+        },
+        {
+          "id": "b_grp_lead",
+          "type": "group",
+          "label": "Leadership",
+          "enableWhen": [{ "question": "b_led01", "operator": "=", "answer": "Yes" }],
+          "blocks": [
+            {
+              "id": "b_leadstory",
+              "type": "long",
+              "label": "Tell us about a time you led a team through a difficult change.",
+              "description": "A few sentences is fine.",
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

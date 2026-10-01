@@ -218,13 +218,6 @@
   background: #fff4d6;
   border-bottom: 1px solid #e8c56a;
 }
-@media (prefers-color-scheme: dark) {
-  .demo-banner {
-    color: #ffe3a3;
-    background: #3a2c0c;
-    border-bottom-color: #6b5320;
-  }
-}
 .demo-submissions {
   margin: 32px 16px 24px;
   font-size: 14px;
