@@ -1,0 +1,67 @@
+{
+  "title": "Visiting the clinic",
+  "formId": "display-blocks-0.14.0",
+  "formVersionId": "v1",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_qpskh8j6",
+      "type": "text",
+      "label": "Text",
+      "required": false,
+      "content": "Please arrive ten minutes early.\nBring photo ID and your referral letter.\n\nThe entrance is on Station Road, opposite the pharmacy."
+    },
+    {
+      "id": "b_dxbhpils",
+      "type": "image",
+      "label": "The clinic entrance, with the door in the centre",
+      "required": false,
+      "content": "/images/clinic-entrance.png"
+    },
+    {
+      "id": "b_img_https",
+      "type": "image",
+      "label": "W3C logo",
+      "required": false,
+      "content": "https://www.w3.org/Icons/w3c_main.png"
+    },
+    {
+      "id": "b_img_bad",
+      "type": "image",
+      "label": "Should never show",
+      "required": false,
+      "content": "http://example.com/a.png"
+    },
+    {
+      "id": "b_name",
+      "type": "short",
+      "label": "Your name",
+      "required": true
+    },
+    {
+      "id": "b_parking",
+      "type": "choice",
+      "label": "Will you be driving?",
+      "required": true,
+      "options": ["Yes", "No"]
+    },
+    {
+      "id": "b_parking_text",
+      "type": "text",
+      "label": "Text",
+      "required": false,
+      "description": "",
+      "content": "Parking is behind the building.\nShow this form at the barrier.",
+      "enableWhen": [{ "question": "b_parking", "operator": "=", "answer": "Yes" }]
+    },
+    {
+      "id": "b_grp_empty",
+      "type": "group",
+      "label": "This group must never show",
+      "blocks": [
+        { "id": "b_blank_text", "type": "text", "label": "Text", "required": false, "content": "   " },
+        { "id": "b_img_bad2", "type": "image", "label": "Image", "required": false, "content": "" }
+      ]
+    }
+  ]
+}

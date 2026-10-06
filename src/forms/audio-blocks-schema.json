@@ -1,0 +1,72 @@
+{
+  "title": "Before your session",
+  "formId": "audio-blocks-0.16.0",
+  "formVersionId": "v1",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_aud_local",
+      "type": "audio",
+      "label": "Welcome chime (local file)",
+      "required": false,
+      "description": "Builder help text: never shown on audio",
+      "content": "/audio/chime.wav"
+    },
+    {
+      "id": "b_aud_local_tx",
+      "type": "text",
+      "label": "Transcript",
+      "required": false,
+      "content": "Transcript: a two-note chime, rising. No speech."
+    },
+    {
+      "id": "b_aud_https",
+      "type": "audio",
+      "label": "T-rex roar (https mp3)",
+      "required": false,
+      "content": "https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
+    },
+    {
+      "id": "b_aud_bad",
+      "type": "audio",
+      "label": "Should never show (Spotify)",
+      "required": false,
+      "content": "https://open.spotify.com/track/abc"
+    },
+    {
+      "id": "g_aud_empty",
+      "type": "group",
+      "label": "Should never show (group with only an unrecognised clip)",
+      "blocks": [
+        {
+          "id": "b_aud_bad_flac",
+          "type": "audio",
+          "label": "Should never show (flac)",
+          "required": false,
+          "content": "https://cdn.example.com/welcome.flac"
+        }
+      ]
+    },
+    {
+      "id": "b_name",
+      "type": "short",
+      "label": "Your name",
+      "required": true
+    },
+    {
+      "id": "b_more",
+      "type": "choice",
+      "label": "Would you like another clip?",
+      "required": true,
+      "options": ["Yes", "No"]
+    },
+    {
+      "id": "b_aud_cond",
+      "type": "audio",
+      "label": "Example clip (https ogg, shown on Yes)",
+      "required": false,
+      "content": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Example.ogg",
+      "enableWhen": [{ "question": "b_more", "operator": "=", "answer": "Yes" }]
+    }
+  ]
+}

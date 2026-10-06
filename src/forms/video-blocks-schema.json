@@ -1,0 +1,58 @@
+{
+  "title": "Before your appointment",
+  "formId": "video-blocks-0.15.0",
+  "formVersionId": "v1",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_vid_yt",
+      "type": "video",
+      "label": "Never Gonna Give You Up (YouTube, from 0:43)",
+      "required": false,
+      "content": "https://youtu.be/dQw4w9WgXcQ?t=43"
+    },
+    {
+      "id": "b_vid_vimeo",
+      "type": "video",
+      "label": "The new Vimeo player (Vimeo)",
+      "required": false,
+      "content": "https://vimeo.com/76979871"
+    },
+    {
+      "id": "b_vid_file",
+      "type": "video",
+      "label": "Test clip (video file)",
+      "required": false,
+      "content": "/videos/test-clip.mp4"
+    },
+    {
+      "id": "b_vid_bad",
+      "type": "video",
+      "label": "Should never show",
+      "required": false,
+      "content": "https://www.youtube.com/playlist?list=PL123"
+    },
+    {
+      "id": "b_name",
+      "type": "short",
+      "label": "Your name",
+      "required": true
+    },
+    {
+      "id": "b_more",
+      "type": "choice",
+      "label": "Would you like another video?",
+      "required": true,
+      "options": ["Yes", "No"]
+    },
+    {
+      "id": "b_vid_cond",
+      "type": "video",
+      "label": "Extra video (YouTube, from 1:30)",
+      "required": false,
+      "description": "",
+      "content": "https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1m30s",
+      "enableWhen": [{ "question": "b_more", "operator": "=", "answer": "Yes" }]
+    }
+  ]
+}
