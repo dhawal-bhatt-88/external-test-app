@@ -89,31 +89,18 @@ function persistDrafts() {
 const isPlainObject = (v) => typeof v === 'object' && v !== null && !Array.isArray(v);
 const isNonEmptyString = (v) => typeof v === 'string' && v.trim() !== '';
 
-function isBlockValue(v) {
-  return isPlainObject(v) && (v.state === 'empty' || (v.state === 'answered' && 'value' in v));
-}
-
-/** Returns a list of problems with the top-level payload shape; empty if OK. */
+/**
+ * Returns a list of problems with the payload envelope; empty if OK. The
+ * answers themselves (including repeating groups' arrays) are left to
+ * prepareSubmission, whose errors come back as 422.
+ */
 function checkShape(body) {
   if (!isPlainObject(body)) return ['body must be a JSON object'];
   const problems = [];
-  for (const field of ['idempotencyKey', 'formId', 'formVersionId', 'submittedAt']) {
+  for (const field of ['idempotencyKey', 'formId', 'formVersionId']) {
     if (!isNonEmptyString(body[field])) problems.push(`${field} is required and must be a non-empty string`);
   }
-  if (isNonEmptyString(body.submittedAt) && Number.isNaN(Date.parse(body.submittedAt))) {
-    problems.push('submittedAt must be an ISO-8601 timestamp');
-  }
-  if (body.schemaVersion !== undefined && typeof body.schemaVersion !== 'number') {
-    problems.push('schemaVersion must be a number when present');
-  }
-  if (!isPlainObject(body.answers)) {
-    problems.push('answers is required and must be an object');
-  } else {
-    for (const [blockId, value] of Object.entries(body.answers)) {
-      if (!isBlockValue(value)) problems.push(`answers.${blockId} must be {state:'answered',value} or {state:'empty'}`);
-    }
-  }
-  if (!isPlainObject(body.derived)) problems.push('derived is required and must be an object');
+  if (!isPlainObject(body.answers)) problems.push('answers is required and must be an object');
   return problems;
 }
 
