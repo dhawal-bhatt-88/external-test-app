@@ -1,10 +1,15 @@
 {
   "title": "Household and visit",
   "formId": "repeats-0.17.0",
-  "formVersionId": "v1",
+  "formVersionId": "v1-coded",
   "schemaVersion": 2,
-  "navigation": { "reviewPage": true, "showProgress": true },
-  "drafts": { "mode": "device" },
+  "navigation": {
+    "reviewPage": true,
+    "showProgress": true
+  },
+  "drafts": {
+    "mode": "device"
+  },
   "blocks": [
     {
       "id": "p_household",
@@ -16,7 +21,16 @@
           "type": "choice",
           "label": "Do any children live with you?",
           "required": true,
-          "options": ["Yes", "No"]
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ]
         },
         {
           "id": "household",
@@ -37,16 +51,39 @@
               "repeatLabel": "child",
               "minOccurs": 0,
               "maxOccurs": 4,
-              "enableWhen": [{ "question": "has_children", "operator": "=", "answer": "Yes" }],
+              "enableWhen": [
+                {
+                  "question": "has_children",
+                  "operator": "=",
+                  "answer": "yes"
+                }
+              ],
               "blocks": [
-                { "id": "child_name", "type": "short", "label": "Child's first name", "required": true },
-                { "id": "child_age", "type": "number", "label": "Age", "min": 0, "max": 17 },
+                {
+                  "id": "child_name",
+                  "type": "short",
+                  "label": "Child's first name",
+                  "required": true
+                },
+                {
+                  "id": "child_age",
+                  "type": "number",
+                  "label": "Age",
+                  "min": 0,
+                  "max": 17
+                },
                 {
                   "id": "child_school",
                   "type": "short",
                   "label": "School",
                   "description": "Shown for this child only when their age is 5 or more (same-instance condition).",
-                  "enableWhen": [{ "question": "child_age", "operator": ">=", "answer": 5 }]
+                  "enableWhen": [
+                    {
+                      "question": "child_age",
+                      "operator": ">=",
+                      "answer": 5
+                    }
+                  ]
                 }
               ]
             }
@@ -64,7 +101,16 @@
           "type": "choice",
           "label": "Is the visit covered by insurance?",
           "required": true,
-          "options": ["Yes", "No"]
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ]
         },
         {
           "id": "patients",
@@ -75,22 +121,46 @@
           "minOccurs": 1,
           "maxOccurs": 3,
           "blocks": [
-            { "id": "patient_name", "type": "short", "label": "Patient name", "required": true },
-            { "id": "patient_age", "type": "number", "label": "Patient age", "required": true, "min": 0, "max": 120 },
+            {
+              "id": "patient_name",
+              "type": "short",
+              "label": "Patient name",
+              "required": true
+            },
+            {
+              "id": "patient_age",
+              "type": "number",
+              "label": "Patient age",
+              "required": true,
+              "min": 0,
+              "max": 120
+            },
             {
               "id": "guardian_name",
               "type": "short",
               "label": "Guardian name",
               "required": true,
               "description": "Only for patients under 18 (same-instance condition).",
-              "enableWhen": [{ "question": "patient_age", "operator": "<", "answer": 18 }]
+              "enableWhen": [
+                {
+                  "question": "patient_age",
+                  "operator": "<",
+                  "answer": 18
+                }
+              ]
             },
             {
               "id": "insurance_number",
               "type": "short",
               "label": "Insurance number",
               "description": "Only when the visit is insured (condition on a question outside any repeat).",
-              "enableWhen": [{ "question": "has_insurance", "operator": "=", "answer": "Yes" }]
+              "enableWhen": [
+                {
+                  "question": "has_insurance",
+                  "operator": "=",
+                  "answer": "yes"
+                }
+              ]
             },
             {
               "id": "payments",
@@ -100,20 +170,54 @@
               "repeatLabel": "payment",
               "minOccurs": 0,
               "blocks": [
-                { "id": "payment_amount", "type": "number", "label": "Amount", "required": true, "min": 0 },
+                {
+                  "id": "payment_amount",
+                  "type": "number",
+                  "label": "Amount",
+                  "required": true,
+                  "min": 0
+                },
                 {
                   "id": "payment_method",
                   "type": "choice",
                   "label": "Method",
-                  "options": ["Card", "Cash", "Insurance"]
+                  "options": [
+                    {
+                      "code": "card",
+                      "label": "Card"
+                    },
+                    {
+                      "code": "cash",
+                      "label": "Cash"
+                    },
+                    {
+                      "code": "insurance",
+                      "label": "Insurance"
+                    }
+                  ]
                 },
                 {
                   "id": "guardian_consent",
                   "type": "choice",
                   "label": "Guardian consents to this payment",
                   "description": "Only when this payment's patient is under 18 (condition on the enclosing instance).",
-                  "options": ["Yes", "No"],
-                  "enableWhen": [{ "question": "patient_age", "operator": "<", "answer": 18 }]
+                  "options": [
+                    {
+                      "code": "yes",
+                      "label": "Yes"
+                    },
+                    {
+                      "code": "no",
+                      "label": "No"
+                    }
+                  ],
+                  "enableWhen": [
+                    {
+                      "question": "patient_age",
+                      "operator": "<",
+                      "answer": 18
+                    }
+                  ]
                 },
                 {
                   "id": "line_items",
@@ -124,27 +228,50 @@
                   "minOccurs": 1,
                   "maxOccurs": 3,
                   "blocks": [
-                    { "id": "item_desc", "type": "short", "label": "Description", "required": true },
+                    {
+                      "id": "item_desc",
+                      "type": "short",
+                      "label": "Description",
+                      "required": true
+                    },
                     {
                       "id": "item_card_ref",
                       "type": "short",
                       "label": "Card reference",
                       "description": "Only when this payment is by card (one level out).",
-                      "enableWhen": [{ "question": "payment_method", "operator": "=", "answer": "Card" }]
+                      "enableWhen": [
+                        {
+                          "question": "payment_method",
+                          "operator": "=",
+                          "answer": "card"
+                        }
+                      ]
                     },
                     {
                       "id": "item_minor_note",
                       "type": "short",
                       "label": "Note for a minor's item",
                       "description": "Only when the patient is under 18 (two levels out).",
-                      "enableWhen": [{ "question": "patient_age", "operator": "<", "answer": 18 }]
+                      "enableWhen": [
+                        {
+                          "question": "patient_age",
+                          "operator": "<",
+                          "answer": 18
+                        }
+                      ]
                     },
                     {
                       "id": "item_policy",
                       "type": "short",
                       "label": "Policy line",
                       "description": "Only when the visit is insured (root question, three levels out).",
-                      "enableWhen": [{ "question": "has_insurance", "operator": "=", "answer": "Yes" }]
+                      "enableWhen": [
+                        {
+                          "question": "has_insurance",
+                          "operator": "=",
+                          "answer": "yes"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -166,9 +293,20 @@
           "repeats": true,
           "repeatLabel": "note",
           "minOccurs": 0,
-          "blocks": [{ "id": "note_text", "type": "long", "label": "Note", "required": true }]
+          "blocks": [
+            {
+              "id": "note_text",
+              "type": "long",
+              "label": "Note",
+              "required": true
+            }
+          ]
         },
-        { "id": "final_comment", "type": "long", "label": "Anything else?" }
+        {
+          "id": "final_comment",
+          "type": "long",
+          "label": "Anything else?"
+        }
       ]
     }
   ]

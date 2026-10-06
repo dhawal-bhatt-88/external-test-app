@@ -1,7 +1,7 @@
 {
   "title": "Clinic visit",
   "formId": "4007fb50-f254-429d-b49b-a85e07960add",
-  "formVersionId": "a840739e-f710-44b1-a488-2160c2665e90",
+  "formVersionId": "a840739e-f710-44b1-a488-2160c2665e90-coded",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -10,8 +10,14 @@
       "label": "Would you like directions?",
       "required": false,
       "options": [
-        "Yes",
-        "No"
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
       ]
     },
     {
@@ -45,7 +51,7 @@
         {
           "question": "b_2ot854w1",
           "operator": "=",
-          "answer": "Yes"
+          "answer": "yes"
         }
       ]
     },

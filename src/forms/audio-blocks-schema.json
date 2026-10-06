@@ -1,7 +1,7 @@
 {
   "title": "Before your session",
   "formId": "audio-blocks-0.16.0",
-  "formVersionId": "v1",
+  "formVersionId": "v1-coded",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -58,7 +58,16 @@
       "type": "choice",
       "label": "Would you like another clip?",
       "required": true,
-      "options": ["Yes", "No"]
+      "options": [
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
+      ]
     },
     {
       "id": "b_aud_cond",
@@ -66,7 +75,13 @@
       "label": "Example clip (https ogg, shown on Yes)",
       "required": false,
       "content": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Example.ogg",
-      "enableWhen": [{ "question": "b_more", "operator": "=", "answer": "Yes" }]
+      "enableWhen": [
+        {
+          "question": "b_more",
+          "operator": "=",
+          "answer": "yes"
+        }
+      ]
     }
   ]
 }

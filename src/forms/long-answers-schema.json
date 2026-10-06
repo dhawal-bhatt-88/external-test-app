@@ -1,9 +1,12 @@
 {
   "title": "Role application",
   "formId": "long-answers-0.13.0",
-  "formVersionId": "v1",
+  "formVersionId": "v1-coded",
   "schemaVersion": 2,
-  "navigation": { "showProgress": true, "reviewPage": true },
+  "navigation": {
+    "showProgress": true,
+    "reviewPage": true
+  },
   "blocks": [
     {
       "id": "b_page_role",
@@ -36,13 +39,28 @@
           "type": "choice",
           "label": "Have you led a team before?",
           "required": true,
-          "options": ["Yes", "No"]
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ]
         },
         {
           "id": "b_grp_lead",
           "type": "group",
           "label": "Leadership",
-          "enableWhen": [{ "question": "b_led01", "operator": "=", "answer": "Yes" }],
+          "enableWhen": [
+            {
+              "question": "b_led01",
+              "operator": "=",
+              "answer": "yes"
+            }
+          ],
           "blocks": [
             {
               "id": "b_leadstory",

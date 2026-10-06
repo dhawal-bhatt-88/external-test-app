@@ -1,7 +1,7 @@
 {
   "title": "Before your appointment",
   "formId": "video-blocks-0.15.0",
-  "formVersionId": "v1",
+  "formVersionId": "v1-coded",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -43,7 +43,16 @@
       "type": "choice",
       "label": "Would you like another video?",
       "required": true,
-      "options": ["Yes", "No"]
+      "options": [
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
+      ]
     },
     {
       "id": "b_vid_cond",
@@ -52,7 +61,13 @@
       "required": false,
       "description": "",
       "content": "https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=1m30s",
-      "enableWhen": [{ "question": "b_more", "operator": "=", "answer": "Yes" }]
+      "enableWhen": [
+        {
+          "question": "b_more",
+          "operator": "=",
+          "answer": "yes"
+        }
+      ]
     }
   ]
 }

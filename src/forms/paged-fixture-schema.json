@@ -1,21 +1,38 @@
 {
   "formId": "paged-fixture",
-  "formVersionId": "paged-fixture-v1",
+  "formVersionId": "paged-fixture-v1-coded",
   "title": "Paged health intake",
   "schemaVersion": 2,
-  "navigation": { "showProgress": true, "reviewPage": true },
+  "navigation": {
+    "showProgress": true,
+    "reviewPage": true
+  },
   "blocks": [
     {
       "id": "pg_about",
       "type": "page",
       "title": "About you",
       "blocks": [
-        { "id": "name", "type": "short", "label": "Full name", "required": true },
+        {
+          "id": "name",
+          "type": "short",
+          "label": "Full name",
+          "required": true
+        },
         {
           "id": "has_meds",
           "type": "choice",
           "label": "Do you take any regular medication?",
-          "options": ["Yes", "No"],
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ],
           "required": true
         }
       ]
@@ -24,10 +41,27 @@
       "id": "pg_meds",
       "type": "page",
       "title": "Medication",
-      "enableWhen": [{ "question": "has_meds", "operator": "=", "answer": "Yes" }],
+      "enableWhen": [
+        {
+          "question": "has_meds",
+          "operator": "=",
+          "answer": "yes"
+        }
+      ],
       "blocks": [
-        { "id": "med_name", "type": "short", "label": "Medication name", "required": true },
-        { "id": "dose_mg", "type": "number", "label": "Dose (mg)", "min": 0, "max": 5000 }
+        {
+          "id": "med_name",
+          "type": "short",
+          "label": "Medication name",
+          "required": true
+        },
+        {
+          "id": "dose_mg",
+          "type": "number",
+          "label": "Dose (mg)",
+          "min": 0,
+          "max": 5000
+        }
       ]
     },
     {
@@ -35,7 +69,21 @@
       "type": "page",
       "title": "Lifestyle",
       "blocks": [
-        { "id": "smoker", "type": "choice", "label": "Do you smoke?", "options": ["Yes", "No"] },
+        {
+          "id": "smoker",
+          "type": "choice",
+          "label": "Do you smoke?",
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ]
+        },
         {
           "id": "g_habits",
           "type": "group",
@@ -45,16 +93,41 @@
               "id": "g_smoking",
               "type": "group",
               "label": "Smoking",
-              "enableWhen": [{ "question": "smoker", "operator": "=", "answer": "Yes" }],
+              "enableWhen": [
+                {
+                  "question": "smoker",
+                  "operator": "=",
+                  "answer": "yes"
+                }
+              ],
               "blocks": [
-                { "id": "cigs_per_day", "type": "number", "label": "Cigarettes per day", "min": 0, "required": true }
+                {
+                  "id": "cigs_per_day",
+                  "type": "number",
+                  "label": "Cigarettes per day",
+                  "min": 0,
+                  "required": true
+                }
               ]
             },
             {
               "id": "activity",
               "type": "dropdown",
               "label": "How active are you?",
-              "options": ["Not very", "Somewhat", "Very"]
+              "options": [
+                {
+                  "code": "not_very",
+                  "label": "Not very"
+                },
+                {
+                  "code": "somewhat",
+                  "label": "Somewhat"
+                },
+                {
+                  "code": "very",
+                  "label": "Very"
+                }
+              ]
             }
           ]
         },
@@ -62,7 +135,16 @@
           "id": "followup",
           "type": "choice",
           "label": "Would you like a follow-up call?",
-          "options": ["Yes", "No"]
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ]
         }
       ]
     },
@@ -76,14 +158,39 @@
           "type": "phone",
           "label": "Phone number",
           "required": true,
-          "enableWhen": [{ "question": "followup", "operator": "=", "answer": "Yes" }]
+          "enableWhen": [
+            {
+              "question": "followup",
+              "operator": "=",
+              "answer": "yes"
+            }
+          ]
         },
         {
           "id": "best_time",
           "type": "dropdown",
           "label": "Best time to call",
-          "options": ["Morning", "Afternoon", "Evening"],
-          "enableWhen": [{ "question": "followup", "operator": "=", "answer": "Yes" }]
+          "options": [
+            {
+              "code": "morning",
+              "label": "Morning"
+            },
+            {
+              "code": "afternoon",
+              "label": "Afternoon"
+            },
+            {
+              "code": "evening",
+              "label": "Evening"
+            }
+          ],
+          "enableWhen": [
+            {
+              "question": "followup",
+              "operator": "=",
+              "answer": "yes"
+            }
+          ]
         }
       ]
     }

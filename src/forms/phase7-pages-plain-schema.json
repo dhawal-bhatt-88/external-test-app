@@ -1,7 +1,7 @@
 {
   "title": "Patient intake",
   "formId": "e41f7edf-909b-4465-aba5-4c9cc8d417dc",
-  "formVersionId": "f194c050-2499-46e2-9a88-36181ba3d520",
+  "formVersionId": "f194c050-2499-46e2-9a88-36181ba3d520-coded",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -21,8 +21,14 @@
           "label": "Do you take any regular medication?",
           "required": true,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         }
       ]
@@ -35,7 +41,7 @@
         {
           "question": "b_afpvw49o",
           "operator": "=",
-          "answer": "Yes"
+          "answer": "yes"
         }
       ],
       "blocks": [
@@ -58,8 +64,14 @@
           "label": "Do you smoke?",
           "required": true,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         },
         {
@@ -73,9 +85,18 @@
               "label": "How often do you exercise?",
               "required": false,
               "options": [
-                "Rarely",
-                "Weekly",
-                "Daily"
+                {
+                  "code": "rarely",
+                  "label": "Rarely"
+                },
+                {
+                  "code": "weekly",
+                  "label": "Weekly"
+                },
+                {
+                  "code": "daily",
+                  "label": "Daily"
+                }
               ]
             },
             {
@@ -86,7 +107,7 @@
                 {
                   "question": "b_hj0698q5",
                   "operator": "=",
-                  "answer": "Yes"
+                  "answer": "yes"
                 }
               ],
               "blocks": [
@@ -113,14 +134,20 @@
           "label": "Would you like help to stop smoking?",
           "required": false,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ],
           "enableWhen": [
             {
               "question": "b_hj0698q5",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         },
@@ -133,7 +160,7 @@
             {
               "question": "b_hj0698q5",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         }

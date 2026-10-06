@@ -1,7 +1,7 @@
 {
   "title": "Progress style",
   "formId": "d293d7f3-a14f-4b5e-8e48-6beb3e962c1f",
-  "formVersionId": "3f5a1389-d976-412e-b6f7-98e51188d1c1",
+  "formVersionId": "3f5a1389-d976-412e-b6f7-98e51188d1c1-coded",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -21,8 +21,14 @@
           "label": "Do you take any regular medication?",
           "required": true,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         }
       ]
@@ -35,7 +41,7 @@
         {
           "question": "meds",
           "operator": "=",
-          "answer": "Yes"
+          "answer": "yes"
         }
       ],
       "blocks": [
@@ -58,8 +64,14 @@
           "label": "Do you smoke?",
           "required": false,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         }
       ]

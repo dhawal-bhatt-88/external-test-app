@@ -1,6 +1,6 @@
 {
   "formId": "drafts-device-consent",
-  "formVersionId": "drafts-device-consent-v1",
+  "formVersionId": "drafts-device-consent-v1-coded",
   "title": "Contact preferences (device drafts)",
   "schemaVersion": 2,
   "navigation": {
@@ -21,9 +21,18 @@
           "type": "choice",
           "label": "Preferred contact method",
           "options": [
-            "Phone",
-            "Email",
-            "Letter"
+            {
+              "code": "phone",
+              "label": "Phone"
+            },
+            {
+              "code": "email",
+              "label": "Email"
+            },
+            {
+              "code": "letter",
+              "label": "Letter"
+            }
           ],
           "required": true
         }

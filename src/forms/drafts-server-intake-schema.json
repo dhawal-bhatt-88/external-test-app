@@ -1,6 +1,6 @@
 {
   "formId": "drafts-server-intake",
-  "formVersionId": "drafts-server-intake-v1",
+  "formVersionId": "drafts-server-intake-v1-coded",
   "title": "Health intake (server drafts)",
   "schemaVersion": 2,
   "navigation": {
@@ -24,8 +24,14 @@
           "type": "choice",
           "label": "Do you take any regular medication?",
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ],
           "required": true
         }
@@ -39,7 +45,7 @@
         {
           "question": "has_meds",
           "operator": "=",
-          "answer": "Yes"
+          "answer": "yes"
         }
       ],
       "blocks": [
@@ -68,8 +74,14 @@
           "type": "choice",
           "label": "Do you smoke?",
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         },
         {
@@ -85,7 +97,7 @@
                 {
                   "question": "smoker",
                   "operator": "=",
-                  "answer": "Yes"
+                  "answer": "yes"
                 }
               ],
               "blocks": [
@@ -103,9 +115,18 @@
               "type": "dropdown",
               "label": "How active are you?",
               "options": [
-                "Not very",
-                "Somewhat",
-                "Very"
+                {
+                  "code": "not_very",
+                  "label": "Not very"
+                },
+                {
+                  "code": "somewhat",
+                  "label": "Somewhat"
+                },
+                {
+                  "code": "very",
+                  "label": "Very"
+                }
               ]
             }
           ]
@@ -115,8 +136,14 @@
           "type": "choice",
           "label": "Would you like a follow-up call?",
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         }
       ]
@@ -135,7 +162,7 @@
             {
               "question": "followup",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         },
@@ -144,15 +171,24 @@
           "type": "dropdown",
           "label": "Best time to call",
           "options": [
-            "Morning",
-            "Afternoon",
-            "Evening"
+            {
+              "code": "morning",
+              "label": "Morning"
+            },
+            {
+              "code": "afternoon",
+              "label": "Afternoon"
+            },
+            {
+              "code": "evening",
+              "label": "Evening"
+            }
           ],
           "enableWhen": [
             {
               "question": "followup",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         }

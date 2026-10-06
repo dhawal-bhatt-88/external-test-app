@@ -1,7 +1,7 @@
 {
   "title": "Visiting the clinic",
   "formId": "display-blocks-0.14.0",
-  "formVersionId": "v1",
+  "formVersionId": "v1-coded",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -43,7 +43,16 @@
       "type": "choice",
       "label": "Will you be driving?",
       "required": true,
-      "options": ["Yes", "No"]
+      "options": [
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
+      ]
     },
     {
       "id": "b_parking_text",
@@ -52,15 +61,33 @@
       "required": false,
       "description": "",
       "content": "Parking is behind the building.\nShow this form at the barrier.",
-      "enableWhen": [{ "question": "b_parking", "operator": "=", "answer": "Yes" }]
+      "enableWhen": [
+        {
+          "question": "b_parking",
+          "operator": "=",
+          "answer": "yes"
+        }
+      ]
     },
     {
       "id": "b_grp_empty",
       "type": "group",
       "label": "This group must never show",
       "blocks": [
-        { "id": "b_blank_text", "type": "text", "label": "Text", "required": false, "content": "   " },
-        { "id": "b_img_bad2", "type": "image", "label": "Image", "required": false, "content": "" }
+        {
+          "id": "b_blank_text",
+          "type": "text",
+          "label": "Text",
+          "required": false,
+          "content": "   "
+        },
+        {
+          "id": "b_img_bad2",
+          "type": "image",
+          "label": "Image",
+          "required": false,
+          "content": ""
+        }
       ]
     }
   ]

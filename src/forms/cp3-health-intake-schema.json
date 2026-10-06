@@ -1,7 +1,7 @@
 {
   "title": "Health intake",
   "formId": "f7d36909-058e-4b0c-8179-8a11f515566f",
-  "formVersionId": "1edd254e-36ef-46ec-b791-30b6e84bb4af",
+  "formVersionId": "1edd254e-36ef-46ec-b791-30b6e84bb4af-coded",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -16,8 +16,14 @@
       "label": "Do you take any regular medication?",
       "required": true,
       "options": [
-        "Yes",
-        "No"
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
       ]
     },
     {
@@ -26,8 +32,14 @@
       "label": "Do you smoke?",
       "required": false,
       "options": [
-        "Yes",
-        "No"
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
       ]
     },
     {
@@ -36,8 +48,14 @@
       "label": "Do you drink alcohol?",
       "required": false,
       "options": [
-        "Yes",
-        "No"
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
       ]
     },
     {
@@ -48,7 +66,7 @@
         {
           "question": "b_xkwoldi1",
           "operator": "=",
-          "answer": "Yes"
+          "answer": "yes"
         }
       ],
       "blocks": [
@@ -80,9 +98,18 @@
                   "label": "How often?",
                   "required": true,
                   "options": [
-                    "Once daily",
-                    "Twice daily",
-                    "As needed"
+                    {
+                      "code": "once_daily",
+                      "label": "Once daily"
+                    },
+                    {
+                      "code": "twice_daily",
+                      "label": "Twice daily"
+                    },
+                    {
+                      "code": "as_needed",
+                      "label": "As needed"
+                    }
                   ]
                 },
                 {
@@ -91,8 +118,14 @@
                   "label": "Taken with food?",
                   "required": false,
                   "options": [
-                    "Yes",
-                    "No"
+                    {
+                      "code": "yes",
+                      "label": "Yes"
+                    },
+                    {
+                      "code": "no",
+                      "label": "No"
+                    }
                   ]
                 }
               ]
@@ -109,12 +142,12 @@
         {
           "question": "b_sufu09d5",
           "operator": "=",
-          "answer": "Yes"
+          "answer": "yes"
         },
         {
           "question": "b_ko9dv81w",
           "operator": "=",
-          "answer": "Yes"
+          "answer": "yes"
         }
       ],
       "enableBehavior": "any",
@@ -125,8 +158,14 @@
           "label": "Would you like support with any of these?",
           "required": false,
           "options": [
-            "Stopping smoking",
-            "Reducing alcohol"
+            {
+              "code": "stopping_smoking",
+              "label": "Stopping smoking"
+            },
+            {
+              "code": "reducing_alcohol",
+              "label": "Reducing alcohol"
+            }
           ]
         }
       ]

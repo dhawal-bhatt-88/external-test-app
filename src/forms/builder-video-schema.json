@@ -1,7 +1,7 @@
 {
   "title": "Clinic tour",
   "formId": "0d7b1621-7b31-4660-a317-316ff01c519e",
-  "formVersionId": "bd17f9f0-11cf-4649-95c9-bd9dbed13be5",
+  "formVersionId": "bd17f9f0-11cf-4649-95c9-bd9dbed13be5-coded",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -10,8 +10,14 @@
       "label": "Would you like a tour of the clinic?",
       "required": false,
       "options": [
-        "Yes",
-        "No"
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
       ]
     },
     {
@@ -38,7 +44,7 @@
         {
           "question": "b_9au98tcx",
           "operator": "=",
-          "answer": "Yes"
+          "answer": "yes"
         }
       ]
     }

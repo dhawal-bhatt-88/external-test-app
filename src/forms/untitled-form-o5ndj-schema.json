@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "formId": "bh-intake-demo",
-  "formVersionId": "bh-intake-demo-v1",
+  "formVersionId": "bh-intake-demo-v1-coded",
   "title": "Behavioral health intake (demo)",
   "navigation": {
     "showProgress": true,
@@ -61,11 +61,26 @@
           "type": "dropdown",
           "label": "Gender",
           "options": [
-            "Woman",
-            "Man",
-            "Non-binary",
-            "Prefer to self-describe",
-            "Prefer not to say"
+            {
+              "code": "woman",
+              "label": "Woman"
+            },
+            {
+              "code": "man",
+              "label": "Man"
+            },
+            {
+              "code": "non-binary",
+              "label": "Non-binary"
+            },
+            {
+              "code": "prefer_to_self-describe",
+              "label": "Prefer to self-describe"
+            },
+            {
+              "code": "prefer_not_to_say",
+              "label": "Prefer not to say"
+            }
           ]
         },
         {
@@ -76,7 +91,7 @@
             {
               "question": "gender",
               "operator": "=",
-              "answer": "Prefer to self-describe"
+              "answer": "prefer_to_self-describe"
             }
           ]
         },
@@ -90,12 +105,30 @@
           "type": "dropdown",
           "label": "Relationship status",
           "options": [
-            "Single",
-            "Married",
-            "Partnered",
-            "Separated",
-            "Divorced",
-            "Widowed"
+            {
+              "code": "single",
+              "label": "Single"
+            },
+            {
+              "code": "married",
+              "label": "Married"
+            },
+            {
+              "code": "partnered",
+              "label": "Partnered"
+            },
+            {
+              "code": "separated",
+              "label": "Separated"
+            },
+            {
+              "code": "divorced",
+              "label": "Divorced"
+            },
+            {
+              "code": "widowed",
+              "label": "Widowed"
+            }
           ]
         },
         {
@@ -103,12 +136,30 @@
           "type": "choice",
           "label": "Employment status",
           "options": [
-            "Employed full-time",
-            "Employed part-time",
-            "Unemployed",
-            "Student",
-            "Retired",
-            "Unable to work"
+            {
+              "code": "employed_full-time",
+              "label": "Employed full-time"
+            },
+            {
+              "code": "employed_part-time",
+              "label": "Employed part-time"
+            },
+            {
+              "code": "unemployed",
+              "label": "Unemployed"
+            },
+            {
+              "code": "student",
+              "label": "Student"
+            },
+            {
+              "code": "retired",
+              "label": "Retired"
+            },
+            {
+              "code": "unable_to_work",
+              "label": "Unable to work"
+            }
           ]
         },
         {
@@ -119,12 +170,12 @@
             {
               "question": "employment",
               "operator": "=",
-              "answer": "Employed full-time"
+              "answer": "employed_full-time"
             },
             {
               "question": "employment",
               "operator": "=",
-              "answer": "Employed part-time"
+              "answer": "employed_part-time"
             }
           ],
           "enableBehavior": "any"
@@ -141,9 +192,18 @@
           "type": "dropdown",
           "label": "Preferred language",
           "options": [
-            "English",
-            "Spanish",
-            "Other"
+            {
+              "code": "english",
+              "label": "English"
+            },
+            {
+              "code": "spanish",
+              "label": "Spanish"
+            },
+            {
+              "code": "other",
+              "label": "Other"
+            }
           ]
         },
         {
@@ -151,14 +211,20 @@
           "type": "choice",
           "label": "Would you like an interpreter?",
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ],
           "enableWhen": [
             {
               "question": "language",
               "operator": "!=",
-              "answer": "English"
+              "answer": "english"
             }
           ]
         }
@@ -202,10 +268,22 @@
           "type": "checkbox",
           "label": "How may we contact you?",
           "options": [
-            "Phone call",
-            "Text message",
-            "Email",
-            "Mail"
+            {
+              "code": "phone_call",
+              "label": "Phone call"
+            },
+            {
+              "code": "text_message",
+              "label": "Text message"
+            },
+            {
+              "code": "email",
+              "label": "Email"
+            },
+            {
+              "code": "mail",
+              "label": "Mail"
+            }
           ]
         },
         {
@@ -213,14 +291,20 @@
           "type": "choice",
           "label": "May we leave a voicemail?",
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ],
           "enableWhen": [
             {
               "question": "contact_methods",
               "operator": "contains",
-              "answer": "Phone call"
+              "answer": "phone_call"
             }
           ]
         },
@@ -234,8 +318,14 @@
           "label": "Do you have an emergency contact?",
           "required": true,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         },
         {
@@ -246,7 +336,7 @@
             {
               "question": "emergency_has",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ],
           "blocks": [
@@ -261,12 +351,30 @@
               "type": "dropdown",
               "label": "Relationship to you",
               "options": [
-                "Parent",
-                "Partner",
-                "Sibling",
-                "Child",
-                "Friend",
-                "Other"
+                {
+                  "code": "parent",
+                  "label": "Parent"
+                },
+                {
+                  "code": "partner",
+                  "label": "Partner"
+                },
+                {
+                  "code": "sibling",
+                  "label": "Sibling"
+                },
+                {
+                  "code": "child",
+                  "label": "Child"
+                },
+                {
+                  "code": "friend",
+                  "label": "Friend"
+                },
+                {
+                  "code": "other",
+                  "label": "Other"
+                }
               ]
             },
             {
@@ -294,13 +402,34 @@
           "type": "dropdown",
           "label": "Who referred you?",
           "options": [
-            "Self",
-            "Primary care provider",
-            "Hospital",
-            "School",
-            "Employer",
-            "Court",
-            "Other"
+            {
+              "code": "self",
+              "label": "Self"
+            },
+            {
+              "code": "primary_care_provider",
+              "label": "Primary care provider"
+            },
+            {
+              "code": "hospital",
+              "label": "Hospital"
+            },
+            {
+              "code": "school",
+              "label": "School"
+            },
+            {
+              "code": "employer",
+              "label": "Employer"
+            },
+            {
+              "code": "court",
+              "label": "Court"
+            },
+            {
+              "code": "other",
+              "label": "Other"
+            }
           ]
         },
         {
@@ -315,13 +444,34 @@
           "label": "What would you like help with?",
           "required": true,
           "options": [
-            "Low mood",
-            "Anxiety",
-            "Sleep problems",
-            "Stress",
-            "Relationship difficulties",
-            "Anger",
-            "Other"
+            {
+              "code": "low_mood",
+              "label": "Low mood"
+            },
+            {
+              "code": "anxiety",
+              "label": "Anxiety"
+            },
+            {
+              "code": "sleep_problems",
+              "label": "Sleep problems"
+            },
+            {
+              "code": "stress",
+              "label": "Stress"
+            },
+            {
+              "code": "relationship_difficulties",
+              "label": "Relationship difficulties"
+            },
+            {
+              "code": "anger",
+              "label": "Anger"
+            },
+            {
+              "code": "other",
+              "label": "Other"
+            }
           ]
         },
         {
@@ -332,7 +482,7 @@
             {
               "question": "concerns",
               "operator": "contains",
-              "answer": "Other"
+              "answer": "other"
             }
           ]
         },
@@ -341,10 +491,22 @@
           "type": "choice",
           "label": "How long have you had these concerns?",
           "options": [
-            "Less than a month",
-            "1-6 months",
-            "6-12 months",
-            "More than a year"
+            {
+              "code": "less_than_a_month",
+              "label": "Less than a month"
+            },
+            {
+              "code": "1-6_months",
+              "label": "1-6 months"
+            },
+            {
+              "code": "6-12_months",
+              "label": "6-12 months"
+            },
+            {
+              "code": "more_than_a_year",
+              "label": "More than a year"
+            }
           ]
         },
         {
@@ -362,7 +524,7 @@
             {
               "question": "concerns",
               "operator": "contains",
-              "answer": "Sleep problems"
+              "answer": "sleep_problems"
             }
           ],
           "blocks": [
@@ -378,11 +540,26 @@
               "type": "multiselect",
               "label": "Which sleep problems do you have?",
               "options": [
-                "Falling asleep",
-                "Staying asleep",
-                "Waking early",
-                "Nightmares",
-                "Sleeping too much"
+                {
+                  "code": "falling_asleep",
+                  "label": "Falling asleep"
+                },
+                {
+                  "code": "staying_asleep",
+                  "label": "Staying asleep"
+                },
+                {
+                  "code": "waking_early",
+                  "label": "Waking early"
+                },
+                {
+                  "code": "nightmares",
+                  "label": "Nightmares"
+                },
+                {
+                  "code": "sleeping_too_much",
+                  "label": "Sleeping too much"
+                }
               ]
             },
             {
@@ -398,8 +575,14 @@
           "label": "Have you had support for your mental health before?",
           "required": true,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         },
         {
@@ -410,7 +593,7 @@
             {
               "question": "prior_help",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ],
           "blocks": [
@@ -419,11 +602,26 @@
               "type": "checkbox",
               "label": "What kind of support?",
               "options": [
-                "Counseling",
-                "Psychotherapy",
-                "Psychiatry",
-                "Support group",
-                "Inpatient care"
+                {
+                  "code": "counseling",
+                  "label": "Counseling"
+                },
+                {
+                  "code": "psychotherapy",
+                  "label": "Psychotherapy"
+                },
+                {
+                  "code": "psychiatry",
+                  "label": "Psychiatry"
+                },
+                {
+                  "code": "support_group",
+                  "label": "Support group"
+                },
+                {
+                  "code": "inpatient_care",
+                  "label": "Inpatient care"
+                }
               ]
             },
             {
@@ -444,9 +642,18 @@
           "label": "Do you use alcohol, tobacco or other substances?",
           "required": true,
           "options": [
-            "Yes",
-            "No",
-            "Prefer not to say"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            },
+            {
+              "code": "prefer_not_to_say",
+              "label": "Prefer not to say"
+            }
           ]
         }
       ]
@@ -468,18 +675,48 @@
           "required": true,
           "completeRequired": true,
           "options": [
-            "Little interest or pleasure in doing things",
-            "Feeling down or hopeless",
-            "Trouble concentrating",
-            "Feeling tired or having little energy",
-            "Feeling nervous or on edge",
-            "Not being able to stop worrying"
+            {
+              "code": "little_interest_or_pleasure_in_doing_things",
+              "label": "Little interest or pleasure in doing things"
+            },
+            {
+              "code": "feeling_down_or_hopeless",
+              "label": "Feeling down or hopeless"
+            },
+            {
+              "code": "trouble_concentrating",
+              "label": "Trouble concentrating"
+            },
+            {
+              "code": "feeling_tired_or_having_little_energy",
+              "label": "Feeling tired or having little energy"
+            },
+            {
+              "code": "feeling_nervous_or_on_edge",
+              "label": "Feeling nervous or on edge"
+            },
+            {
+              "code": "not_being_able_to_stop_worrying",
+              "label": "Not being able to stop worrying"
+            }
           ],
           "columns": [
-            "Not at all",
-            "Several days",
-            "More than half the days",
-            "Nearly every day"
+            {
+              "code": "not_at_all",
+              "label": "Not at all"
+            },
+            {
+              "code": "several_days",
+              "label": "Several days"
+            },
+            {
+              "code": "more_than_half_the_days",
+              "label": "More than half the days"
+            },
+            {
+              "code": "nearly_every_day",
+              "label": "Nearly every day"
+            }
           ]
         },
         {
@@ -514,12 +751,30 @@
               "type": "checkbox",
               "label": "What seems to bring it on?",
               "options": [
-                "Work",
-                "Relationships",
-                "Money",
-                "Health",
-                "Loss or bereavement",
-                "Nothing specific"
+                {
+                  "code": "work",
+                  "label": "Work"
+                },
+                {
+                  "code": "relationships",
+                  "label": "Relationships"
+                },
+                {
+                  "code": "money",
+                  "label": "Money"
+                },
+                {
+                  "code": "health",
+                  "label": "Health"
+                },
+                {
+                  "code": "loss_or_bereavement",
+                  "label": "Loss or bereavement"
+                },
+                {
+                  "code": "nothing_specific",
+                  "label": "Nothing specific"
+                }
               ]
             }
           ]
@@ -547,8 +802,14 @@
               "type": "choice",
               "label": "Have you had panic attacks?",
               "options": [
-                "Yes",
-                "No"
+                {
+                  "code": "yes",
+                  "label": "Yes"
+                },
+                {
+                  "code": "no",
+                  "label": "No"
+                }
               ]
             },
             {
@@ -556,16 +817,28 @@
               "type": "dropdown",
               "label": "How often?",
               "options": [
-                "Daily",
-                "Weekly",
-                "Monthly",
-                "Rarely"
+                {
+                  "code": "daily",
+                  "label": "Daily"
+                },
+                {
+                  "code": "weekly",
+                  "label": "Weekly"
+                },
+                {
+                  "code": "monthly",
+                  "label": "Monthly"
+                },
+                {
+                  "code": "rarely",
+                  "label": "Rarely"
+                }
               ],
               "enableWhen": [
                 {
                   "question": "panic_attacks",
                   "operator": "=",
-                  "answer": "Yes"
+                  "answer": "yes"
                 }
               ]
             },
@@ -574,12 +847,30 @@
               "type": "multiselect",
               "label": "Which situations make it worse?",
               "options": [
-                "Crowds",
-                "Work",
-                "Social situations",
-                "Travel",
-                "Health worries",
-                "Other"
+                {
+                  "code": "crowds",
+                  "label": "Crowds"
+                },
+                {
+                  "code": "work",
+                  "label": "Work"
+                },
+                {
+                  "code": "social_situations",
+                  "label": "Social situations"
+                },
+                {
+                  "code": "travel",
+                  "label": "Travel"
+                },
+                {
+                  "code": "health_worries",
+                  "label": "Health worries"
+                },
+                {
+                  "code": "other",
+                  "label": "Other"
+                }
               ]
             },
             {
@@ -588,11 +879,26 @@
               "label": "Rank what helps you cope, most helpful first",
               "completeRequired": true,
               "options": [
-                "Talking to someone",
-                "Exercise",
-                "Rest or sleep",
-                "Hobbies",
-                "Medication"
+                {
+                  "code": "talking_to_someone",
+                  "label": "Talking to someone"
+                },
+                {
+                  "code": "exercise",
+                  "label": "Exercise"
+                },
+                {
+                  "code": "rest_or_sleep",
+                  "label": "Rest or sleep"
+                },
+                {
+                  "code": "hobbies",
+                  "label": "Hobbies"
+                },
+                {
+                  "code": "medication",
+                  "label": "Medication"
+                }
               ]
             }
           ]
@@ -607,7 +913,7 @@
         {
           "question": "uses_substances",
           "operator": "!=",
-          "answer": "No"
+          "answer": "no"
         }
       ],
       "blocks": [
@@ -617,12 +923,30 @@
           "label": "Which do you use?",
           "required": true,
           "options": [
-            "Alcohol",
-            "Tobacco",
-            "Cannabis",
-            "Opioids",
-            "Stimulants",
-            "Other"
+            {
+              "code": "alcohol",
+              "label": "Alcohol"
+            },
+            {
+              "code": "tobacco",
+              "label": "Tobacco"
+            },
+            {
+              "code": "cannabis",
+              "label": "Cannabis"
+            },
+            {
+              "code": "opioids",
+              "label": "Opioids"
+            },
+            {
+              "code": "stimulants",
+              "label": "Stimulants"
+            },
+            {
+              "code": "other",
+              "label": "Other"
+            }
           ]
         },
         {
@@ -633,7 +957,7 @@
             {
               "question": "substances",
               "operator": "contains",
-              "answer": "Alcohol"
+              "answer": "alcohol"
             }
           ],
           "blocks": [
@@ -669,8 +993,14 @@
                   "type": "choice",
                   "label": "Have you felt you should cut down?",
                   "options": [
-                    "Yes",
-                    "No"
+                    {
+                      "code": "yes",
+                      "label": "Yes"
+                    },
+                    {
+                      "code": "no",
+                      "label": "No"
+                    }
                   ]
                 },
                 {
@@ -678,8 +1008,14 @@
                   "type": "choice",
                   "label": "Have you had a drink first thing in the morning to steady your nerves?",
                   "options": [
-                    "Yes",
-                    "No"
+                    {
+                      "code": "yes",
+                      "label": "Yes"
+                    },
+                    {
+                      "code": "no",
+                      "label": "No"
+                    }
                   ]
                 },
                 {
@@ -688,8 +1024,14 @@
                   "label": "Have you ever had withdrawal symptoms?",
                   "required": true,
                   "options": [
-                    "Yes",
-                    "No"
+                    {
+                      "code": "yes",
+                      "label": "Yes"
+                    },
+                    {
+                      "code": "no",
+                      "label": "No"
+                    }
                   ]
                 },
                 {
@@ -700,7 +1042,7 @@
                     {
                       "question": "had_withdrawal",
                       "operator": "=",
-                      "answer": "Yes"
+                      "answer": "yes"
                     }
                   ],
                   "blocks": [
@@ -714,11 +1056,26 @@
                       "type": "checkbox",
                       "label": "Which symptoms did you have?",
                       "options": [
-                        "Shaking",
-                        "Sweating",
-                        "Anxiety",
-                        "Seizures",
-                        "Hallucinations"
+                        {
+                          "code": "shaking",
+                          "label": "Shaking"
+                        },
+                        {
+                          "code": "sweating",
+                          "label": "Sweating"
+                        },
+                        {
+                          "code": "anxiety",
+                          "label": "Anxiety"
+                        },
+                        {
+                          "code": "seizures",
+                          "label": "Seizures"
+                        },
+                        {
+                          "code": "hallucinations",
+                          "label": "Hallucinations"
+                        }
                       ]
                     },
                     {
@@ -726,8 +1083,14 @@
                       "type": "choice",
                       "label": "Did you receive medical treatment?",
                       "options": [
-                        "Yes",
-                        "No"
+                        {
+                          "code": "yes",
+                          "label": "Yes"
+                        },
+                        {
+                          "code": "no",
+                          "label": "No"
+                        }
                       ]
                     }
                   ]
@@ -744,7 +1107,7 @@
             {
               "question": "substances",
               "operator": "contains",
-              "answer": "Tobacco"
+              "answer": "tobacco"
             }
           ],
           "blocks": [
@@ -772,17 +1135,17 @@
             {
               "question": "substances",
               "operator": "contains",
-              "answer": "Cannabis"
+              "answer": "cannabis"
             },
             {
               "question": "substances",
               "operator": "contains",
-              "answer": "Opioids"
+              "answer": "opioids"
             },
             {
               "question": "substances",
               "operator": "contains",
-              "answer": "Stimulants"
+              "answer": "stimulants"
             }
           ],
           "enableBehavior": "any",
@@ -792,11 +1155,26 @@
               "type": "dropdown",
               "label": "How often do you use them?",
               "options": [
-                "Daily",
-                "Several times a week",
-                "Weekly",
-                "Monthly",
-                "Less often"
+                {
+                  "code": "daily",
+                  "label": "Daily"
+                },
+                {
+                  "code": "several_times_a_week",
+                  "label": "Several times a week"
+                },
+                {
+                  "code": "weekly",
+                  "label": "Weekly"
+                },
+                {
+                  "code": "monthly",
+                  "label": "Monthly"
+                },
+                {
+                  "code": "less_often",
+                  "label": "Less often"
+                }
               ]
             },
             {
@@ -804,11 +1182,26 @@
               "type": "multiselect",
               "label": "How do you take them?",
               "options": [
-                "Smoked",
-                "Swallowed",
-                "Snorted",
-                "Injected",
-                "Other"
+                {
+                  "code": "smoked",
+                  "label": "Smoked"
+                },
+                {
+                  "code": "swallowed",
+                  "label": "Swallowed"
+                },
+                {
+                  "code": "snorted",
+                  "label": "Snorted"
+                },
+                {
+                  "code": "injected",
+                  "label": "Injected"
+                },
+                {
+                  "code": "other",
+                  "label": "Other"
+                }
               ]
             },
             {
@@ -823,10 +1216,22 @@
           "type": "choice",
           "label": "What would you like to do about your substance use?",
           "options": [
-            "Stop completely",
-            "Cut down",
-            "Not sure",
-            "No change for now"
+            {
+              "code": "stop_completely",
+              "label": "Stop completely"
+            },
+            {
+              "code": "cut_down",
+              "label": "Cut down"
+            },
+            {
+              "code": "not_sure",
+              "label": "Not sure"
+            },
+            {
+              "code": "no_change_for_now",
+              "label": "No change for now"
+            }
           ]
         }
       ]
@@ -851,13 +1256,34 @@
           "type": "checkbox",
           "label": "Do you have any of these conditions?",
           "options": [
-            "Diabetes",
-            "High blood pressure",
-            "Heart condition",
-            "Asthma",
-            "Chronic pain",
-            "Epilepsy",
-            "None of these"
+            {
+              "code": "diabetes",
+              "label": "Diabetes"
+            },
+            {
+              "code": "high_blood_pressure",
+              "label": "High blood pressure"
+            },
+            {
+              "code": "heart_condition",
+              "label": "Heart condition"
+            },
+            {
+              "code": "asthma",
+              "label": "Asthma"
+            },
+            {
+              "code": "chronic_pain",
+              "label": "Chronic pain"
+            },
+            {
+              "code": "epilepsy",
+              "label": "Epilepsy"
+            },
+            {
+              "code": "none_of_these",
+              "label": "None of these"
+            }
           ]
         },
         {
@@ -882,9 +1308,18 @@
           "label": "Do you have any allergies?",
           "required": true,
           "options": [
-            "Yes",
-            "No",
-            "Not sure"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            },
+            {
+              "code": "not_sure",
+              "label": "Not sure"
+            }
           ]
         },
         {
@@ -896,7 +1331,7 @@
             {
               "question": "allergies",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         },
@@ -906,8 +1341,14 @@
           "label": "Do you take any regular medication?",
           "required": true,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         },
         {
@@ -918,7 +1359,7 @@
             {
               "question": "takes_meds",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ],
           "blocks": [
@@ -951,12 +1392,30 @@
                   "type": "dropdown",
                   "label": "Form",
                   "options": [
-                    "Tablet",
-                    "Capsule",
-                    "Liquid",
-                    "Injection",
-                    "Patch",
-                    "Other"
+                    {
+                      "code": "tablet",
+                      "label": "Tablet"
+                    },
+                    {
+                      "code": "capsule",
+                      "label": "Capsule"
+                    },
+                    {
+                      "code": "liquid",
+                      "label": "Liquid"
+                    },
+                    {
+                      "code": "injection",
+                      "label": "Injection"
+                    },
+                    {
+                      "code": "patch",
+                      "label": "Patch"
+                    },
+                    {
+                      "code": "other",
+                      "label": "Other"
+                    }
                   ]
                 },
                 {
@@ -970,10 +1429,22 @@
                       "label": "How often?",
                       "required": true,
                       "options": [
-                        "Once a day",
-                        "Twice a day",
-                        "Three times a day",
-                        "As needed"
+                        {
+                          "code": "once_a_day",
+                          "label": "Once a day"
+                        },
+                        {
+                          "code": "twice_a_day",
+                          "label": "Twice a day"
+                        },
+                        {
+                          "code": "three_times_a_day",
+                          "label": "Three times a day"
+                        },
+                        {
+                          "code": "as_needed",
+                          "label": "As needed"
+                        }
                       ]
                     },
                     {
@@ -986,8 +1457,14 @@
                       "type": "choice",
                       "label": "Taken with food?",
                       "options": [
-                        "Yes",
-                        "No"
+                        {
+                          "code": "yes",
+                          "label": "Yes"
+                        },
+                        {
+                          "code": "no",
+                          "label": "No"
+                        }
                       ]
                     }
                   ]
@@ -1006,10 +1483,22 @@
           "type": "choice",
           "label": "Are you pregnant or breastfeeding?",
           "options": [
-            "Yes",
-            "No",
-            "Not applicable",
-            "Prefer not to say"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            },
+            {
+              "code": "not_applicable",
+              "label": "Not applicable"
+            },
+            {
+              "code": "prefer_not_to_say",
+              "label": "Prefer not to say"
+            }
           ]
         }
       ]
@@ -1043,9 +1532,18 @@
           "label": "Do you feel safe at home?",
           "required": true,
           "options": [
-            "Yes",
-            "No",
-            "Not sure"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            },
+            {
+              "code": "not_sure",
+              "label": "Not sure"
+            }
           ]
         },
         {
@@ -1060,12 +1558,30 @@
           "type": "checkbox",
           "label": "Who are they?",
           "options": [
-            "Family",
-            "Friends",
-            "Partner",
-            "Faith community",
-            "Professional",
-            "No one right now"
+            {
+              "code": "family",
+              "label": "Family"
+            },
+            {
+              "code": "friends",
+              "label": "Friends"
+            },
+            {
+              "code": "partner",
+              "label": "Partner"
+            },
+            {
+              "code": "faith_community",
+              "label": "Faith community"
+            },
+            {
+              "code": "professional",
+              "label": "Professional"
+            },
+            {
+              "code": "no_one_right_now",
+              "label": "No one right now"
+            }
           ]
         },
         {
@@ -1074,8 +1590,14 @@
           "label": "Would you like someone to contact you sooner than usual?",
           "required": true,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         },
         {
@@ -1086,7 +1608,7 @@
             {
               "question": "need_urgent",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         }
@@ -1103,9 +1625,18 @@
           "label": "How would you like to attend sessions?",
           "required": true,
           "options": [
-            "In person",
-            "Video",
-            "Phone"
+            {
+              "code": "in_person",
+              "label": "In person"
+            },
+            {
+              "code": "video",
+              "label": "Video"
+            },
+            {
+              "code": "phone",
+              "label": "Phone"
+            }
           ]
         },
         {
@@ -1113,12 +1644,30 @@
           "type": "checkbox",
           "label": "Which days suit you?",
           "options": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
+            {
+              "code": "monday",
+              "label": "Monday"
+            },
+            {
+              "code": "tuesday",
+              "label": "Tuesday"
+            },
+            {
+              "code": "wednesday",
+              "label": "Wednesday"
+            },
+            {
+              "code": "thursday",
+              "label": "Thursday"
+            },
+            {
+              "code": "friday",
+              "label": "Friday"
+            },
+            {
+              "code": "saturday",
+              "label": "Saturday"
+            }
           ]
         },
         {
@@ -1126,9 +1675,18 @@
           "type": "dropdown",
           "label": "Preferred time of day",
           "options": [
-            "Morning",
-            "Afternoon",
-            "Evening"
+            {
+              "code": "morning",
+              "label": "Morning"
+            },
+            {
+              "code": "afternoon",
+              "label": "Afternoon"
+            },
+            {
+              "code": "evening",
+              "label": "Evening"
+            }
           ]
         },
         {
@@ -1136,9 +1694,18 @@
           "type": "choice",
           "label": "Do you have a preference for your clinician?",
           "options": [
-            "No preference",
-            "Woman",
-            "Man"
+            {
+              "code": "no_preference",
+              "label": "No preference"
+            },
+            {
+              "code": "woman",
+              "label": "Woman"
+            },
+            {
+              "code": "man",
+              "label": "Man"
+            }
           ]
         },
         {
@@ -1146,11 +1713,26 @@
           "type": "ranking",
           "label": "Rank your priorities (rank as many as you like)",
           "options": [
-            "Feeling better quickly",
-            "Understanding what's happening",
-            "Practical coping skills",
-            "Reducing medication",
-            "Improving relationships"
+            {
+              "code": "feeling_better_quickly",
+              "label": "Feeling better quickly"
+            },
+            {
+              "code": "understanding_whats_happening",
+              "label": "Understanding what's happening"
+            },
+            {
+              "code": "practical_coping_skills",
+              "label": "Practical coping skills"
+            },
+            {
+              "code": "reducing_medication",
+              "label": "Reducing medication"
+            },
+            {
+              "code": "improving_relationships",
+              "label": "Improving relationships"
+            }
           ]
         },
         {
@@ -1164,8 +1746,14 @@
           "label": "Would you like a follow-up call before your first appointment?",
           "required": true,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         },
         {
@@ -1174,8 +1762,14 @@
           "label": "May we share relevant information with your primary care provider?",
           "required": true,
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ]
         },
         {
@@ -1184,7 +1778,10 @@
           "label": "Confirmation",
           "required": true,
           "options": [
-            "I confirm the information I have given is accurate"
+            {
+              "code": "i_confirm_the_information_i_have_given_is_accurate",
+              "label": "I confirm the information I have given is accurate"
+            }
           ]
         }
       ]
@@ -1203,7 +1800,7 @@
             {
               "question": "followup",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         },
@@ -1215,7 +1812,7 @@
             {
               "question": "followup",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         },
@@ -1227,7 +1824,7 @@
             {
               "question": "followup",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         },
@@ -1236,17 +1833,32 @@
           "type": "checkbox",
           "label": "What would you like to talk about?",
           "options": [
-            "Appointment times",
-            "Costs",
-            "What to expect",
-            "Medication",
-            "Something else"
+            {
+              "code": "appointment_times",
+              "label": "Appointment times"
+            },
+            {
+              "code": "costs",
+              "label": "Costs"
+            },
+            {
+              "code": "what_to_expect",
+              "label": "What to expect"
+            },
+            {
+              "code": "medication",
+              "label": "Medication"
+            },
+            {
+              "code": "something_else",
+              "label": "Something else"
+            }
           ],
           "enableWhen": [
             {
               "question": "followup",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         },
@@ -1258,7 +1870,7 @@
             {
               "question": "fu_topics",
               "operator": "contains",
-              "answer": "Something else"
+              "answer": "something_else"
             }
           ]
         },
@@ -1267,15 +1879,24 @@
           "type": "dropdown",
           "label": "Language for the call",
           "options": [
-            "English",
-            "Spanish",
-            "Other"
+            {
+              "code": "english",
+              "label": "English"
+            },
+            {
+              "code": "spanish",
+              "label": "Spanish"
+            },
+            {
+              "code": "other",
+              "label": "Other"
+            }
           ],
           "enableWhen": [
             {
               "question": "followup",
               "operator": "=",
-              "answer": "Yes"
+              "answer": "yes"
             }
           ]
         },
@@ -1284,14 +1905,20 @@
           "type": "choice",
           "label": "Would you like an interpreter on the call?",
           "options": [
-            "Yes",
-            "No"
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
           ],
           "enableWhen": [
             {
               "question": "fu_language",
               "operator": "!=",
-              "answer": "English"
+              "answer": "english"
             }
           ]
         }
