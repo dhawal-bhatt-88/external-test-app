@@ -1,0 +1,232 @@
+{
+  "title": "Clinic visit",
+  "formId": "ae540148-29aa-4a11-bf4e-98c8a11675f7",
+  "formVersionId": "e9715f6b-74c0-43eb-9873-70aad7271dc1",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "p1",
+      "type": "page",
+      "title": "About you",
+      "blocks": [
+        {
+          "id": "consent",
+          "type": "choice",
+          "label": "Do you agree to share details?",
+          "required": false,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "id": "hasKids",
+          "type": "choice",
+          "label": "Do you have children?",
+          "required": false,
+          "options": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "type": "page",
+      "title": "Patients",
+      "blocks": [
+        {
+          "id": "patients",
+          "type": "group",
+          "label": "Patients",
+          "repeats": true,
+          "repeatLabel": "patient",
+          "minOccurs": 1,
+          "maxOccurs": 3,
+          "blocks": [
+            {
+              "id": "pname",
+              "type": "short",
+              "label": "Patient name",
+              "required": false
+            },
+            {
+              "id": "insured",
+              "type": "choice",
+              "label": "Is this patient insured?",
+              "required": false,
+              "options": [
+                "Yes",
+                "No"
+              ]
+            },
+            {
+              "id": "payments",
+              "type": "group",
+              "label": "Payments",
+              "repeats": true,
+              "repeatLabel": "payment",
+              "minOccurs": 0,
+              "blocks": [
+                {
+                  "id": "amount",
+                  "type": "number",
+                  "label": "Amount",
+                  "required": false
+                },
+                {
+                  "id": "items",
+                  "type": "group",
+                  "label": "Line items",
+                  "repeats": true,
+                  "repeatLabel": "line item",
+                  "minOccurs": 1,
+                  "blocks": [
+                    {
+                      "id": "desc",
+                      "type": "short",
+                      "label": "Description",
+                      "required": false,
+                      "enableWhen": [
+                        {
+                          "question": "consent",
+                          "operator": "=",
+                          "answer": "Yes"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "cost",
+                      "type": "number",
+                      "label": "Cost",
+                      "required": false,
+                      "enableWhen": [
+                        {
+                          "question": "insured",
+                          "operator": "=",
+                          "answer": "No"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "refund",
+                  "type": "short",
+                  "label": "Refund reason",
+                  "required": false,
+                  "enableWhen": [
+                    {
+                      "question": "amount",
+                      "operator": ">",
+                      "answer": 100
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "pnote",
+              "type": "short",
+              "label": "Notes about this patient",
+              "required": false,
+              "enableWhen": [
+                {
+                  "question": "pname",
+                  "operator": "exists"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "followup",
+          "type": "short",
+          "label": "Follow-up",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "type": "page",
+      "title": "Household",
+      "blocks": [
+        {
+          "id": "household",
+          "type": "group",
+          "label": "Household",
+          "blocks": [
+            {
+              "id": "address",
+              "type": "short",
+              "label": "Address",
+              "required": false
+            },
+            {
+              "id": "kids",
+              "type": "group",
+              "label": "Children",
+              "repeats": true,
+              "repeatLabel": "child",
+              "minOccurs": 0,
+              "enableWhen": [
+                {
+                  "question": "hasKids",
+                  "operator": "=",
+                  "answer": "Yes"
+                }
+              ],
+              "blocks": [
+                {
+                  "id": "kname",
+                  "type": "short",
+                  "label": "Child's name",
+                  "required": false
+                },
+                {
+                  "id": "kage",
+                  "type": "number",
+                  "label": "Child's age",
+                  "required": false
+                },
+                {
+                  "id": "allergy",
+                  "type": "short",
+                  "label": "Allergies",
+                  "required": false,
+                  "enableWhen": [
+                    {
+                      "question": "kage",
+                      "operator": "<",
+                      "answer": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "final",
+          "type": "short",
+          "label": "Anything else?",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "consent",
+              "operator": "=",
+              "answer": "Yes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "showProgress": true,
+    "progressStyle": "caption",
+    "reviewPage": false
+  }
+}
