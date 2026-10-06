@@ -1,0 +1,46 @@
+{
+  "title": "Clinic tour",
+  "formId": "0d7b1621-7b31-4660-a317-316ff01c519e",
+  "formVersionId": "bd17f9f0-11cf-4649-95c9-bd9dbed13be5",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_9au98tcx",
+      "type": "choice",
+      "label": "Would you like a tour of the clinic?",
+      "required": false,
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "b_wvofltfz",
+      "type": "video",
+      "label": "Welcome from the team",
+      "required": false,
+      "content": "https://youtu.be/dQw4w9WgXcQ?t=90"
+    },
+    {
+      "id": "b_z0a74dbf",
+      "type": "video",
+      "label": "Pharmacy walkthrough",
+      "required": false,
+      "content": "https://vimeo.com/76979871"
+    },
+    {
+      "id": "b_1viyl75z",
+      "type": "video",
+      "label": "Clinic tour",
+      "required": false,
+      "content": "/videos/intro.mp4",
+      "enableWhen": [
+        {
+          "question": "b_9au98tcx",
+          "operator": "=",
+          "answer": "Yes"
+        }
+      ]
+    }
+  ]
+}

@@ -13,6 +13,10 @@ import myForm from './forms/untitled-form-o5ndj-schema.json';
 import longAnswers from './forms/long-answers-schema.json';
 import displayBlocks from './forms/display-blocks-schema.json';
 import builderDisplay from './forms/builder-display-blocks-schema.json';
+import videoBlocks from './forms/video-blocks-schema.json';
+import builderVideo from './forms/builder-video-schema.json';
+import audioBlocks from './forms/audio-blocks-schema.json';
+import repeats from './forms/repeats-schema.json';
 import { apiUrl, isDemo } from './api';
 
 // ---------------------------------------------------------------- the "host"
@@ -32,6 +36,10 @@ const FORMS = {
   'long-answers': { label: 'Long answers (0.13.0)', schema: longAnswers },
   'display-blocks': { label: 'Text and image (0.14.0)', schema: displayBlocks },
   'builder-display': { label: 'Builder export: text and image', schema: builderDisplay },
+  'video-blocks': { label: 'Video (0.15.0)', schema: videoBlocks },
+  'builder-video': { label: 'Builder export: video', schema: builderVideo },
+  'audio-blocks': { label: 'Audio (0.16.0)', schema: audioBlocks },
+  repeats: { label: 'Repeating groups (0.17.0) — device drafts', schema: repeats },
 } as const;
 type FormKey = keyof typeof FORMS;
 
