@@ -1,0 +1,174 @@
+{
+  "title": "Clinic intake",
+  "formId": "71278494-890f-41e8-aac6-0b1e10db1cec",
+  "formVersionId": "5e391699-ac48-4fc3-8761-779f4ac900ce",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_zvibv7uc",
+      "type": "choice",
+      "label": "Diagnosis",
+      "required": false,
+      "options": [
+        {
+          "code": "F32.0",
+          "label": "Depression"
+        },
+        {
+          "code": "anxiety",
+          "label": "Anxiety"
+        },
+        {
+          "code": "F32.1",
+          "label": "Major depressive disorder"
+        },
+        {
+          "code": "F41.1",
+          "label": "Generalised anxiety"
+        }
+      ]
+    },
+    {
+      "id": "b_3fr7ikyb",
+      "type": "checkbox",
+      "label": "Symptoms",
+      "required": false,
+      "options": [
+        {
+          "code": "low_mood",
+          "label": "Low mood"
+        },
+        {
+          "code": "poor_sleep",
+          "label": "Poor sleep"
+        },
+        {
+          "code": "si",
+          "label": "Sí"
+        }
+      ]
+    },
+    {
+      "id": "b_mblk9rm1",
+      "type": "dropdown",
+      "label": "Clinic",
+      "required": false,
+      "options": [
+        {
+          "code": "LDN-01",
+          "label": "London, Central"
+        },
+        {
+          "code": "MAN-02",
+          "label": "Manchester"
+        },
+        {
+          "code": "the_old_surgery",
+          "label": "The \"Old\" Surgery"
+        },
+        {
+          "code": "BHM-03",
+          "label": "Birmingham"
+        }
+      ]
+    },
+    {
+      "id": "b_86qimufr",
+      "type": "multiselect",
+      "label": "Languages",
+      "required": false,
+      "options": [
+        {
+          "code": "english",
+          "label": "English"
+        },
+        {
+          "code": "option_2",
+          "label": "Option 2"
+        },
+        {
+          "code": "img_srcx_onerroralert1",
+          "label": "<img src=x onerror=alert(1)>"
+        }
+      ]
+    },
+    {
+      "id": "b_nrcwh4kn",
+      "type": "ranking",
+      "label": "Priorities",
+      "required": false,
+      "completeRequired": true,
+      "options": [
+        {
+          "code": "cost",
+          "label": "Cost"
+        },
+        {
+          "code": "speed",
+          "label": "Speed"
+        },
+        {
+          "code": "quality",
+          "label": "Quality"
+        }
+      ]
+    },
+    {
+      "id": "b_kglp1p8n",
+      "type": "matrix",
+      "label": "Sleep",
+      "required": false,
+      "completeRequired": true,
+      "options": [
+        {
+          "code": "weekdays",
+          "label": "Weekdays"
+        },
+        {
+          "code": "weekends",
+          "label": "Weekends"
+        }
+      ],
+      "columns": [
+        {
+          "code": "never",
+          "label": "Never"
+        },
+        {
+          "code": "sometimes",
+          "label": "Sometimes"
+        },
+        {
+          "code": "always",
+          "label": "Always"
+        }
+      ]
+    },
+    {
+      "id": "b_idyzy3ly",
+      "type": "short",
+      "label": "Follow-up",
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "b_zvibv7uc",
+          "operator": "=",
+          "answer": "F32.0"
+        }
+      ]
+    },
+    {
+      "id": "b_5x9y4ql4",
+      "type": "short",
+      "label": "Sleep note",
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "b_3fr7ikyb",
+          "operator": "contains",
+          "answer": "poor_sleep"
+        }
+      ]
+    }
+  ]
+}

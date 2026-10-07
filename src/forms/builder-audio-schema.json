@@ -1,0 +1,59 @@
+{
+  "title": "Before your appointment",
+  "formId": "52015049-8e36-4ffb-8210-2c9d67f999d3",
+  "formVersionId": "3ca6a0d4-a856-4652-ac14-678b8c45a11d",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_oiynj4ya",
+      "type": "choice",
+      "label": "Would you like a guided breathing exercise?",
+      "required": false,
+      "options": [
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "id": "b_pe601qx5",
+      "type": "audio",
+      "label": "Welcome message",
+      "required": false,
+      "content": "/audio/welcome.mp3"
+    },
+    {
+      "id": "b_laoz48ie",
+      "type": "text",
+      "label": "Welcome message transcript",
+      "required": false,
+      "content": "Hello, and thank you for choosing our clinic.\nPlease bring your insurance card."
+    },
+    {
+      "id": "b_w938cp3h",
+      "type": "audio",
+      "label": "Pharmacy opening hours",
+      "required": false,
+      "content": "https://cdn.example.com/audio/pharmacy-hours.m4a?v=2"
+    },
+    {
+      "id": "b_ch8ip3i9",
+      "type": "audio",
+      "label": "Breathing exercise",
+      "required": false,
+      "content": "/audio/breathing.ogg",
+      "enableWhen": [
+        {
+          "question": "b_oiynj4ya",
+          "operator": "=",
+          "answer": "yes"
+        }
+      ]
+    }
+  ]
+}
