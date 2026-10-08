@@ -18,6 +18,8 @@ import builderVideo from './forms/builder-video-schema.json';
 import audioBlocks from './forms/audio-blocks-schema.json';
 import repeats from './forms/repeats-schema.json';
 import builderRepeats from './forms/builder-repeats-schema.json';
+import builderOptions from './forms/builder-options-schema.json';
+import grid from './forms/grid-schema.json';
 import { apiUrl, isDemo } from './api';
 
 // ---------------------------------------------------------------- the "host"
@@ -42,6 +44,8 @@ const FORMS = {
   'audio-blocks': { label: 'Audio (0.16.0)', schema: audioBlocks },
   repeats: { label: 'Repeating groups (0.17.0) — device drafts', schema: repeats },
   'builder-repeats': { label: 'Builder export: repeating groups', schema: builderRepeats },
+  'builder-options': { label: 'Builder export: coded options', schema: builderOptions },
+  grid: { label: 'Grid (0.19.0) — device drafts', schema: grid },
 } as const;
 type FormKey = keyof typeof FORMS;
 

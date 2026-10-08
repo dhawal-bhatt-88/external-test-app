@@ -1,0 +1,127 @@
+{
+  "title": "Substance use history",
+  "formId": "5e0c2a7e-1f3b-4c8e-9a41-6d2b8f0c1a19",
+  "formVersionId": "b7d3e9a2-4c61-4f0e-8e25-0a9c3f7d5b84",
+  "schemaVersion": 2,
+  "navigation": {
+    "showProgress": true,
+    "progressStyle": "caption",
+    "reviewPage": true
+  },
+  "drafts": {
+    "mode": "device"
+  },
+  "blocks": [
+    {
+      "id": "p1",
+      "type": "page",
+      "title": "Your substance use",
+      "blocks": [
+        {
+          "id": "name",
+          "type": "short",
+          "label": "Your name",
+          "required": false
+        },
+        {
+          "id": "substance_use",
+          "type": "grid",
+          "label": "Substance use",
+          "description": "Answer for every substance. Choose \"Never\" for one you have never used.",
+          "required": false,
+          "rows": [
+            { "code": "alcohol", "label": "Alcohol" },
+            { "code": "cannabis", "label": "Cannabis" },
+            { "code": "opioids", "label": "Opioids" },
+            { "code": "stimulants", "label": "Stimulants" }
+          ],
+          "columns": [
+            { "code": "age_first_use", "label": "Age at first use", "type": "text", "required": false },
+            {
+              "code": "frequency",
+              "label": "Frequency",
+              "type": "dropdown",
+              "required": true,
+              "options": [
+                { "code": "daily", "label": "Daily" },
+                { "code": "weekly", "label": "Weekly" },
+                { "code": "monthly", "label": "Monthly" },
+                { "code": "less_often", "label": "Less often" },
+                { "code": "never", "label": "Never" }
+              ]
+            },
+            {
+              "code": "used_30_days",
+              "label": "Used in the last 30 days?",
+              "type": "radio",
+              "required": false,
+              "options": [
+                { "code": "yes", "label": "Yes" },
+                { "code": "no", "label": "No" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "type": "page",
+      "title": "Your household",
+      "blocks": [
+        {
+          "id": "household",
+          "type": "group",
+          "label": "People you live with",
+          "repeats": true,
+          "repeatLabel": "household member",
+          "minOccurs": 0,
+          "maxOccurs": 4,
+          "blocks": [
+            {
+              "id": "member_name",
+              "type": "short",
+              "label": "Their first name",
+              "required": false
+            },
+            {
+              "id": "member_use",
+              "type": "grid",
+              "label": "Their substance use",
+              "required": false,
+              "rows": [
+                { "code": "alcohol", "label": "Alcohol" },
+                { "code": "tobacco", "label": "Tobacco" }
+              ],
+              "columns": [
+                {
+                  "code": "frequency",
+                  "label": "Frequency",
+                  "type": "dropdown",
+                  "required": true,
+                  "options": [
+                    { "code": "daily", "label": "Daily" },
+                    { "code": "weekly", "label": "Weekly" },
+                    { "code": "occasionally", "label": "Occasionally" },
+                    { "code": "never", "label": "Never" }
+                  ]
+                },
+                {
+                  "code": "concern",
+                  "label": "Are you concerned?",
+                  "type": "radio",
+                  "required": false,
+                  "options": [
+                    { "code": "yes", "label": "Yes" },
+                    { "code": "no", "label": "No" }
+                  ]
+                },
+                { "code": "notes", "label": "Notes", "type": "text", "required": false }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
