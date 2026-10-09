@@ -89,6 +89,7 @@
           "label": "Please describe your gender",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "gender",
               "operator": "=",
               "answer": "prefer_to_self-describe"
@@ -168,11 +169,13 @@
           "label": "Occupation",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "employment",
               "operator": "=",
               "answer": "employed_full-time"
             },
             {
+              "id": "c2",
               "question": "employment",
               "operator": "=",
               "answer": "employed_part-time"
@@ -222,6 +225,7 @@
           ],
           "enableWhen": [
             {
+              "id": "c1",
               "question": "language",
               "operator": "!=",
               "answer": "english"
@@ -302,6 +306,7 @@
           ],
           "enableWhen": [
             {
+              "id": "c1",
               "question": "contact_methods",
               "operator": "contains",
               "answer": "phone_call"
@@ -334,6 +339,7 @@
           "label": "Emergency contact",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "emergency_has",
               "operator": "=",
               "answer": "yes"
@@ -480,6 +486,7 @@
           "label": "Please describe",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "concerns",
               "operator": "contains",
               "answer": "other"
@@ -522,6 +529,7 @@
           "label": "Sleep",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "concerns",
               "operator": "contains",
               "answer": "sleep_problems"
@@ -591,6 +599,7 @@
           "label": "Previous support",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "prior_help",
               "operator": "=",
               "answer": "yes"
@@ -733,6 +742,7 @@
           "label": "Low mood",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "mood_scale",
               "operator": "<=",
               "answer": 3
@@ -791,6 +801,7 @@
           "label": "Anxiety",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "anxiety_rating",
               "operator": ">=",
               "answer": 4
@@ -836,6 +847,7 @@
               ],
               "enableWhen": [
                 {
+                  "id": "c1",
                   "question": "panic_attacks",
                   "operator": "=",
                   "answer": "yes"
@@ -911,6 +923,7 @@
       "title": "Substance use",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "uses_substances",
           "operator": "!=",
           "answer": "no"
@@ -955,6 +968,7 @@
           "label": "Alcohol",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "substances",
               "operator": "contains",
               "answer": "alcohol"
@@ -982,6 +996,7 @@
               "label": "Heavier drinking",
               "enableWhen": [
                 {
+                  "id": "c1",
                   "question": "drinks_per_week",
                   "operator": ">",
                   "answer": 14
@@ -1040,6 +1055,7 @@
                   "label": "Withdrawal history",
                   "enableWhen": [
                     {
+                      "id": "c1",
                       "question": "had_withdrawal",
                       "operator": "=",
                       "answer": "yes"
@@ -1105,6 +1121,7 @@
           "label": "Tobacco",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "substances",
               "operator": "contains",
               "answer": "tobacco"
@@ -1133,16 +1150,19 @@
           "label": "Other substances",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "substances",
               "operator": "contains",
               "answer": "cannabis"
             },
             {
+              "id": "c2",
               "question": "substances",
               "operator": "contains",
               "answer": "opioids"
             },
             {
+              "id": "c3",
               "question": "substances",
               "operator": "contains",
               "answer": "stimulants"
@@ -1297,6 +1317,7 @@
           "label": "Since when?",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "other_conditions",
               "operator": "exists"
             }
@@ -1329,6 +1350,7 @@
           "required": true,
           "enableWhen": [
             {
+              "id": "c1",
               "question": "allergies",
               "operator": "=",
               "answer": "yes"
@@ -1357,6 +1379,7 @@
           "label": "Current medication",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "takes_meds",
               "operator": "=",
               "answer": "yes"
@@ -1509,11 +1532,13 @@
       "title": "Wellbeing and support",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "mood_scale",
           "operator": "<",
           "answer": 4
         },
         {
+          "id": "c2",
           "question": "anxiety_rating",
           "operator": ">=",
           "answer": 4
@@ -1606,6 +1631,7 @@
           "label": "What time today or tomorrow suits you?",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "need_urgent",
               "operator": "=",
               "answer": "yes"
@@ -1798,6 +1824,7 @@
           "required": true,
           "enableWhen": [
             {
+              "id": "c1",
               "question": "followup",
               "operator": "=",
               "answer": "yes"
@@ -1810,6 +1837,7 @@
           "label": "Preferred date",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "followup",
               "operator": "=",
               "answer": "yes"
@@ -1822,6 +1850,7 @@
           "label": "Preferred time",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "followup",
               "operator": "=",
               "answer": "yes"
@@ -1856,6 +1885,7 @@
           ],
           "enableWhen": [
             {
+              "id": "c1",
               "question": "followup",
               "operator": "=",
               "answer": "yes"
@@ -1868,6 +1898,7 @@
           "label": "Tell us more",
           "enableWhen": [
             {
+              "id": "c1",
               "question": "fu_topics",
               "operator": "contains",
               "answer": "something_else"
@@ -1894,6 +1925,7 @@
           ],
           "enableWhen": [
             {
+              "id": "c1",
               "question": "followup",
               "operator": "=",
               "answer": "yes"
@@ -1916,6 +1948,7 @@
           ],
           "enableWhen": [
             {
+              "id": "c1",
               "question": "fu_language",
               "operator": "!=",
               "answer": "english"

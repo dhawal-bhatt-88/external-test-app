@@ -39,6 +39,7 @@
       "title": "Medication",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_afpvw49o",
           "operator": "=",
           "answer": "yes"
@@ -105,6 +106,7 @@
               "label": "Smoking",
               "enableWhen": [
                 {
+                  "id": "c1",
                   "question": "b_hj0698q5",
                   "operator": "=",
                   "answer": "yes"
@@ -145,6 +147,7 @@
           ],
           "enableWhen": [
             {
+              "id": "c1",
               "question": "b_hj0698q5",
               "operator": "=",
               "answer": "yes"
@@ -158,6 +161,7 @@
           "required": false,
           "enableWhen": [
             {
+              "id": "c1",
               "question": "b_hj0698q5",
               "operator": "=",
               "answer": "yes"

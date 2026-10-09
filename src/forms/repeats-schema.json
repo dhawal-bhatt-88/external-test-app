@@ -53,6 +53,7 @@
               "maxOccurs": 4,
               "enableWhen": [
                 {
+                  "id": "c1",
                   "question": "has_children",
                   "operator": "=",
                   "answer": "yes"
@@ -79,6 +80,7 @@
                   "description": "Shown for this child only when their age is 5 or more (same-instance condition).",
                   "enableWhen": [
                     {
+                      "id": "c1",
                       "question": "child_age",
                       "operator": ">=",
                       "answer": 5
@@ -143,6 +145,7 @@
               "description": "Only for patients under 18 (same-instance condition).",
               "enableWhen": [
                 {
+                  "id": "c1",
                   "question": "patient_age",
                   "operator": "<",
                   "answer": 18
@@ -156,6 +159,7 @@
               "description": "Only when the visit is insured (condition on a question outside any repeat).",
               "enableWhen": [
                 {
+                  "id": "c1",
                   "question": "has_insurance",
                   "operator": "=",
                   "answer": "yes"
@@ -213,6 +217,7 @@
                   ],
                   "enableWhen": [
                     {
+                      "id": "c1",
                       "question": "patient_age",
                       "operator": "<",
                       "answer": 18
@@ -241,6 +246,7 @@
                       "description": "Only when this payment is by card (one level out).",
                       "enableWhen": [
                         {
+                          "id": "c1",
                           "question": "payment_method",
                           "operator": "=",
                           "answer": "card"
@@ -254,6 +260,7 @@
                       "description": "Only when the patient is under 18 (two levels out).",
                       "enableWhen": [
                         {
+                          "id": "c1",
                           "question": "patient_age",
                           "operator": "<",
                           "answer": 18
@@ -267,6 +274,7 @@
                       "description": "Only when the visit is insured (root question, three levels out).",
                       "enableWhen": [
                         {
+                          "id": "c1",
                           "question": "has_insurance",
                           "operator": "=",
                           "answer": "yes"

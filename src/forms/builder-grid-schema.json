@@ -65,6 +65,7 @@
       "required": false,
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_m4o01zil",
           "operator": "exists"
         }
@@ -76,6 +77,7 @@
       "label": "Substance use",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_u7ngzhmf",
           "operator": "exists"
         }

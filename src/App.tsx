@@ -21,6 +21,7 @@ import builderRepeats from './forms/builder-repeats-schema.json';
 import builderOptions from './forms/builder-options-schema.json';
 import grid from './forms/grid-schema.json';
 import builderGrid from './forms/builder-grid-schema.json';
+import logic from './forms/logic-schema.json';
 import { apiUrl, isDemo } from './api';
 
 // ---------------------------------------------------------------- the "host"
@@ -48,6 +49,7 @@ const FORMS = {
   'builder-options': { label: 'Builder export: coded options', schema: builderOptions },
   grid: { label: 'Grid (0.19.0) — device drafts', schema: grid },
   'builder-grid': { label: 'Builder export: grid', schema: builderGrid },
+  logic: { label: 'Custom condition logic (0.20.0)', schema: logic },
 } as const;
 type FormKey = keyof typeof FORMS;
 

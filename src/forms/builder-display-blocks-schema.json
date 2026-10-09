@@ -49,6 +49,7 @@
       "content": "Turn left at the pharmacy.\nWe're on the second floor.",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_5kje73qh",
           "operator": "=",
           "answer": "yes"

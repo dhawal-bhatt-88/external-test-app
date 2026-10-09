@@ -63,6 +63,7 @@
       "content": "Parking is behind the building.\nShow this form at the barrier.",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_parking",
           "operator": "=",
           "answer": "yes"
