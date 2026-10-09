@@ -1,0 +1,215 @@
+{
+  "title": "Substance use",
+  "formId": "58e51d73-d050-4c21-b8ce-788ab33bbe0b",
+  "formVersionId": "caa2c398-b7d4-48ac-9b0d-4497839ba0a1",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_avnsi4qi",
+      "type": "matrix",
+      "label": "Matrix question",
+      "required": false,
+      "options": [
+        {
+          "code": "option_1",
+          "label": "Option 1"
+        },
+        {
+          "code": "option_2",
+          "label": "Option 2"
+        },
+        {
+          "code": "option_3",
+          "label": "Option 3"
+        }
+      ],
+      "columns": [
+        {
+          "code": "column_1",
+          "label": "Column 1"
+        },
+        {
+          "code": "column_2",
+          "label": "Column 2"
+        },
+        {
+          "code": "column_3",
+          "label": "Column 3"
+        }
+      ]
+    },
+    {
+      "id": "b_m4o01zil",
+      "type": "choice",
+      "label": "Uses substances?",
+      "required": false,
+      "options": [
+        {
+          "code": "option_1",
+          "label": "Option 1"
+        },
+        {
+          "code": "option_2",
+          "label": "Option 2"
+        },
+        {
+          "code": "option_3",
+          "label": "Option 3"
+        }
+      ]
+    },
+    {
+      "id": "b_u7ngzhmf",
+      "type": "short",
+      "label": "Short answer",
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "b_m4o01zil",
+          "operator": "exists"
+        }
+      ]
+    },
+    {
+      "id": "b_ug9cvxvr",
+      "type": "grid",
+      "label": "Substance use",
+      "enableWhen": [
+        {
+          "question": "b_u7ngzhmf",
+          "operator": "exists"
+        }
+      ],
+      "rows": [
+        {
+          "code": "alcohol",
+          "label": "Alcohol"
+        },
+        {
+          "code": "cannabis",
+          "label": "Cannabis"
+        },
+        {
+          "code": "tobacco",
+          "label": "Tobacco or nicotine"
+        },
+        {
+          "code": "OTH-1",
+          "label": "Other drugs"
+        },
+        {
+          "code": "OPI",
+          "label": "Opioids"
+        }
+      ],
+      "columns": [
+        {
+          "code": "frequency",
+          "label": "How often",
+          "type": "radio",
+          "options": [
+            {
+              "code": "daily",
+              "label": "Daily"
+            },
+            {
+              "code": "weekly",
+              "label": "Weekly"
+            },
+            {
+              "code": "rarely",
+              "label": "Rarely"
+            }
+          ]
+        },
+        {
+          "code": "sought_any_help",
+          "label": "Sought any help?",
+          "type": "dropdown",
+          "options": [
+            {
+              "code": "never",
+              "label": "Never"
+            },
+            {
+              "code": "sometimes",
+              "label": "Sometimes"
+            }
+          ]
+        },
+        {
+          "code": "last_30",
+          "label": "Used in the last 30 days?",
+          "type": "radio",
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ],
+          "required": true
+        },
+        {
+          "code": "age_at_first_use",
+          "label": "Age at first use",
+          "type": "dropdown",
+          "options": [
+            {
+              "code": "option_1",
+              "label": "Option 1"
+            },
+            {
+              "code": "option_2",
+              "label": "Option 2"
+            },
+            {
+              "code": "option_3",
+              "label": "Option 3"
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "b_y61d56da",
+      "type": "group",
+      "label": "Medication history",
+      "repeats": true,
+      "repeatLabel": "item",
+      "minOccurs": 1,
+      "blocks": [
+        {
+          "id": "b_0ljb45l7",
+          "type": "grid",
+          "label": "Doses",
+          "rows": [
+            {
+              "code": "row_1",
+              "label": "Row 1"
+            },
+            {
+              "code": "row_2",
+              "label": "Row 2"
+            },
+            {
+              "code": "row_3",
+              "label": "Row 3"
+            }
+          ],
+          "columns": [
+            {
+              "code": "column_1",
+              "label": "Column 1",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
