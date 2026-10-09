@@ -42,6 +42,7 @@
       "content": "/videos/intro.mp4",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_juj687c1",
           "operator": "=",
           "answer": "yes"

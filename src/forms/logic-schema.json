@@ -1,0 +1,232 @@
+{
+  "formId": "logic-0.20.0",
+  "formVersionId": "v1",
+  "schemaVersion": 2,
+  "title": "Custom condition logic",
+  "navigation": {
+    "showProgress": true,
+    "reviewPage": true
+  },
+  "blocks": [
+    {
+      "id": "p_screening",
+      "type": "page",
+      "title": "Screening",
+      "blocks": [
+        {
+          "id": "phq9_9",
+          "type": "choice",
+          "label": "1. Over the last 2 weeks, how often have you had thoughts that you would be better off dead, or of hurting yourself?",
+          "required": false,
+          "options": [
+            { "code": "not_at_all", "label": "Not at all" },
+            { "code": "several_days", "label": "Several days" },
+            { "code": "more_than_half", "label": "More than half the days" },
+            { "code": "nearly_every_day", "label": "Nearly every day" }
+          ]
+        },
+        {
+          "id": "age",
+          "type": "number",
+          "label": "2. Your age",
+          "required": false
+        },
+        {
+          "id": "self_harm_history",
+          "type": "choice",
+          "label": "3. Have you ever harmed yourself?",
+          "required": false,
+          "options": [
+            { "code": "yes", "label": "Yes" },
+            { "code": "no", "label": "No" }
+          ]
+        },
+        {
+          "id": "recent_discharge",
+          "type": "choice",
+          "label": "4. Were you discharged from hospital in the last 30 days?",
+          "required": false,
+          "options": [
+            { "code": "yes", "label": "Yes" },
+            { "code": "no", "label": "No" }
+          ]
+        },
+        {
+          "id": "safety_contact",
+          "type": "long",
+          "label": "Who can you contact if you feel unsafe?",
+          "description": "Shown by 1 OR (2 AND (3 OR 4)): question 1 is not \"Not at all\", or you are under 18 and answered Yes to question 3 or 4.",
+          "required": true,
+          "enableWhen": [
+            { "id": "c1", "question": "phq9_9", "operator": "!=", "answer": "not_at_all" },
+            { "id": "c2", "question": "age", "operator": "<", "answer": 18 },
+            { "id": "c3", "question": "self_harm_history", "operator": "=", "answer": "yes" },
+            { "id": "c4", "question": "recent_discharge", "operator": "=", "answer": "yes" }
+          ],
+          "enableLogic": { "any": ["c1", { "all": ["c2", { "any": ["c3", "c4"] }] }] }
+        }
+      ]
+    },
+    {
+      "id": "p_support",
+      "type": "page",
+      "title": "Support",
+      "blocks": [
+        {
+          "id": "has_carer",
+          "type": "choice",
+          "label": "1. Do you have a carer?",
+          "required": false,
+          "options": [
+            { "code": "yes", "label": "Yes" },
+            { "code": "no", "label": "No" }
+          ]
+        },
+        {
+          "id": "carer_consent",
+          "type": "choice",
+          "label": "2. May we contact your carer?",
+          "required": false,
+          "options": [
+            { "code": "yes", "label": "Yes" },
+            { "code": "no", "label": "No" }
+          ]
+        },
+        {
+          "id": "lives_alone",
+          "type": "choice",
+          "label": "3. Do you live alone?",
+          "required": false,
+          "options": [
+            { "code": "yes", "label": "Yes" },
+            { "code": "no", "label": "No" }
+          ]
+        },
+        {
+          "id": "support_contacts",
+          "type": "group",
+          "label": "Support contact",
+          "enableWhen": [
+            { "id": "c1", "question": "has_carer", "operator": "=", "answer": "yes" },
+            { "id": "c2", "question": "carer_consent", "operator": "=", "answer": "yes" },
+            { "id": "c3", "question": "lives_alone", "operator": "=", "answer": "yes" }
+          ],
+          "enableLogic": { "any": [{ "all": ["c1", "c2"] }, "c3"] },
+          "blocks": [
+            {
+              "id": "support_note",
+              "type": "text",
+              "label": "Text",
+              "required": false,
+              "content": "This group is shown by (1 AND 2) OR 3: Yes to both 1 and 2, or Yes to 3."
+            },
+            {
+              "id": "contact_name",
+              "type": "short",
+              "label": "Contact's name",
+              "required": true
+            },
+            {
+              "id": "contact_phone",
+              "type": "phone",
+              "label": "Contact's phone number",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_followup",
+      "type": "page",
+      "title": "Follow-up call",
+      "enableWhen": [
+        { "id": "c1", "question": "phq9_9", "operator": "!=", "answer": "not_at_all" },
+        { "id": "c2", "question": "recent_discharge", "operator": "=", "answer": "yes" },
+        { "id": "c3", "question": "lives_alone", "operator": "=", "answer": "yes" }
+      ],
+      "enableLogic": { "all": ["c1", { "any": ["c2", "c3"] }] },
+      "blocks": [
+        {
+          "id": "followup_note",
+          "type": "text",
+          "label": "Text",
+          "required": false,
+          "content": "This page is shown by 1 AND (2 OR 3): Screening question 1 is not \"Not at all\", and you were recently discharged or you live alone."
+        },
+        {
+          "id": "followup_time",
+          "type": "choice",
+          "label": "When is the best time to call you?",
+          "required": true,
+          "options": [
+            { "code": "morning", "label": "Morning" },
+            { "code": "afternoon", "label": "Afternoon" },
+            { "code": "evening", "label": "Evening" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p_medicines",
+      "type": "page",
+      "title": "Medicines",
+      "blocks": [
+        {
+          "id": "pregnant",
+          "type": "choice",
+          "label": "Are you pregnant, or could you be?",
+          "required": false,
+          "options": [
+            { "code": "yes", "label": "Yes" },
+            { "code": "no", "label": "No" }
+          ]
+        },
+        {
+          "id": "medicines",
+          "type": "group",
+          "label": "Medicines you take",
+          "repeats": true,
+          "repeatLabel": "medicine",
+          "minOccurs": 0,
+          "blocks": [
+            {
+              "id": "medicine_name",
+              "type": "short",
+              "label": "Medicine name",
+              "required": true
+            },
+            {
+              "id": "medicine_kind",
+              "type": "choice",
+              "label": "What kind of medicine is it?",
+              "required": false,
+              "options": [
+                { "code": "isotretinoin", "label": "Acne treatment (isotretinoin)" },
+                { "code": "warfarin", "label": "Blood thinner (warfarin)" },
+                { "code": "other", "label": "Something else" }
+              ]
+            },
+            {
+              "id": "pregnancy_advice",
+              "type": "choice",
+              "label": "Has your prescriber told you whether this medicine is safe in pregnancy?",
+              "description": "Shown by (1 OR 3) AND 2: this medicine is isotretinoin or warfarin (this medicine's own answer), and you answered Yes to \"Are you pregnant\" (above the list).",
+              "required": true,
+              "options": [
+                { "code": "yes", "label": "Yes" },
+                { "code": "no", "label": "No" }
+              ],
+              "enableWhen": [
+                { "id": "c1", "question": "medicine_kind", "operator": "=", "answer": "isotretinoin" },
+                { "id": "c2", "question": "pregnant", "operator": "=", "answer": "yes" },
+                { "id": "c3", "question": "medicine_kind", "operator": "=", "answer": "warfarin" }
+              ],
+              "enableLogic": { "all": [{ "any": ["c1", "c3"] }, "c2"] }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

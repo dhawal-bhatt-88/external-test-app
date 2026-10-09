@@ -43,6 +43,7 @@
       "title": "Medication",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "has_meds",
           "operator": "=",
           "answer": "yes"
@@ -95,6 +96,7 @@
               "label": "Smoking",
               "enableWhen": [
                 {
+                  "id": "c1",
                   "question": "smoker",
                   "operator": "=",
                   "answer": "yes"
@@ -160,6 +162,7 @@
           "required": true,
           "enableWhen": [
             {
+              "id": "c1",
               "question": "followup",
               "operator": "=",
               "answer": "yes"
@@ -186,6 +189,7 @@
           ],
           "enableWhen": [
             {
+              "id": "c1",
               "question": "followup",
               "operator": "=",
               "answer": "yes"

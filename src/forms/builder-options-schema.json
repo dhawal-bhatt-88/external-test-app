@@ -151,6 +151,7 @@
       "required": false,
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_zvibv7uc",
           "operator": "=",
           "answer": "F32.0"
@@ -164,6 +165,7 @@
       "required": false,
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_3fr7ikyb",
           "operator": "contains",
           "answer": "poor_sleep"

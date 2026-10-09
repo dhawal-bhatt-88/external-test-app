@@ -64,6 +64,7 @@
       "label": "Medication",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_xkwoldi1",
           "operator": "=",
           "answer": "yes"
@@ -140,11 +141,13 @@
       "label": "Lifestyle support",
       "enableWhen": [
         {
+          "id": "c1",
           "question": "b_sufu09d5",
           "operator": "=",
           "answer": "yes"
         },
         {
+          "id": "c2",
           "question": "b_ko9dv81w",
           "operator": "=",
           "answer": "yes"

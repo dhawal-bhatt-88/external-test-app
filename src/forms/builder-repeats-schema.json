@@ -108,6 +108,7 @@
                       "required": false,
                       "enableWhen": [
                         {
+                          "id": "c1",
                           "question": "consent",
                           "operator": "=",
                           "answer": "yes"
@@ -121,6 +122,7 @@
                       "required": false,
                       "enableWhen": [
                         {
+                          "id": "c1",
                           "question": "insured",
                           "operator": "=",
                           "answer": "no"
@@ -136,6 +138,7 @@
                   "required": false,
                   "enableWhen": [
                     {
+                      "id": "c1",
                       "question": "amount",
                       "operator": ">",
                       "answer": 100
@@ -151,6 +154,7 @@
               "required": false,
               "enableWhen": [
                 {
+                  "id": "c1",
                   "question": "pname",
                   "operator": "exists"
                 }
@@ -191,6 +195,7 @@
               "minOccurs": 0,
               "enableWhen": [
                 {
+                  "id": "c1",
                   "question": "hasKids",
                   "operator": "=",
                   "answer": "yes"
@@ -216,6 +221,7 @@
                   "required": false,
                   "enableWhen": [
                     {
+                      "id": "c1",
                       "question": "kage",
                       "operator": "<",
                       "answer": 5
@@ -233,6 +239,7 @@
           "required": false,
           "enableWhen": [
             {
+              "id": "c1",
               "question": "consent",
               "operator": "=",
               "answer": "yes"
