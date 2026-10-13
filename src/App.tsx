@@ -22,7 +22,10 @@ import builderOptions from './forms/builder-options-schema.json';
 import grid from './forms/grid-schema.json';
 import builderGrid from './forms/builder-grid-schema.json';
 import logic from './forms/logic-schema.json';
+import validatorsDemo from './forms/validators-schema.json';
 import { apiUrl, isDemo } from './api';
+// The host's validators: the same module the API passes to prepareSubmission.
+import { validatorsFor } from './validation/validators.mjs';
 
 // ---------------------------------------------------------------- the "host"
 // A stand-in for a real host app: who is signed in, which patient is open,
@@ -50,6 +53,7 @@ const FORMS = {
   grid: { label: 'Grid (0.19.0) — device drafts', schema: grid },
   'builder-grid': { label: 'Builder export: grid', schema: builderGrid },
   logic: { label: 'Custom condition logic (0.20.0)', schema: logic },
+  validators: { label: 'Host validators (0.21.0)', schema: validatorsDemo },
 } as const;
 type FormKey = keyof typeof FORMS;
 
@@ -232,6 +236,7 @@ function App() {
         <FormRenderer
           schema={FORMS[formKey].schema as unknown as FormSchema}
           endpoint={apiUrl('submit')}
+          validators={validatorsFor(FORMS[formKey].schema.formId)}
           // Image blocks' root-relative paths (/images/…) load from under the
           // site's base (vite.config's base, e.g. "/external-test-app/").
           assetBase={import.meta.env.BASE_URL}

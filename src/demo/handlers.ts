@@ -6,6 +6,8 @@ import { http, HttpResponse } from 'msw';
 import { assertSchemaIntegrity, prepareSubmission } from '@yourco/forms/core';
 import type { Draft, FormSchema, Submission } from '@yourco/forms/core';
 import { apiUrl } from '../api';
+// The same validators the page and server/index.mjs use.
+import { validatorsFor } from '../validation/validators.mjs';
 
 // ---------------------------------------------------------------- schema
 
@@ -144,7 +146,7 @@ export const handlers = [
         return HttpResponse.json({ error: 'Server could not load form schema' }, { status: 500 });
       }
 
-      const prepared = prepareSubmission(schema, submission);
+      const prepared = prepareSubmission(schema, submission, { validators: validatorsFor(schema.formId) });
       if (!prepared.ok) return HttpResponse.json({ error: 'Validation failed', errors: prepared.errors }, { status: 422 });
 
       // Only the answers prepareSubmission returns are stored.

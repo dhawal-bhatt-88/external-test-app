@@ -5,6 +5,9 @@ import { appendFileSync, existsSync, readdirSync, readFileSync, renameSync, writ
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertSchemaIntegrity, prepareSubmission } from '@yourco/forms/core';
+// The host's validators: the same module the page passes to FormRenderer.
+// Without them here, anyone could bypass the rules by posting directly.
+import { validatorsFor } from '../src/validation/validators.mjs';
 
 const PORT = Number(process.env.PORT ?? 5000);
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -217,9 +220,16 @@ app.post('/api/submit', async (req, res) => {
 
     // A payload built against another form version is accepted, and flagged
     // through versionMismatch below — never rejected for it.
-    const prepared = prepareSubmission(schema, body);
+    const prepared = prepareSubmission(schema, body, { validators: validatorsFor(schema.formId) });
     if (!prepared.ok) {
       const { errors } = prepared;
+      // A validator that threw or returned a bad value: its cause is for our
+      // logs only. It is non-enumerable, so the 422 body below never carries it.
+      for (const error of errors) {
+        if (Object.prototype.hasOwnProperty.call(error, 'cause')) {
+          console.error(`  ${tag} validator for "${error.blockId}" at ${error.path.join('.')} failed:`, error.cause);
+        }
+      }
       res.locals.note = `${tag} ${errors.length} validation error(s): ${errors.map((e) => `${e.blockId}: ${e.message}`).join('; ')}`;
       return reply(res, 422, { error: 'Validation failed', errors });
     }
