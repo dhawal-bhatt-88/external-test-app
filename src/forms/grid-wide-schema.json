@@ -1,0 +1,67 @@
+{
+  "title": "Wide grid (0.21.1)",
+  "formId": "grid-wide-demo",
+  "formVersionId": "grid-wide-demo-v1",
+  "schemaVersion": 2,
+  "blocks": [
+    { "id": "name", "type": "short", "label": "Your name" },
+    {
+      "id": "use_detail",
+      "type": "grid",
+      "label": "Substance use in detail",
+      "description": "Eight columns: wider than most side panels. The last column is required, so a blocked submit links to a cell scrolled out of view.",
+      "rows": [
+        { "code": "alcohol", "label": "Alcohol" },
+        { "code": "cannabis", "label": "Cannabis" },
+        { "code": "tobacco", "label": "Tobacco" }
+      ],
+      "columns": [
+        { "code": "age_first", "label": "Age at first use", "type": "text" },
+        {
+          "code": "frequency",
+          "label": "Frequency",
+          "type": "dropdown",
+          "options": [
+            { "code": "daily", "label": "Daily" },
+            { "code": "weekly", "label": "Weekly" },
+            { "code": "monthly", "label": "Monthly" },
+            { "code": "never", "label": "Never" }
+          ]
+        },
+        {
+          "code": "route",
+          "label": "How taken",
+          "type": "dropdown",
+          "options": [
+            { "code": "oral", "label": "Swallowed" },
+            { "code": "smoked", "label": "Smoked" },
+            { "code": "vaped", "label": "Vaped" },
+            { "code": "other", "label": "Other" }
+          ]
+        },
+        { "code": "amount", "label": "Typical amount", "type": "text" },
+        { "code": "last_used", "label": "Last used", "type": "text" },
+        {
+          "code": "recent",
+          "label": "Used in the last 30 days?",
+          "type": "radio",
+          "options": [
+            { "code": "yes", "label": "Yes" },
+            { "code": "no", "label": "No" }
+          ]
+        },
+        { "code": "notes", "label": "Notes", "type": "text" },
+        {
+          "code": "want_help",
+          "label": "Would you like help?",
+          "type": "radio",
+          "required": true,
+          "options": [
+            { "code": "yes", "label": "Yes" },
+            { "code": "no", "label": "No" }
+          ]
+        }
+      ]
+    }
+  ]
+}

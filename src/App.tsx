@@ -24,6 +24,7 @@ import builderGrid from './forms/builder-grid-schema.json';
 import builderLogic from './forms/builder-logic-schema.json';
 import logic from './forms/logic-schema.json';
 import validatorsDemo from './forms/validators-schema.json';
+import gridWide from './forms/grid-wide-schema.json';
 import { apiUrl, isDemo } from './api';
 // The host's validators: the same module the API passes to prepareSubmission.
 import { validatorsFor } from './validation/validators.mjs';
@@ -56,6 +57,7 @@ const FORMS = {
   'builder-logic': { label: 'Builder export: custom condition logic', schema: builderLogic },
   logic: { label: 'Custom condition logic (0.20.0)', schema: logic },
   validators: { label: 'Host validators (0.21.0)', schema: validatorsDemo },
+  'grid-wide': { label: 'Wide grid, 8 columns (0.21.1)', schema: gridWide },
 } as const;
 type FormKey = keyof typeof FORMS;
 
@@ -70,6 +72,10 @@ const user = params.get('user') ?? USERS[0];
 const patient = PATIENTS.find((p) => p.id === params.get('patient')) ?? PATIENTS[0];
 const requestedForm = params.get('form');
 const formKey: FormKey = requestedForm !== null && requestedForm in FORMS ? (requestedForm as FormKey) : 'my-form';
+// Test only: put the form in a panel this many pixels wide (?width=520), as a
+// host's side panel would on a wide screen. The grid's layout follows the space
+// it gets, never the window (contract 14.5).
+const panelWidth = Number(params.get('width')) || null;
 // Test only: fetch another user's key while keeping this user's scope, to show
 // that a draft encrypted under one key can't be opened with another.
 const keyAs = params.get('keyAs');
@@ -235,6 +241,7 @@ function App() {
           <button type="button" onClick={() => location.reload()}>Sign in again</button>
         </p>
       ) : (
+        <div id="host-panel" className="host-panel" style={panelWidth ? { width: `${panelWidth}px`, maxWidth: '100%' } : undefined}>
         <FormRenderer
           schema={FORMS[formKey].schema as unknown as FormSchema}
           endpoint={apiUrl('submit')}
@@ -261,6 +268,7 @@ function App() {
           }}
           onError={(err) => console.error('Submit failed', err)}
         />
+        </div>
       )}
 
       {problems.length > 0 && (
