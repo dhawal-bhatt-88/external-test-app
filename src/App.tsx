@@ -22,6 +22,7 @@ import builderOptions from './forms/builder-options-schema.json';
 import grid from './forms/grid-schema.json';
 import builderGrid from './forms/builder-grid-schema.json';
 import builderLogic from './forms/builder-logic-schema.json';
+import builderTemplates from './forms/builder-templates-schema.json';
 import logic from './forms/logic-schema.json';
 import validatorsDemo from './forms/validators-schema.json';
 import gridWide from './forms/grid-wide-schema.json';
@@ -55,6 +56,7 @@ const FORMS = {
   grid: { label: 'Grid (0.19.0) — device drafts', schema: grid },
   'builder-grid': { label: 'Builder export: grid', schema: builderGrid },
   'builder-logic': { label: 'Builder export: custom condition logic', schema: builderLogic },
+  'builder-templates': { label: 'Builder export: group template inserted twice', schema: builderTemplates },
   logic: { label: 'Custom condition logic (0.20.0)', schema: logic },
   validators: { label: 'Host validators (0.21.0)', schema: validatorsDemo },
   'grid-wide': { label: 'Wide grid, 8 columns (0.21.1)', schema: gridWide },
