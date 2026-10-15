@@ -1,4 +1,4 @@
-// The host's own validators (@yourco/forms contract section 16), by formId.
+// The host's own validators (@zoworkhq/forms contract section 16), by formId.
 // ONE module, imported by the page (src/App.tsx, passed to FormRenderer) and
 // by the API (server/index.mjs and the demo mock, passed to
 // prepareSubmission), so the server enforces exactly what the browser shows.

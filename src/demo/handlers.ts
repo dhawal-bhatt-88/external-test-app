@@ -3,8 +3,8 @@
 // lives in this browser's localStorage. Not secure: the draft-key secret ships
 // in the bundle, so anyone can derive any user's key.
 import { http, HttpResponse } from 'msw';
-import { assertSchemaIntegrity, prepareSubmission } from '@yourco/forms/core';
-import type { Draft, FormSchema, Submission } from '@yourco/forms/core';
+import { assertSchemaIntegrity, prepareSubmission } from '@zoworkhq/forms/core';
+import type { Draft, FormSchema, Submission } from '@zoworkhq/forms/core';
 import { apiUrl } from '../api';
 // The same validators the page and server/index.mjs use.
 import { validatorsFor } from '../validation/validators.mjs';

@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import '@yourco/forms/styles.css';
+import '@zoworkhq/forms/styles.css';
 
 function render() {
   createRoot(document.getElementById('root')!).render(

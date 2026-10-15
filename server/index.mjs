@@ -1,10 +1,10 @@
-// Local test API for @yourco/forms submissions. Not for production use.
+// Local test API for @zoworkhq/forms submissions. Not for production use.
 import express from 'express';
 import { createHmac, randomUUID } from 'node:crypto';
 import { appendFileSync, existsSync, readdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { assertSchemaIntegrity, prepareSubmission } from '@yourco/forms/core';
+import { assertSchemaIntegrity, prepareSubmission } from '@zoworkhq/forms/core';
 // The host's validators: the same module the page passes to FormRenderer.
 // Without them here, anyone could bypass the rules by posting directly.
 import { validatorsFor } from '../src/validation/validators.mjs';

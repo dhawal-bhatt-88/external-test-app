@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 # CodeRabbit configuration for external-test-app
-# What this repo is: a test "host" app for the @yourco/forms package (vendored as .tgz).
+# What this repo is: a test "host" app for the @zoworkhq/forms package (vendored as .tgz).
 #   - src/            React 19 + TypeScript + Vite host app (drafts, device keys, submit)
 #   - server/         Local Express 5 test API (submit, drafts, draft-key, fault injection)
 #   - src/demo/       MSW in-browser mock of the same API, used for the GitHub Pages build
@@ -44,7 +44,7 @@ reviews:
     # ---------- Cross-cutting ----------
     - path: "**/*"
       instructions: |
-        - This is a TEST HARNESS for @yourco/forms, not a production app. Deliberate test-only behaviour
+        - This is a TEST HARNESS for @zoworkhq/forms, not a production app. Deliberate test-only behaviour
           (fault-injection endpoints, user taken from the query string, dev-only default secrets, the
           `keyAs` override) is intended — do not flag it as a bug unless it can leak into a real
           deployment or the comment explaining it is missing/wrong.
@@ -63,8 +63,8 @@ reviews:
         - Always encodeURIComponent query-string values.
         - Web Crypto: keys imported as non-extractable, AES-GCM 256; never log or render key material.
         - Draft scope must include both user and patient; logout must clear the user's device drafts.
-        - Keep the host realistic: changes should exercise the public @yourco/forms API
-          (@yourco/forms/react, /core), not its internals.
+        - Keep the host realistic: changes should exercise the public @zoworkhq/forms API
+          (@zoworkhq/forms/react, /core), not its internals.
         - Accessibility: form controls have labels, landmarks/aria-labels on regions, keyboard operable buttons.
 
     - path: "src/main.tsx"
@@ -108,7 +108,7 @@ reviews:
     # ---------- Dependencies & build ----------
     - path: "package.json"
       instructions: |
-        - @yourco/forms is consumed from a local .tgz; when its version changes, confirm the matching .tgz
+        - @zoworkhq/forms is consumed from a local .tgz; when its version changes, confirm the matching .tgz
           is committed and old unused tarballs are removed.
         - Runtime-only deps in `dependencies`, tooling/test server deps (express, msw, concurrently) in `devDependencies`.
 

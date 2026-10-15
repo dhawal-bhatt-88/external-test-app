@@ -1,3 +1,3 @@
-import type { ValidatorInput } from '@yourco/forms/core';
+import type { ValidatorInput } from '@zoworkhq/forms/core';
 
 export declare function validateMrn(input: ValidatorInput): string | null;
