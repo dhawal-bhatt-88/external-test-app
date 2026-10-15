@@ -26,6 +26,7 @@ import builderTemplates from './forms/builder-templates-schema.json';
 import logic from './forms/logic-schema.json';
 import validatorsDemo from './forms/validators-schema.json';
 import gridWide from './forms/grid-wide-schema.json';
+import scoring from './forms/scoring-schema.json';
 import { apiUrl, isDemo } from './api';
 // The host's validators: the same module the API passes to prepareSubmission.
 import { validatorsFor } from './validation/validators.mjs';
@@ -60,6 +61,7 @@ const FORMS = {
   logic: { label: 'Custom condition logic (0.20.0)', schema: logic },
   validators: { label: 'Host validators (0.21.0)', schema: validatorsDemo },
   'grid-wide': { label: 'Wide grid, 8 columns (0.21.1)', schema: gridWide },
+  scoring: { label: 'Scoring (0.23.0)', schema: scoring },
 } as const;
 type FormKey = keyof typeof FORMS;
 

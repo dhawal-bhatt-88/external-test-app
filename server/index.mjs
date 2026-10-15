@@ -151,7 +151,12 @@ app.use((req, res, next) => {
     }
     if (res.statusCode >= 400) console.warn(line);
     else console.log(line);
-    writeRequestLog(req, res, { status: res.statusCode, durationMs: ms });
+    writeRequestLog(req, res, {
+      status: res.statusCode,
+      durationMs: ms,
+      // The scores prepareSubmission calculated: never anything the browser sent.
+      ...(res.locals.derivedScores ? { derivedScores: res.locals.derivedScores } : {}),
+    });
   });
   next();
 });
@@ -235,14 +240,25 @@ app.post('/api/submit', async (req, res) => {
     }
 
     // Only the answers prepareSubmission returns are stored: anything for a
-    // hidden or unknown question has already been stripped.
+    // hidden or unknown question has already been stripped. Likewise derived:
+    // the scores prepareSubmission calculated replace whatever the body carried.
     const stripped = Object.keys(body.answers).filter((id) => !(id in prepared.answers));
     const record = {
       submissionId: randomUUID(),
       receivedAt: new Date().toISOString(),
       ...body,
       answers: prepared.answers,
+      derived: prepared.derived,
     };
+    res.locals.derivedScores = prepared.derived.scores;
+    if (prepared.derived.scores.length > 0) {
+      console.log(`  ${tag} derived.scores (from prepareSubmission):`);
+      for (const s of prepared.derived.scores) {
+        console.log(
+          `    ${s.groupId}.${s.scoreId} @ ${JSON.stringify(s.path)} "${s.label}" = ${s.value === null ? `null (${s.reason})` : s.value}`
+        );
+      }
+    }
     submissions.push(record);
     byIdempotencyKey.set(key, record);
     persist();
@@ -252,6 +268,7 @@ app.post('/api/submit', async (req, res) => {
       : null;
     res.locals.note =
       `${tag} stored as ${record.submissionId}; versionMismatch=${prepared.versionMismatch}` +
+      `; derived.scores=${JSON.stringify(prepared.derived.scores)}` +
       (stripped.length > 0 ? `; stripped ${stripped.length} answer(s): ${stripped.join(', ')}` : '') +
       (mismatchWarning ? `; ${mismatchWarning}` : '');
     if (mismatchWarning) console.warn(`  ${tag} ${mismatchWarning}`);

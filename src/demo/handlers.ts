@@ -149,13 +149,15 @@ export const handlers = [
       const prepared = prepareSubmission(schema, submission, { validators: validatorsFor(schema.formId) });
       if (!prepared.ok) return HttpResponse.json({ error: 'Validation failed', errors: prepared.errors }, { status: 422 });
 
-      // Only the answers prepareSubmission returns are stored.
+      // Only the answers and scores prepareSubmission returns are stored.
       const record: StoredSubmission = {
         submissionId: crypto.randomUUID(),
         receivedAt: new Date().toISOString(),
         ...submission,
         answers: prepared.answers,
+        derived: prepared.derived,
       };
+      if (prepared.derived.scores.length > 0) console.info('[demo api] derived.scores', prepared.derived.scores);
       write('submissions', [...submissions, record]);
       if (prepared.versionMismatch) {
         console.warn(

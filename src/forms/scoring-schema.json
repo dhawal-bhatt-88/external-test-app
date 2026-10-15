@@ -1,0 +1,174 @@
+{
+  "formId": "scoring-demo",
+  "formVersionId": "v1",
+  "title": "Scoring demo (0.23.0)",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "checkin",
+      "type": "group",
+      "label": "Weekly check-in",
+      "blocks": [
+        { "id": "checkin_intro", "type": "text", "label": "Text", "content": "Over the past week, how often did each of these happen?" },
+        {
+          "id": "item_1", "type": "choice", "label": "Item 1: You felt calm.", "required": true,
+          "options": [
+            { "code": "never", "label": "Never", "score": 0 },
+            { "code": "sometimes", "label": "Sometimes", "score": 1 },
+            { "code": "often", "label": "Often", "score": 2 },
+            { "code": "always", "label": "Always", "score": 3 }
+          ]
+        },
+        {
+          "id": "item_2", "type": "choice", "label": "Item 2: You finished what you planned.",
+          "options": [
+            { "code": "never", "label": "Never", "score": 0 },
+            { "code": "sometimes", "label": "Sometimes", "score": 1 },
+            { "code": "often", "label": "Often", "score": 2 },
+            { "code": "always", "label": "Always", "score": 3 }
+          ]
+        },
+        {
+          "id": "item_3", "type": "choice", "label": "Item 3: You had time for something you enjoy.",
+          "options": [
+            { "code": "never", "label": "Never", "score": 0 },
+            { "code": "sometimes", "label": "Sometimes", "score": 1 },
+            { "code": "often", "label": "Often", "score": 2 },
+            { "code": "always", "label": "Always", "score": 3 }
+          ]
+        },
+        {
+          "id": "item_4", "type": "choice", "label": "Item 4: You felt well rested.",
+          "options": [
+            { "code": "never", "label": "Never", "score": 0 },
+            { "code": "sometimes", "label": "Sometimes", "score": 1 },
+            { "code": "often", "label": "Often", "score": 2 },
+            { "code": "always", "label": "Always", "score": 3 }
+          ]
+        },
+        {
+          "id": "include_item_5", "type": "choice", "label": "Answer the optional fifth item?",
+          "options": [
+            { "code": "yes", "label": "Yes" },
+            { "code": "no", "label": "No" }
+          ]
+        },
+        {
+          "id": "item_5", "type": "choice", "label": "Item 5: You spent time outdoors.",
+          "enableWhen": [{ "id": "c1", "question": "include_item_5", "operator": "=", "answer": "yes" }],
+          "options": [
+            { "code": "never", "label": "Never", "score": 0 },
+            { "code": "sometimes", "label": "Sometimes", "score": 1 },
+            { "code": "often", "label": "Often", "score": 2 },
+            { "code": "always", "label": "Always", "score": 3 }
+          ]
+        }
+      ],
+      "scores": [
+        {
+          "id": "total",
+          "label": "Check-in total",
+          "unanswered": "no-score",
+          "showToRespondent": true,
+          "formula": {
+            "op": "+", "args": [
+              { "op": "+", "args": [
+                { "op": "+", "args": [
+                  { "op": "+", "args": [{ "ref": "item_1" }, { "ref": "item_2" }] },
+                  { "ref": "item_3" }
+                ] },
+                { "ref": "item_4" }
+              ] },
+              { "ref": "item_5" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "type": "group",
+      "label": "Sleep",
+      "blocks": [
+        {
+          "id": "sleep_grid", "type": "matrix", "label": "How was each part of your sleep this week?",
+          "options": [
+            { "code": "falling_asleep", "label": "Falling asleep" },
+            { "code": "staying_asleep", "label": "Staying asleep" },
+            { "code": "waking_up", "label": "Waking up refreshed" }
+          ],
+          "columns": [
+            { "code": "poor", "label": "Poor", "score": 0 },
+            { "code": "fair", "label": "Fair", "score": 1 },
+            { "code": "good", "label": "Good", "score": 2 },
+            { "code": "very_good", "label": "Very good", "score": 3 }
+          ]
+        }
+      ],
+      "scores": [
+        { "id": "sleep_score", "label": "Sleep score", "unanswered": "no-score", "showToRespondent": true, "formula": { "ref": "sleep_grid" } }
+      ]
+    },
+    {
+      "id": "activity",
+      "type": "group",
+      "label": "Activity",
+      "blocks": [
+        { "id": "active_days", "type": "number", "label": "On how many of the last 7 days were you active for 30 minutes or more?", "min": 0, "max": 7 },
+        {
+          "id": "effort", "type": "choice", "label": "How hard was that activity, usually?",
+          "options": [
+            { "code": "light", "label": "Light", "score": 1 },
+            { "code": "moderate", "label": "Moderate", "score": 2 },
+            { "code": "hard", "label": "Hard", "score": 3 }
+          ]
+        }
+      ],
+      "scores": [
+        {
+          "id": "activity_index",
+          "label": "Activity index",
+          "unanswered": "zero",
+          "decimals": 2,
+          "showToRespondent": false,
+          "formula": {
+            "op": "/", "args": [
+              { "op": "*", "args": [{ "ref": "effort" }, { "ref": "active_days" }] },
+              { "num": 7 }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "tasks",
+      "type": "group",
+      "label": "Tasks",
+      "repeats": true,
+      "repeatLabel": "task",
+      "minOccurs": 1,
+      "maxOccurs": 5,
+      "blocks": [
+        { "id": "task_name", "type": "short", "label": "Task" },
+        {
+          "id": "task_effort", "type": "choice", "label": "How much effort did it take?",
+          "options": [
+            { "code": "little", "label": "A little", "score": 1 },
+            { "code": "some", "label": "Some", "score": 2 },
+            { "code": "a_lot", "label": "A lot", "score": 3 }
+          ]
+        },
+        { "id": "task_hours", "type": "number", "label": "Hours spent", "min": 0, "max": 100 }
+      ],
+      "scores": [
+        {
+          "id": "task_load",
+          "label": "Task load",
+          "unanswered": "no-score",
+          "showToRespondent": true,
+          "formula": { "op": "*", "args": [{ "ref": "task_effort" }, { "ref": "task_hours" }] }
+        }
+      ]
+    }
+  ]
+}
