@@ -1,0 +1,296 @@
+{
+  "title": "Scoring verify",
+  "formId": "e20c45bd-0cce-4446-9508-c906e378a02a",
+  "formVersionId": "365cc91f-627c-452a-b218-d3b3c0a6b72a",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_y5kd7bfe",
+      "type": "group",
+      "label": "PHQ-5",
+      "scores": [
+        {
+          "id": "s_hn4qxko7",
+          "label": "Total",
+          "formula": {
+            "op": "+",
+            "args": [
+              {
+                "op": "+",
+                "args": [
+                  {
+                    "op": "+",
+                    "args": [
+                      {
+                        "op": "+",
+                        "args": [
+                          {
+                            "ref": "b_sroxpby1"
+                          },
+                          {
+                            "ref": "b_j3862bul"
+                          }
+                        ]
+                      },
+                      {
+                        "ref": "b_6dymg436"
+                      }
+                    ]
+                  },
+                  {
+                    "ref": "b_7xx8hp3c"
+                  }
+                ]
+              },
+              {
+                "ref": "b_l8xigfts"
+              }
+            ]
+          },
+          "unanswered": "no-score",
+          "showToRespondent": true
+        },
+        {
+          "id": "s_qxhmt8n2",
+          "label": "Weighted",
+          "formula": {
+            "op": "/",
+            "args": [
+              {
+                "op": "*",
+                "args": [
+                  {
+                    "op": "+",
+                    "args": [
+                      {
+                        "ref": "b_sroxpby1"
+                      },
+                      {
+                        "ref": "b_j3862bul"
+                      }
+                    ]
+                  },
+                  {
+                    "ref": "b_tynx7zi2"
+                  }
+                ]
+              },
+              {
+                "num": 7
+              }
+            ]
+          },
+          "unanswered": "no-score",
+          "decimals": 2,
+          "showToRespondent": true
+        }
+      ],
+      "blocks": [
+        {
+          "id": "b_sroxpby1",
+          "type": "choice",
+          "label": "Item 1",
+          "required": false,
+          "options": [
+            {
+              "code": "option_1",
+              "label": "Option 1",
+              "score": 0
+            },
+            {
+              "code": "option_2",
+              "label": "Option 2",
+              "score": 1
+            },
+            {
+              "code": "option_3",
+              "label": "Option 3",
+              "score": 2
+            }
+          ]
+        },
+        {
+          "id": "b_j3862bul",
+          "type": "choice",
+          "label": "Item 2",
+          "required": false,
+          "options": [
+            {
+              "code": "option_1",
+              "label": "Option 1",
+              "score": 0
+            },
+            {
+              "code": "option_2",
+              "label": "Option 2",
+              "score": 1
+            },
+            {
+              "code": "option_3",
+              "label": "Option 3",
+              "score": 2
+            }
+          ]
+        },
+        {
+          "id": "b_6dymg436",
+          "type": "choice",
+          "label": "Item 3",
+          "required": false,
+          "options": [
+            {
+              "code": "option_1",
+              "label": "Option 1",
+              "score": 0
+            },
+            {
+              "code": "option_2",
+              "label": "Option 2",
+              "score": 1
+            },
+            {
+              "code": "option_3",
+              "label": "Option 3",
+              "score": 2
+            }
+          ]
+        },
+        {
+          "id": "b_7xx8hp3c",
+          "type": "choice",
+          "label": "Item 4",
+          "required": false,
+          "options": [
+            {
+              "code": "option_1",
+              "label": "Option 1",
+              "score": 0
+            },
+            {
+              "code": "option_2",
+              "label": "Option 2",
+              "score": 1
+            },
+            {
+              "code": "option_3",
+              "label": "Option 3",
+              "score": 2
+            }
+          ]
+        },
+        {
+          "id": "b_l8xigfts",
+          "type": "choice",
+          "label": "Item 5",
+          "required": false,
+          "options": [
+            {
+              "code": "option_1",
+              "label": "Option 1",
+              "score": 0
+            },
+            {
+              "code": "option_2",
+              "label": "Option 2",
+              "score": 1
+            },
+            {
+              "code": "option_3",
+              "label": "Option 3",
+              "score": 2
+            }
+          ]
+        },
+        {
+          "id": "b_i6ci5vhx",
+          "type": "group",
+          "label": "Timing",
+          "blocks": [
+            {
+              "id": "b_tynx7zi2",
+              "type": "number",
+              "label": "Days affected",
+              "required": false
+            },
+            {
+              "id": "b_5jf5si12",
+              "type": "group",
+              "label": "Mood check",
+              "scores": [
+                {
+                  "id": "mt",
+                  "label": "Mood total",
+                  "formula": {
+                    "op": "+",
+                    "args": [
+                      {
+                        "ref": "b_9hrvucxm"
+                      },
+                      {
+                        "ref": "b_esqmfaw0"
+                      }
+                    ]
+                  },
+                  "unanswered": "no-score",
+                  "showToRespondent": true
+                }
+              ],
+              "blocks": [
+                {
+                  "id": "b_9hrvucxm",
+                  "type": "number",
+                  "label": "Days affected",
+                  "required": false
+                },
+                {
+                  "id": "b_esqmfaw0",
+                  "type": "number",
+                  "label": "Mood",
+                  "required": false
+                }
+              ]
+            },
+            {
+              "id": "b_cjkwse8o",
+              "type": "group",
+              "label": "Mood check",
+              "scores": [
+                {
+                  "id": "mt",
+                  "label": "Mood total",
+                  "formula": {
+                    "op": "+",
+                    "args": [
+                      {
+                        "ref": "b_zqt1q7jv"
+                      },
+                      {
+                        "ref": "b_j9rej56r"
+                      }
+                    ]
+                  },
+                  "unanswered": "no-score",
+                  "showToRespondent": true
+                }
+              ],
+              "blocks": [
+                {
+                  "id": "b_zqt1q7jv",
+                  "type": "number",
+                  "label": "Days affected",
+                  "required": false
+                },
+                {
+                  "id": "b_j9rej56r",
+                  "type": "number",
+                  "label": "Mood",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

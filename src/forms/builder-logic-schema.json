@@ -1,0 +1,99 @@
+{
+  "title": "Builder logic",
+  "formId": "772cf015-225e-433b-b8dd-777f943fdae3",
+  "formVersionId": "4aba92ce-6036-42e1-97a1-1f019bc58825",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "smokes",
+      "type": "choice",
+      "label": "Smokes?",
+      "required": false,
+      "options": [
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "type": "choice",
+      "label": "Drinks?",
+      "required": false,
+      "options": [
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "id": "minor",
+      "type": "choice",
+      "label": "Under 18?",
+      "required": false,
+      "options": [
+        {
+          "code": "yes",
+          "label": "Yes"
+        },
+        {
+          "code": "no",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "type": "short",
+      "label": "Support needed",
+      "required": false,
+      "enableWhen": [
+        {
+          "id": "c_nplsachj",
+          "question": "smokes",
+          "operator": "=",
+          "answer": "yes"
+        },
+        {
+          "id": "c_x9y4e3o5",
+          "question": "drinks",
+          "operator": "=",
+          "answer": "yes"
+        },
+        {
+          "id": "c_yk6ltv2c",
+          "question": "minor",
+          "operator": "=",
+          "answer": "yes"
+        }
+      ],
+      "enableLogic": {
+        "any": [
+          "c_nplsachj",
+          {
+            "all": [
+              "c_x9y4e3o5",
+              "c_yk6ltv2c"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "anything",
+      "type": "short",
+      "label": "Anything else",
+      "required": false
+    }
+  ]
+}

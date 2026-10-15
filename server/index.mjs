@@ -5,6 +5,9 @@ import { appendFileSync, existsSync, readdirSync, readFileSync, renameSync, writ
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertSchemaIntegrity, prepareSubmission } from '@yourco/forms/core';
+// The host's validators: the same module the page passes to FormRenderer.
+// Without them here, anyone could bypass the rules by posting directly.
+import { validatorsFor } from '../src/validation/validators.mjs';
 
 const PORT = Number(process.env.PORT ?? 5000);
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -148,7 +151,12 @@ app.use((req, res, next) => {
     }
     if (res.statusCode >= 400) console.warn(line);
     else console.log(line);
-    writeRequestLog(req, res, { status: res.statusCode, durationMs: ms });
+    writeRequestLog(req, res, {
+      status: res.statusCode,
+      durationMs: ms,
+      // The scores prepareSubmission calculated: never anything the browser sent.
+      ...(res.locals.derivedScores ? { derivedScores: res.locals.derivedScores } : {}),
+    });
   });
   next();
 });
@@ -217,22 +225,40 @@ app.post('/api/submit', async (req, res) => {
 
     // A payload built against another form version is accepted, and flagged
     // through versionMismatch below — never rejected for it.
-    const prepared = prepareSubmission(schema, body);
+    const prepared = prepareSubmission(schema, body, { validators: validatorsFor(schema.formId) });
     if (!prepared.ok) {
       const { errors } = prepared;
+      // A validator that threw or returned a bad value: its cause is for our
+      // logs only. It is non-enumerable, so the 422 body below never carries it.
+      for (const error of errors) {
+        if (Object.prototype.hasOwnProperty.call(error, 'cause')) {
+          console.error(`  ${tag} validator for "${error.blockId}" at ${error.path.join('.')} failed:`, error.cause);
+        }
+      }
       res.locals.note = `${tag} ${errors.length} validation error(s): ${errors.map((e) => `${e.blockId}: ${e.message}`).join('; ')}`;
       return reply(res, 422, { error: 'Validation failed', errors });
     }
 
     // Only the answers prepareSubmission returns are stored: anything for a
-    // hidden or unknown question has already been stripped.
+    // hidden or unknown question has already been stripped. Likewise derived:
+    // the scores prepareSubmission calculated replace whatever the body carried.
     const stripped = Object.keys(body.answers).filter((id) => !(id in prepared.answers));
     const record = {
       submissionId: randomUUID(),
       receivedAt: new Date().toISOString(),
       ...body,
       answers: prepared.answers,
+      derived: prepared.derived,
     };
+    res.locals.derivedScores = prepared.derived.scores;
+    if (prepared.derived.scores.length > 0) {
+      console.log(`  ${tag} derived.scores (from prepareSubmission):`);
+      for (const s of prepared.derived.scores) {
+        console.log(
+          `    ${s.groupId}.${s.scoreId} @ ${JSON.stringify(s.path)} "${s.label}" = ${s.value === null ? `null (${s.reason})` : s.value}`
+        );
+      }
+    }
     submissions.push(record);
     byIdempotencyKey.set(key, record);
     persist();
@@ -242,6 +268,7 @@ app.post('/api/submit', async (req, res) => {
       : null;
     res.locals.note =
       `${tag} stored as ${record.submissionId}; versionMismatch=${prepared.versionMismatch}` +
+      `; derived.scores=${JSON.stringify(prepared.derived.scores)}` +
       (stripped.length > 0 ? `; stripped ${stripped.length} answer(s): ${stripped.join(', ')}` : '') +
       (mismatchWarning ? `; ${mismatchWarning}` : '');
     if (mismatchWarning) console.warn(`  ${tag} ${mismatchWarning}`);

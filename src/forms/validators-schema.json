@@ -1,0 +1,54 @@
+{
+  "title": "Host validators (0.21.0)",
+  "formId": "validators-demo",
+  "formVersionId": "validators-demo-v1",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "intro",
+      "type": "text",
+      "label": "About this form",
+      "content": "Every rule on this form beyond required and the date format is a host validator from src/validation/validators.mjs. The page and the API import that same module."
+    },
+    {
+      "id": "mrn",
+      "type": "short",
+      "label": "Medical record number (MRN)",
+      "description": "\"MRN\" then 8 digits, the last a check digit. Try MRN12345674 (valid) or MRN12345675 (wrong check digit).",
+      "required": true
+    },
+    {
+      "id": "ward",
+      "type": "short",
+      "label": "Ward code",
+      "description": "Test only: enter \"throw\" to make this field's validator throw."
+    },
+    { "id": "admitted", "type": "date", "label": "Admission date", "required": true },
+    {
+      "id": "discharged",
+      "type": "date",
+      "label": "Discharge date",
+      "description": "Must be after the admission date.",
+      "required": true
+    },
+    {
+      "id": "medications",
+      "type": "group",
+      "label": "Medications given",
+      "repeats": true,
+      "repeatLabel": "medication",
+      "minOccurs": 1,
+      "maxOccurs": 5,
+      "blocks": [
+        { "id": "medName", "type": "short", "label": "Medication", "required": true },
+        { "id": "started", "type": "date", "label": "Started", "required": true },
+        {
+          "id": "stopped",
+          "type": "date",
+          "label": "Stopped",
+          "description": "On or after the start date, and not after discharge."
+        }
+      ]
+    }
+  ]
+}

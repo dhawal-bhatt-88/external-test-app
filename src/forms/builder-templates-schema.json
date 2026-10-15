@@ -1,0 +1,112 @@
+{
+  "title": "Host",
+  "formId": "30604d79-b04f-4f66-aae2-2d073745d11c",
+  "formVersionId": "21a8aa7f-1893-4de8-85c6-1bcb0c710d67",
+  "schemaVersion": 2,
+  "blocks": [
+    {
+      "id": "b_name0001",
+      "type": "short",
+      "label": "Your name",
+      "required": false
+    },
+    {
+      "id": "b_q4xec5oh",
+      "type": "group",
+      "label": "Smoking details",
+      "blocks": [
+        {
+          "id": "b_9x6nk29j",
+          "type": "number",
+          "label": "Cigarettes a day",
+          "required": false
+        },
+        {
+          "id": "b_8se502b0",
+          "type": "choice",
+          "label": "Ever tried to quit?",
+          "required": false,
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "id": "b_hsa5rd1z",
+          "type": "number",
+          "label": "How many times?",
+          "required": false,
+          "enableWhen": [
+            {
+              "id": "c_rbzr42qn",
+              "question": "b_8se502b0",
+              "operator": "=",
+              "answer": "yes"
+            },
+            {
+              "id": "c_wz8pzi8m",
+              "question": "b_9x6nk29j",
+              "operator": ">",
+              "answer": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b_wv1jlmeh",
+      "type": "group",
+      "label": "Smoking details",
+      "blocks": [
+        {
+          "id": "b_paib3ec9",
+          "type": "number",
+          "label": "Cigarettes a day",
+          "required": false
+        },
+        {
+          "id": "b_hq2cdv7u",
+          "type": "choice",
+          "label": "Ever tried to quit?",
+          "required": false,
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ]
+        },
+        {
+          "id": "b_z3jt6nmc",
+          "type": "number",
+          "label": "How many times?",
+          "required": false,
+          "enableWhen": [
+            {
+              "id": "c_rbzr42qn",
+              "question": "b_hq2cdv7u",
+              "operator": "=",
+              "answer": "yes"
+            },
+            {
+              "id": "c_wz8pzi8m",
+              "question": "b_paib3ec9",
+              "operator": ">",
+              "answer": 10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
