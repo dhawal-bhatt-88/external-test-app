@@ -10,6 +10,13 @@ import type { FormSchema } from '@zoworkhq/forms/core';
 import '@zoworkhq/forms/styles.css';
 import single from './single-schema.json';
 import paged from './paged-schema.json';
+// The installed package's version, as this dev server serves it. Vite doesn't
+// watch node_modules: after an install without a restart it still serves the
+// old files, and the check script refuses to measure (it compares this with
+// the version it expects).
+import installed from '../../node_modules/@zoworkhq/forms/package.json';
+
+document.documentElement.dataset.zfPackageVersion = installed.version;
 
 const FIXTURES = { single, paged } as const;
 const params = new URLSearchParams(location.search);
