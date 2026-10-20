@@ -1,0 +1,26 @@
+{
+  "formId": "custom-properties-paged",
+  "formVersionId": "v1",
+  "title": "Custom properties check, paged",
+  "schemaVersion": 2,
+  "navigation": { "showProgress": true, "progressStyle": "bar", "reviewPage": true },
+  "blocks": [
+    {
+      "id": "p1", "type": "page", "title": "First",
+      "blocks": [ { "id": "a", "type": "short", "label": "First answer" } ]
+    },
+    {
+      "id": "p2", "type": "page", "title": "Second",
+      "blocks": [
+        {
+          "id": "box", "type": "group", "label": "A root group",
+          "blocks": [ { "id": "b", "type": "short", "label": "Second answer" } ]
+        }
+      ]
+    },
+    {
+      "id": "p3", "type": "page", "title": "Third",
+      "blocks": [ { "id": "c", "type": "short", "label": "Third answer" } ]
+    }
+  ]
+}
