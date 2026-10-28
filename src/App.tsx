@@ -28,6 +28,7 @@ import logic from './forms/logic-schema.json';
 import validatorsDemo from './forms/validators-schema.json';
 import gridWide from './forms/grid-wide-schema.json';
 import scoring from './forms/scoring-schema.json';
+import fixes027 from './forms/fixes-0.27-schema.json';
 import { apiUrl, isDemo } from './api';
 // The host's validators: the same module the API passes to prepareSubmission.
 import { validatorsFor } from './validation/validators.mjs';
@@ -64,6 +65,7 @@ const FORMS = {
   validators: { label: 'Host validators (0.21.0)', schema: validatorsDemo },
   'grid-wide': { label: 'Wide grid, 8 columns (0.21.1)', schema: gridWide },
   scoring: { label: 'Scoring (0.23.0)', schema: scoring },
+  'fixes-0.27': { label: 'Fixes (0.27.0): links, summary, clearing, captions', schema: fixes027 },
 } as const;
 type FormKey = keyof typeof FORMS;
 

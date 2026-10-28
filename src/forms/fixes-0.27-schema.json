@@ -1,0 +1,38 @@
+{
+  "formId": "fixes-0.27",
+  "formVersionId": "v1",
+  "title": "Fixes (0.27.0)",
+  "description": "Every question type the 0.27.0 fixes touch.",
+  "schemaVersion": 2,
+  "blocks": [
+    { "id": "mood", "type": "choice", "label": "Mood", "required": false,
+      "options": [ { "code": "low", "label": "Low" }, { "code": "ok", "label": "OK" }, { "code": "good", "label": "Good" } ] },
+    { "id": "mood_req", "type": "choice", "label": "Mood today", "required": true,
+      "options": [ { "code": "low", "label": "Low" }, { "code": "ok", "label": "OK" } ] },
+    { "id": "sleep", "type": "rating", "label": "Sleep quality", "required": false },
+    { "id": "symptoms", "type": "matrix", "label": "Symptoms", "required": false,
+      "options": [ { "code": "tired", "label": "Tired" }, { "code": "worried", "label": "Worried" } ],
+      "columns": [ { "code": "never", "label": "Never" }, { "code": "often", "label": "Often" } ] },
+    { "id": "symptoms_all", "type": "matrix", "label": "Every symptom", "required": false, "completeRequired": true,
+      "options": [ { "code": "tired", "label": "Tired" }, { "code": "worried", "label": "Worried" } ],
+      "columns": [ { "code": "never", "label": "Never" }, { "code": "often", "label": "Often" } ] },
+    { "id": "mail", "type": "email", "label": "Email", "required": false },
+    { "id": "site", "type": "link", "label": "Website", "required": false },
+    { "id": "dose", "type": "number", "label": "Dose (mg)", "required": false, "max": 10 },
+    { "id": "use", "type": "grid", "label": "Substance use", "required": false,
+      "rows": [ { "code": "cannabis", "label": "Cannabis" }, { "code": "alcohol", "label": "Alcohol" } ],
+      "columns": [
+        { "code": "freq", "label": "Frequency", "type": "radio", "options": [ { "code": "daily", "label": "Daily" }, { "code": "never", "label": "Never" } ] },
+        { "code": "past", "label": "In the past", "type": "radio", "required": true, "options": [ { "code": "yes", "label": "Yes" }, { "code": "no", "label": "No" } ] }
+      ] },
+    { "id": "kids", "type": "group", "label": "Children", "repeats": true, "repeatLabel": "child", "minOccurs": 1, "maxOccurs": 3,
+      "blocks": [
+        { "id": "age", "type": "number", "label": "Age", "required": false, "max": 17 },
+        { "id": "kid_use", "type": "grid", "label": "Screen time", "required": false,
+          "rows": [ { "code": "weekday", "label": "Weekdays" }, { "code": "weekend", "label": "Weekends" } ],
+          "columns": [ { "code": "hours", "label": "Hours", "type": "radio", "required": true, "options": [ { "code": "under2", "label": "Under 2" }, { "code": "over2", "label": "2 or more" } ] } ] }
+      ] },
+    { "id": "clip", "type": "video", "label": "Clinic tour", "required": false,
+      "content": "/videos/test-clip.mp4", "captions": "/captions/test-clip.vtt" }
+  ]
+}
