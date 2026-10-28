@@ -4,7 +4,10 @@
 //
 //   node scripts/custom-properties-check.mjs baseline <out.json> --version <x.y.z>
 //     Measures every theme × density × state with no host custom properties
-//     set, and writes the result. Run against 0.25.0 to make the baseline.
+//     set, and writes the result, with the package version and the Chrome
+//     version in its "meta". The current baseline is 0.27.0 on Chrome 156
+//     (RenderingEngine/packages/forms/browser-baselines/custom-properties-0.27.0.json);
+//     0.25.0's was measured on Chrome 155.
 //
 //   node scripts/custom-properties-check.mjs check <baseline.json> --version <x.y.z> [--screenshots <dir>]
 //     With nothing set, every value must equal the baseline, with the theme
@@ -12,7 +15,9 @@
 //     :root, a wrapper and the roots, in every theme and density; their
 //     order; a dark-only override; derived properties; an invalid value;
 //     and an override inside the form, which no longer applies. Exits 1 on
-//     any failure.
+//     any failure. Warns, without failing, when Chrome's version differs from
+//     the baseline's: a browser update can change native controls' own styles
+//     (Chrome 156 gave radios border-radius: 50%), which is not the package's doing.
 //
 // Before measuring, both modes check what the dev server actually serves:
 // the page must report --version, and in check mode the package stylesheet
@@ -28,7 +33,7 @@
 // stylesheet and nothing else of the app's. Submits are answered here
 // (page.route), so no API is needed.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { chromium } from 'playwright-core';
 
 const BASE = 'http://localhost:5173/external-test-app/custom-properties.html';
@@ -544,13 +549,21 @@ const cssFor = (selector, values) =>
 
 /** Nothing set: every theme × density × state, both placements, equal to the baseline. */
 async function checkBaseline(browser, baselineFile) {
-  const baseline = JSON.parse(readFileSync(baselineFile, 'utf8')).values;
+  const { meta = {}, values: baseline } = JSON.parse(readFileSync(baselineFile, 'utf8'));
+  // Baselines before 0.27.0 have no packageVersion: name them by their file.
+  const name = meta.packageVersion ?? basename(baselineFile, '.json').replace(/^custom-properties-/, '');
+  if (meta.chrome !== browser.version()) {
+    console.log(
+      `WARN  Chrome ${browser.version()} is not the baseline's (${meta.chrome ?? 'not recorded'}). ` +
+        'A difference in a native control (radio, checkbox) may be the browser’s own style, not the package’s.'
+    );
+  }
   const now = byPlacement(await measureAll(browser));
   for (const placement of PLACEMENTS) {
     const diffs = differences(baseline, now[placement]);
     const total = Object.keys(baseline).length;
     report(
-      `nothing set equals the 0.25.0 baseline, theme and density on ${placement === 'root' ? 'the roots' : 'a wrapper'} (${total} probes × ${PROPS.length} properties)`,
+      `nothing set equals the ${name} baseline, theme and density on ${placement === 'root' ? 'the roots' : 'a wrapper'} (${total} probes × ${PROPS.length} properties)`,
       diffs.length ? diffs.map((d) => ({ ok: false, what: d, actual: 'differs', expected: 'baseline' })) : [{ ok: true }]
     );
   }
@@ -741,6 +754,8 @@ try {
     const lines = Object.entries(results.wrapper).map(([probe, values]) => `    ${JSON.stringify(probe)}: ${JSON.stringify(values)}`);
     const header = {
       package: `@zoworkhq/forms ${version} (installed in the external test app)`,
+      packageVersion: version,
+      // Check mode warns when it runs on another Chrome.
       chrome: browser.version(),
       viewport: '1280×900 (boxed-narrow-viewport: 375×900); reduced motion',
       themes: THEMES,
