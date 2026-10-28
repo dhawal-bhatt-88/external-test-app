@@ -80,8 +80,9 @@ const FORM = [
   ['ranking-position', '.zf-ranking-position'],
   ['matrix', '.zf-matrix'],
   ['matrix-head', '.zf-matrix thead th'],
-  ['matrix-row-label', '.zf-matrix tbody th, .zf-matrix-row td:first-child'],
-  ['matrix-cell', '.zf-matrix-row td'],
+  // tbody: from 0.27.0 the header row's empty corner is a td, not a th.
+  ['matrix-row-label', '.zf-matrix tbody th, .zf-matrix tbody .zf-matrix-row td:first-child'],
+  ['matrix-cell', '.zf-matrix tbody .zf-matrix-row td'],
   ['matrix-input', '.zf-matrix-cell input'],
   ['group', '.zf-group'],
   ['group-nested', '.zf-group .zf-group'],
