@@ -19,15 +19,16 @@
 //     the baseline's: a browser update can change native controls' own styles
 //     (Chrome 156 gave radios border-radius: 50%), which is not the package's doing.
 //
-// Before measuring, both modes check what the dev server actually serves:
+// Before measuring, both modes check what Vite actually serves:
 // the page must report --version, and in check mode the package stylesheet
 // must contain --_zf-. Vite doesn't watch node_modules, so after an install
-// it serves the old package until it is restarted with node_modules/.vite
-// cleared; without this, a stale cache would measure the old stylesheet and
-// pass.
+// it serves the old package until node_modules/.vite is cleared; without
+// this, a stale cache would measure the old stylesheet and pass.
 //
-// Needs the dev server (npx vite) on http://localhost:5173. Drives the
-// installed Chrome headless through playwright-core, with reduced motion:
+// Starts Vite itself, on a free port, through Vite's JS API, and closes it in
+// the same process, so there is no server to start by hand and none left
+// running: a separate `npx vite` can outlive the task that started it on
+// Windows and be measured by the next run. Drives the installed Chrome headless through playwright-core, with reduced motion:
 // the stylesheet's 120ms transitions would otherwise show a just-changed
 // colour as the old one. The page is custom-properties.html: the package
 // stylesheet and nothing else of the app's. Submits are answered here
@@ -35,8 +36,10 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { chromium } from 'playwright-core';
+import { createServer } from 'vite';
 
-const BASE = 'http://localhost:5173/external-test-app/custom-properties.html';
+/** The page, on the port this run's Vite got. Set in main, before anything is measured. */
+let BASE;
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 
 /** Every property the stylesheet sets from a custom property, and the ones around them. */
@@ -401,7 +404,7 @@ const STATES = {
 // ---------------------------------------------------------------- run
 
 /**
- * Refuses to measure a stale page: the dev server must serve the package
+ * Refuses to measure a stale page: Vite must serve the package
  * version expected, and (requirePrivate) a stylesheet with --_zf- in it.
  */
 async function preflight(browser, { version, requirePrivate }) {
@@ -420,7 +423,7 @@ async function preflight(browser, { version, requirePrivate }) {
     };
   });
   await page.close();
-  const stale = 'Restart the dev server with node_modules/.vite cleared, after installing the package.';
+  const stale = 'Clear node_modules/.vite after installing the package, and run this again.';
   if (served.version !== version)
     throw new Error(`The page reports @zoworkhq/forms ${served.version}, not ${version}. ${stale}`);
   if (served.sheets === 0) throw new Error('The page has no @zoworkhq/forms stylesheet.');
@@ -743,7 +746,11 @@ if (!['baseline', 'check'].includes(mode) || !file || !version) {
 }
 
 const browser = await chromium.launch({ executablePath: CHROME, headless: true });
+let vite;
 try {
+  vite = await createServer({ server: { port: 0, strictPort: true }, logLevel: 'warn' });
+  await vite.listen();
+  BASE = new URL('custom-properties.html', vite.resolvedUrls.local[0]).href;
   await preflight(browser, { version, requirePrivate: mode === 'check' });
 
   if (mode === 'baseline') {
@@ -790,4 +797,5 @@ try {
   process.exitCode = 1;
 } finally {
   await browser.close();
+  await vite?.close();
 }
