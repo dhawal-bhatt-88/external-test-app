@@ -4,7 +4,7 @@
 // in the bundle, so anyone can derive any user's key.
 import { http, HttpResponse } from 'msw';
 import { assertSchemaIntegrity, prepareSubmission } from '@zoworkhq/forms/core';
-import type { Draft, FormSchema, Submission } from '@zoworkhq/forms/core';
+import type { Draft, FormSchema, StoredSubmission as PreparedRecord, Submission } from '@zoworkhq/forms/core';
 import { apiUrl } from '../api';
 // The same validators the page and server/index.mjs use.
 import { validatorsFor } from '../validation/validators.mjs';
@@ -46,7 +46,7 @@ function write(name: string, value: unknown) {
   localStorage.setItem(STORAGE_PREFIX + name, JSON.stringify(value));
 }
 
-type StoredSubmission = Submission & { submissionId: string; receivedAt: string };
+type StoredSubmission = PreparedRecord & { submissionId: string; receivedAt: string };
 type StoredDraft = { scope: string; formId: string; storedAt: string; draft: Draft };
 
 const loadSubmissions = () => read<StoredSubmission[]>('submissions', []);
@@ -149,13 +149,13 @@ export const handlers = [
       const prepared = prepareSubmission(schema, submission, { validators: validatorsFor(schema.formId) });
       if (!prepared.ok) return HttpResponse.json({ error: 'Validation failed', errors: prepared.errors }, { status: 422 });
 
-      // Only the answers and scores prepareSubmission returns are stored.
+      // Only prepared.submission is stored, never the body: the schema's ids,
+      // the version filled in (answeredFormVersionId), the checked key and
+      // time, and the answers and scores prepareSubmission built.
       const record: StoredSubmission = {
         submissionId: crypto.randomUUID(),
         receivedAt: new Date().toISOString(),
-        ...submission,
-        answers: prepared.answers,
-        derived: prepared.derived,
+        ...prepared.submission,
       };
       if (prepared.derived.scores.length > 0) console.info('[demo api] derived.scores', prepared.derived.scores);
       write('submissions', [...submissions, record]);
