@@ -239,16 +239,15 @@ app.post('/api/submit', async (req, res) => {
       return reply(res, 422, { error: 'Validation failed', errors });
     }
 
-    // Only the answers prepareSubmission returns are stored: anything for a
-    // hidden or unknown question has already been stripped. Likewise derived:
-    // the scores prepareSubmission calculated replace whatever the body carried.
+    // Only prepared.submission is stored, never the body: the schema's ids, the
+    // version filled in (answeredFormVersionId), the checked key and time, and
+    // the answers and scores prepareSubmission built. Anything for a hidden or
+    // unknown question has already been stripped.
     const stripped = Object.keys(body.answers).filter((id) => !(id in prepared.answers));
     const record = {
       submissionId: randomUUID(),
       receivedAt: new Date().toISOString(),
-      ...body,
-      answers: prepared.answers,
-      derived: prepared.derived,
+      ...prepared.submission,
     };
     res.locals.derivedScores = prepared.derived.scores;
     if (prepared.derived.scores.length > 0) {
