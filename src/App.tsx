@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { FormRenderer, clearDrafts } from '@zoworkhq/forms/react';
-import type { Draft, DraftProblem, DraftRef, FormSchema } from '@zoworkhq/forms/core';
+import { FormRenderer, clearDrafts } from '@zoworkhq/zoforms/react';
+import type { Draft, DraftProblem, DraftRef, FormSchema } from '@zoworkhq/zoforms/core';
 //import deviceIntake from './forms/drafts-device-intake-schema.json';
 //import deviceConsent from './forms/drafts-device-consent-schema.json';
 //import serverIntake from './forms/drafts-server-intake-schema.json';

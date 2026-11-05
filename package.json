@@ -12,7 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@zoworkhq/forms": "file:zoworkhq-forms-0.28.1.tgz",
+    "@zoworkhq/zoforms": "file:zoworkhq-zoforms-0.29.0.tgz",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

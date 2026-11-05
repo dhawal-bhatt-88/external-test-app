@@ -1,5 +1,5 @@
 // Computed styles of the package stylesheet in a real browser, for the
-// custom-properties work in @zoworkhq/forms (renderer brief
+// custom-properties work in @zoworkhq/zoforms (renderer brief
 // RENDERER-BRIEF-CUSTOM-PROPERTIES.md).
 //
 //   node scripts/custom-properties-check.mjs baseline <out.json> --version <x.y.z>
@@ -413,7 +413,7 @@ async function preflight(browser, { version, requirePrivate }) {
   await page.waitForSelector('.zf-form');
   const served = await page.evaluate(() => {
     const sheets = [...document.querySelectorAll('style[data-vite-dev-id], link[rel="stylesheet"]')].filter((node) =>
-      (node.getAttribute('data-vite-dev-id') ?? node.getAttribute('href') ?? '').includes('@zoworkhq/forms')
+      (node.getAttribute('data-vite-dev-id') ?? node.getAttribute('href') ?? '').includes('@zoworkhq/zoforms')
     );
     const text = sheets.map((node) => [...(node.sheet?.cssRules ?? [])].map((rule) => rule.cssText).join('\n')).join('\n');
     return {
@@ -425,11 +425,11 @@ async function preflight(browser, { version, requirePrivate }) {
   await page.close();
   const stale = 'Clear node_modules/.vite after installing the package, and run this again.';
   if (served.version !== version)
-    throw new Error(`The page reports @zoworkhq/forms ${served.version}, not ${version}. ${stale}`);
-  if (served.sheets === 0) throw new Error('The page has no @zoworkhq/forms stylesheet.');
+    throw new Error(`The page reports @zoworkhq/zoforms ${served.version}, not ${version}. ${stale}`);
+  if (served.sheets === 0) throw new Error('The page has no @zoworkhq/zoforms stylesheet.');
   if (requirePrivate && !served.private)
-    throw new Error(`The served @zoworkhq/forms stylesheet has no --_zf- properties. ${stale}`);
-  console.log(`preflight: the page serves @zoworkhq/forms ${served.version}${requirePrivate ? ', stylesheet with --_zf-' : ''}`);
+    throw new Error(`The served @zoworkhq/zoforms stylesheet has no --_zf- properties. ${stale}`);
+  console.log(`preflight: the page serves @zoworkhq/zoforms ${served.version}${requirePrivate ? ', stylesheet with --_zf-' : ''}`);
 }
 
 async function measureAll(browser) {
@@ -760,7 +760,7 @@ try {
     // One line per probe, so a diff of the file reads probe by probe.
     const lines = Object.entries(results.wrapper).map(([probe, values]) => `    ${JSON.stringify(probe)}: ${JSON.stringify(values)}`);
     const header = {
-      package: `@zoworkhq/forms ${version} (installed in the external test app)`,
+      package: `@zoworkhq/zoforms ${version} (installed in the external test app)`,
       packageVersion: version,
       // Check mode warns when it runs on another Chrome.
       chrome: browser.version(),

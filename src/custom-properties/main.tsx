@@ -5,16 +5,16 @@
 // #wrapper, on the form's roots, or on :root.
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { FormRenderer } from '@zoworkhq/forms/react';
-import type { FormSchema } from '@zoworkhq/forms/core';
-import '@zoworkhq/forms/styles.css';
+import { FormRenderer } from '@zoworkhq/zoforms/react';
+import type { FormSchema } from '@zoworkhq/zoforms/core';
+import '@zoworkhq/zoforms/styles.css';
 import single from './single-schema.json';
 import paged from './paged-schema.json';
 // The installed package's version, as this dev server serves it. Vite doesn't
 // watch node_modules: after an install without a restart it still serves the
 // old files, and the check script refuses to measure (it compares this with
 // the version it expects).
-import installed from '../../node_modules/@zoworkhq/forms/package.json';
+import installed from '../../node_modules/@zoworkhq/zoforms/package.json';
 
 document.documentElement.dataset.zfPackageVersion = installed.version;
 
