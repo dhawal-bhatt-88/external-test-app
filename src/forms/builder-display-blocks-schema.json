@@ -1,11 +1,11 @@
 {
   "title": "Clinic visit",
-  "formId": "12a86022-523e-4990-b7ef-feadd7039eca",
-  "formVersionId": "389cfe6a-bf9a-4f40-9fc4-e4dbdb4a1610",
+  "formId": "a8196538-d617-4367-872e-eaf605acc3b8",
+  "formVersionId": "fcd21dfe-97d2-4aec-bfda-c167ae014d8d",
   "schemaVersion": 2,
   "blocks": [
     {
-      "id": "b_5kje73qh",
+      "id": "b_wictwb59",
       "type": "choice",
       "label": "Would you like directions?",
       "required": false,
@@ -21,67 +21,67 @@
       ]
     },
     {
-      "id": "b_233wq698",
+      "id": "b_w0h1f3zv",
       "type": "text",
       "label": "Welcome",
       "required": false,
       "content": "Welcome to the clinic.\nPlease arrive 10 minutes early."
     },
     {
-      "id": "b_61ueur6r",
+      "id": "b_3h7ocqg9",
       "type": "image",
       "label": "Clinic logo",
       "required": false,
       "content": "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png"
     },
     {
-      "id": "b_2wdnfhcf",
+      "id": "b_gng4v88y",
       "type": "image",
       "label": "Clinic entrance",
       "required": false,
       "content": "/images/clinic-entrance.png"
     },
     {
-      "id": "b_1tmw6a07",
+      "id": "b_x0kvrdlk",
       "type": "text",
       "label": "Directions",
       "required": false,
       "content": "Turn left at the pharmacy.\nWe're on the second floor.",
       "enableWhen": [
         {
-          "id": "c1",
-          "question": "b_5kje73qh",
+          "id": "c_euib15tw",
+          "question": "b_wictwb59",
           "operator": "=",
           "answer": "yes"
         }
       ]
     },
     {
-      "id": "b_686bifew",
+      "id": "b_i7ffna0v",
       "type": "short",
       "label": "Full name",
       "required": false
     },
     {
-      "id": "b_pi2ej4r5",
+      "id": "b_p7zz07sw",
       "type": "heading",
       "label": "Before you arrive",
       "level": 1
     },
     {
-      "id": "b_en2hpmje",
+      "id": "b_lf83svux",
       "type": "title",
       "label": "Your visit",
-      "content": ""
+      "content": "Your visit"
     },
     {
-      "id": "b_l41ic11a",
+      "id": "b_ck2cvufl",
       "type": "label",
-      "label": "Label",
+      "label": "Appointment details",
       "content": "Appointment details"
     },
     {
-      "id": "b_ua1a9811",
+      "id": "b_gedz54rh",
       "type": "divider",
       "label": "Divider"
     }

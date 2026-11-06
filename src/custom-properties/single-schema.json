@@ -1,0 +1,82 @@
+{
+  "formId": "custom-properties-single",
+  "formVersionId": "v1",
+  "title": "Custom properties check",
+  "schemaVersion": 2,
+  "blocks": [
+    { "id": "t_title", "type": "title", "content": "Custom properties check" },
+    { "id": "l_intro", "type": "label", "content": "Every block that reads a custom property." },
+    { "id": "hd_one", "type": "heading", "label": "Questions", "level": 2 },
+    { "id": "tx_one", "type": "text", "label": "Text", "content": "An author's paragraph." },
+    { "id": "dv_one", "type": "divider" },
+    { "id": "name", "type": "short", "label": "Your name", "description": "As on your ID.", "required": true },
+    { "id": "notes", "type": "long", "label": "Notes" },
+    {
+      "id": "country", "type": "dropdown", "label": "Region", "required": true,
+      "options": [ { "code": "north", "label": "North" }, { "code": "south", "label": "South" } ]
+    },
+    {
+      "id": "checkin",
+      "type": "group",
+      "label": "Check-in",
+      "blocks": [
+        {
+          "id": "mood", "type": "choice", "label": "How do you feel?", "required": true,
+          "options": [
+            { "code": "low", "label": "Low", "score": 0 },
+            { "code": "ok", "label": "OK", "score": 1 },
+            { "code": "good", "label": "Good", "score": 2 }
+          ]
+        },
+        {
+          "id": "nested",
+          "type": "group",
+          "label": "More about today",
+          "blocks": [
+            { "id": "energy", "type": "scale", "label": "Energy", "min": 1, "max": 5 },
+            { "id": "sleep", "type": "rating", "label": "Sleep quality" }
+          ]
+        }
+      ],
+      "scores": [
+        { "id": "mood_score", "label": "Mood score", "unanswered": "zero", "showToRespondent": true, "formula": { "ref": "mood" } }
+      ]
+    },
+    {
+      "id": "priorities", "type": "ranking", "label": "Priorities",
+      "options": [ { "code": "cost", "label": "Cost" }, { "code": "speed", "label": "Speed" }, { "code": "quality", "label": "Quality" } ]
+    },
+    {
+      "id": "symptoms", "type": "matrix", "label": "Symptoms",
+      "options": [ { "code": "tired", "label": "Tired" }, { "code": "worried", "label": "Worried" } ],
+      "columns": [ { "code": "never", "label": "Never" }, { "code": "often", "label": "Often" } ]
+    },
+    {
+      "id": "meds",
+      "type": "group",
+      "label": "Medications",
+      "repeats": true,
+      "repeatLabel": "medication",
+      "minOccurs": 1,
+      "maxOccurs": 3,
+      "blocks": [ { "id": "med_name", "type": "short", "label": "Medication name" } ]
+    },
+    {
+      "id": "use",
+      "type": "grid",
+      "label": "Substance use",
+      "rows": [ { "code": "alcohol", "label": "Alcohol" }, { "code": "tobacco", "label": "Tobacco" } ],
+      "columns": [
+        { "code": "age", "label": "Age at first use", "type": "text" },
+        {
+          "code": "freq", "label": "Frequency", "type": "dropdown", "required": true,
+          "options": [ { "code": "daily", "label": "Daily" }, { "code": "never", "label": "Never" } ]
+        },
+        {
+          "code": "recent", "label": "Last 30 days?", "type": "radio",
+          "options": [ { "code": "yes", "label": "Yes" }, { "code": "no", "label": "No" } ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,26 +1,26 @@
 {
   "title": "Substance use",
-  "formId": "58e51d73-d050-4c21-b8ce-788ab33bbe0b",
-  "formVersionId": "caa2c398-b7d4-48ac-9b0d-4497839ba0a1",
+  "formId": "54177d61-2def-44fe-9a76-16c726e2a7dc",
+  "formVersionId": "40b13186-0f32-4539-8157-e6a32407aeb9",
   "schemaVersion": 2,
   "blocks": [
     {
-      "id": "b_avnsi4qi",
+      "id": "b_vr2pugcg",
       "type": "matrix",
       "label": "Matrix question",
       "required": false,
       "options": [
         {
-          "code": "option_1",
-          "label": "Option 1"
+          "code": "row_1",
+          "label": "Row 1"
         },
         {
-          "code": "option_2",
-          "label": "Option 2"
+          "code": "row_2",
+          "label": "Row 2"
         },
         {
-          "code": "option_3",
-          "label": "Option 3"
+          "code": "row_3",
+          "label": "Row 3"
         }
       ],
       "columns": [
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "id": "b_m4o01zil",
+      "id": "b_pve4voj2",
       "type": "choice",
       "label": "Uses substances?",
       "required": false,
@@ -59,26 +59,26 @@
       ]
     },
     {
-      "id": "b_u7ngzhmf",
+      "id": "b_ifs2y2rz",
       "type": "short",
       "label": "Short answer",
       "required": false,
       "enableWhen": [
         {
-          "id": "c1",
-          "question": "b_m4o01zil",
+          "id": "c_u064kr31",
+          "question": "b_pve4voj2",
           "operator": "exists"
         }
       ]
     },
     {
-      "id": "b_ug9cvxvr",
+      "id": "b_lbww8bmw",
       "type": "grid",
       "label": "Substance use",
       "enableWhen": [
         {
-          "id": "c1",
-          "question": "b_u7ngzhmf",
+          "id": "c_7wxk5kzh",
+          "question": "b_ifs2y2rz",
           "operator": "exists"
         }
       ],
@@ -178,7 +178,7 @@
       ]
     },
     {
-      "id": "b_y61d56da",
+      "id": "b_pf08sr5u",
       "type": "group",
       "label": "Medication history",
       "repeats": true,
@@ -186,7 +186,7 @@
       "minOccurs": 1,
       "blocks": [
         {
-          "id": "b_0ljb45l7",
+          "id": "b_ezymn3l4",
           "type": "grid",
           "label": "Doses",
           "rows": [

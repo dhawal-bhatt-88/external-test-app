@@ -1,10 +1,10 @@
-// Local test API for @yourco/forms submissions. Not for production use.
+// Local test API for @zoworkhq/zoforms submissions. Not for production use.
 import express from 'express';
 import { createHmac, randomUUID } from 'node:crypto';
 import { appendFileSync, existsSync, readdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { assertSchemaIntegrity, prepareSubmission } from '@yourco/forms/core';
+import { assertSchemaIntegrity, prepareSubmission } from '@zoworkhq/zoforms/core';
 // The host's validators: the same module the page passes to FormRenderer.
 // Without them here, anyone could bypass the rules by posting directly.
 import { validatorsFor } from '../src/validation/validators.mjs';
@@ -239,16 +239,15 @@ app.post('/api/submit', async (req, res) => {
       return reply(res, 422, { error: 'Validation failed', errors });
     }
 
-    // Only the answers prepareSubmission returns are stored: anything for a
-    // hidden or unknown question has already been stripped. Likewise derived:
-    // the scores prepareSubmission calculated replace whatever the body carried.
+    // Only prepared.submission is stored, never the body: the schema's ids, the
+    // version filled in (answeredFormVersionId), the checked key and time, and
+    // the answers and scores prepareSubmission built. Anything for a hidden or
+    // unknown question has already been stripped.
     const stripped = Object.keys(body.answers).filter((id) => !(id in prepared.answers));
     const record = {
       submissionId: randomUUID(),
       receivedAt: new Date().toISOString(),
-      ...body,
-      answers: prepared.answers,
-      derived: prepared.derived,
+      ...prepared.submission,
     };
     res.locals.derivedScores = prepared.derived.scores;
     if (prepared.derived.scores.length > 0) {

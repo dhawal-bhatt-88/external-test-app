@@ -1,11 +1,11 @@
 {
   "title": "Clinic intake",
-  "formId": "71278494-890f-41e8-aac6-0b1e10db1cec",
-  "formVersionId": "5e391699-ac48-4fc3-8761-779f4ac900ce",
+  "formId": "e68ebe19-87f2-4384-bf71-272bfd5855a2",
+  "formVersionId": "4bb0e25d-909a-4400-8c49-41df1f7c4994",
   "schemaVersion": 2,
   "blocks": [
     {
-      "id": "b_zvibv7uc",
+      "id": "b_7p4qtwwi",
       "type": "choice",
       "label": "Diagnosis",
       "required": false,
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "id": "b_3fr7ikyb",
+      "id": "b_5hdzauyg",
       "type": "checkbox",
       "label": "Symptoms",
       "required": false,
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "id": "b_mblk9rm1",
+      "id": "b_6yzzcqmr",
       "type": "dropdown",
       "label": "Clinic",
       "required": false,
@@ -73,8 +73,8 @@
       ]
     },
     {
-      "id": "b_86qimufr",
-      "type": "multiselect",
+      "id": "b_cp53tvqo",
+      "type": "checkbox",
       "label": "Languages",
       "required": false,
       "options": [
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "id": "b_nrcwh4kn",
+      "id": "b_ng36y1qz",
       "type": "ranking",
       "label": "Priorities",
       "required": false,
@@ -114,7 +114,7 @@
       ]
     },
     {
-      "id": "b_kglp1p8n",
+      "id": "b_ojbotmtm",
       "type": "matrix",
       "label": "Sleep",
       "required": false,
@@ -145,28 +145,28 @@
       ]
     },
     {
-      "id": "b_idyzy3ly",
+      "id": "b_c9f73qwo",
       "type": "short",
       "label": "Follow-up",
       "required": false,
       "enableWhen": [
         {
-          "id": "c1",
-          "question": "b_zvibv7uc",
+          "id": "c_7zhqh9s7",
+          "question": "b_7p4qtwwi",
           "operator": "=",
           "answer": "F32.0"
         }
       ]
     },
     {
-      "id": "b_5x9y4ql4",
+      "id": "b_06rhzjb3",
       "type": "short",
       "label": "Sleep note",
       "required": false,
       "enableWhen": [
         {
-          "id": "c1",
-          "question": "b_3fr7ikyb",
+          "id": "c_0nz0gjk3",
+          "question": "b_5hdzauyg",
           "operator": "contains",
           "answer": "poor_sleep"
         }
