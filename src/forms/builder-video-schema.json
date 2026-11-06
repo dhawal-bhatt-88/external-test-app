@@ -1,11 +1,11 @@
 {
   "title": "Clinic tour",
-  "formId": "a1dbf759-a24d-457d-bd1e-d9ca8f1e1823",
-  "formVersionId": "8e3f7d71-b428-4278-a010-f9521a89f986",
+  "formId": "7b8f2f10-905f-49ba-9a02-79c4e395671d",
+  "formVersionId": "96f47819-9a19-42f0-aa4e-9c5a274290d4",
   "schemaVersion": 2,
   "blocks": [
     {
-      "id": "b_juj687c1",
+      "id": "b_aezjkfw1",
       "type": "choice",
       "label": "Would you like a tour of the clinic?",
       "required": false,
@@ -21,29 +21,30 @@
       ]
     },
     {
-      "id": "b_qijrf79o",
+      "id": "b_re2gynnx",
       "type": "video",
       "label": "Welcome from the team",
       "required": false,
       "content": "https://youtu.be/dQw4w9WgXcQ?t=90"
     },
     {
-      "id": "b_0xbeyej5",
+      "id": "b_h8gke1om",
       "type": "video",
       "label": "Pharmacy walkthrough",
       "required": false,
       "content": "https://vimeo.com/76979871"
     },
     {
-      "id": "b_5fyp7klk",
+      "id": "b_9nj7hom6",
       "type": "video",
       "label": "Clinic tour",
       "required": false,
       "content": "/videos/intro.mp4",
+      "captions": "/captions/intro.vtt",
       "enableWhen": [
         {
-          "id": "c1",
-          "question": "b_juj687c1",
+          "id": "c_hi3vsrqk",
+          "question": "b_aezjkfw1",
           "operator": "=",
           "answer": "yes"
         }

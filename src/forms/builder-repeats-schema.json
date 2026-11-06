@@ -1,7 +1,7 @@
 {
   "title": "Clinic visit",
-  "formId": "82a94bb8-b03b-4d86-9585-e165900d85b0",
-  "formVersionId": "c4d11fdd-9353-470d-b314-75f1bbe8ce8c",
+  "formId": "ec108f8a-14ec-4b58-9b90-056d3d29f361",
+  "formVersionId": "b1644324-f9bf-4e13-8b93-79c3133aca32",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -108,7 +108,7 @@
                       "required": false,
                       "enableWhen": [
                         {
-                          "id": "c1",
+                          "id": "c_wnn3tidz",
                           "question": "consent",
                           "operator": "=",
                           "answer": "yes"
@@ -122,7 +122,7 @@
                       "required": false,
                       "enableWhen": [
                         {
-                          "id": "c1",
+                          "id": "c_pbgmb1wv",
                           "question": "insured",
                           "operator": "=",
                           "answer": "no"
@@ -138,7 +138,7 @@
                   "required": false,
                   "enableWhen": [
                     {
-                      "id": "c1",
+                      "id": "c_ytwube9f",
                       "question": "amount",
                       "operator": ">",
                       "answer": 100
@@ -154,7 +154,7 @@
               "required": false,
               "enableWhen": [
                 {
-                  "id": "c1",
+                  "id": "c_21nz3ty8",
                   "question": "pname",
                   "operator": "exists"
                 }
@@ -195,7 +195,7 @@
               "minOccurs": 0,
               "enableWhen": [
                 {
-                  "id": "c1",
+                  "id": "c_htf4k8i9",
                   "question": "hasKids",
                   "operator": "=",
                   "answer": "yes"
@@ -221,7 +221,7 @@
                   "required": false,
                   "enableWhen": [
                     {
-                      "id": "c1",
+                      "id": "c_hk55zgm6",
                       "question": "kage",
                       "operator": "<",
                       "answer": 5
@@ -239,10 +239,15 @@
           "required": false,
           "enableWhen": [
             {
-              "id": "c1",
+              "id": "c_wtm2jtgu",
               "question": "consent",
               "operator": "=",
               "answer": "yes"
+            },
+            {
+              "id": "c_9ks0ug3t",
+              "question": "address",
+              "operator": "exists"
             }
           ]
         }

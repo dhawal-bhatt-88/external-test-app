@@ -1,7 +1,7 @@
 {
   "title": "Builder logic",
-  "formId": "772cf015-225e-433b-b8dd-777f943fdae3",
-  "formVersionId": "4aba92ce-6036-42e1-97a1-1f019bc58825",
+  "formId": "d9f4f562-f0d4-451e-ba87-a05f387b969d",
+  "formVersionId": "b338387a-8404-4c2a-9fdd-6ad4a719beb0",
   "schemaVersion": 2,
   "blocks": [
     {
@@ -59,19 +59,19 @@
       "required": false,
       "enableWhen": [
         {
-          "id": "c_nplsachj",
+          "id": "c_sasjqznt",
           "question": "smokes",
           "operator": "=",
           "answer": "yes"
         },
         {
-          "id": "c_x9y4e3o5",
+          "id": "c_gx0u83ng",
           "question": "drinks",
           "operator": "=",
           "answer": "yes"
         },
         {
-          "id": "c_yk6ltv2c",
+          "id": "c_5f218uxg",
           "question": "minor",
           "operator": "=",
           "answer": "yes"
@@ -79,11 +79,11 @@
       ],
       "enableLogic": {
         "any": [
-          "c_nplsachj",
+          "c_sasjqznt",
           {
             "all": [
-              "c_x9y4e3o5",
-              "c_yk6ltv2c"
+              "c_gx0u83ng",
+              "c_5f218uxg"
             ]
           }
         ]
